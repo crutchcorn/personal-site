@@ -318,7 +318,7 @@
   border-top: 1px solid var(--line);
 }
 
-/* The sticky header remains in document flow. */
+/* The header sticks on desktop and scrolls with the page on mobile. */
 .site-header {
   position: sticky;
   top: 0;
@@ -384,29 +384,6 @@
 .contact-nav .icon {
   width: 20px;
   height: 20px;
-}
-
-.menu-toggle {
-  display: none;
-  align-items: center;
-  gap: var(--s2);
-  padding: var(--s2);
-  min-height: 44px;
-  border: 0;
-  background: transparent;
-  font-size: var(--text);
-}
-
-.menu-close-icon {
-  display: none;
-}
-
-.site-header[data-menu-open] .menu-open-icon {
-  display: none;
-}
-
-.site-header[data-menu-open] .menu-close-icon {
-  display: block;
 }
 
 /* An oversized statement and a real person, without a simulated device. */
@@ -1162,13 +1139,16 @@
   }
 
   :global(html) {
-    scroll-padding-top: 96px;
+    scroll-padding-top: var(--space-heading);
+  }
+
+  .site-header {
+    position: static;
+    border-bottom: 0;
   }
 
   .header-inner {
-    flex-wrap: wrap;
     min-height: 72px;
-    gap: 0;
     padding-block: var(--s2);
   }
 
@@ -1181,27 +1161,8 @@
     height: 24px;
   }
 
-  .menu-toggle {
-    display: inline-flex;
-  }
-
   .main-nav {
-    flex-basis: 100%;
-  }
-
-  .nav-links {
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: var(--s2) var(--s4);
-    padding-block: var(--s3);
-  }
-
-  :global(html[data-nav-ready]) .nav-links {
     display: none;
-  }
-
-  :global(html[data-nav-ready]) .site-header[data-menu-open] .nav-links {
-    display: flex;
   }
 
   .hero {

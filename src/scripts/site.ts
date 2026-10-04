@@ -1,55 +1,5 @@
 const header = document.querySelector<HTMLElement>('[data-site-header]');
-const menuButton =
-  document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
-const menuLabel = document.querySelector<HTMLElement>('[data-menu-label]');
-const nav = document.querySelector<HTMLElement>('[data-main-nav]');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-if (header && menuButton && menuLabel && nav) {
-  const closeMenu = (restoreFocus = false): void => {
-    header.removeAttribute('data-menu-open');
-    menuButton.setAttribute('aria-expanded', 'false');
-    menuLabel.textContent = 'Menu';
-    if (restoreFocus) menuButton.focus();
-  };
-
-  menuButton.hidden = false;
-  document.documentElement.setAttribute('data-nav-ready', '');
-  let mobileMenuVisible =
-    window.getComputedStyle(menuButton).display !== 'none';
-
-  // Read the CSS state so the Sass breakpoint remains the single source of truth.
-  const syncMenuForViewport = (): void => {
-    const visible = window.getComputedStyle(menuButton).display !== 'none';
-    if (visible !== mobileMenuVisible) closeMenu();
-    mobileMenuVisible = visible;
-  };
-
-  menuButton.addEventListener('click', () => {
-    const open = menuButton.getAttribute('aria-expanded') !== 'true';
-    header.toggleAttribute('data-menu-open', open);
-    menuButton.setAttribute('aria-expanded', String(open));
-    menuLabel.textContent = open ? 'Close' : 'Menu';
-  });
-  nav.addEventListener('click', (event) => {
-    if (event.target instanceof Element && event.target.closest('a'))
-      closeMenu();
-  });
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && header.hasAttribute('data-menu-open')) {
-      closeMenu(true);
-    }
-  });
-  document.addEventListener('click', (event) => {
-    if (event.target instanceof Node && !header.contains(event.target))
-      closeMenu();
-  });
-  window.addEventListener('resize', syncMenuForViewport, { passive: true });
-  if ('ResizeObserver' in window) {
-    const menuResizeObserver = new ResizeObserver(syncMenuForViewport);
-    menuResizeObserver.observe(menuButton);
-  }
-}
 
 // Keep a textual and underlined location indicator, independent of motion.
 const sectionLinks = [
@@ -69,7 +19,8 @@ function markCurrentSection(): void {
   scrollQueued = false;
   let current = '';
   const readingLine =
-    (header?.getBoundingClientRect().height ?? 0) + window.innerHeight * 0.2;
+    Math.max(0, header?.getBoundingClientRect().bottom ?? 0) +
+    window.innerHeight * 0.2;
   for (const section of sections) {
     if (section.getBoundingClientRect().top <= readingLine)
       current = `#${section.id}`;

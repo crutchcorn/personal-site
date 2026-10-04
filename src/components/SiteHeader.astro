@@ -19,24 +19,7 @@ import Icon from './Icon.astro';
       />
       <span>Corbin Crutchley</span>
     </a>
-    <button
-      data-menu-toggle
-      class={styles['menu-toggle']}
-      type="button"
-      aria-expanded="false"
-      aria-controls="primary-navigation"
-      hidden
-    >
-      <span data-menu-label>Menu</span>
-      <Icon name="menu" class={styles['menu-open-icon']} />
-      <Icon name="close" class={styles['menu-close-icon']} />
-    </button>
-    <nav
-      data-main-nav
-      class={styles['main-nav']}
-      aria-label="Main navigation"
-      id="primary-navigation"
-    >
+    <nav class={styles['main-nav']} aria-label="Main navigation">
       <div class={styles['nav-links']}>
         <a href="#work" data-nav>Work</a>
         <a href="#consulting" data-nav>Consulting</a>
