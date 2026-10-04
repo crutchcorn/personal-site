@@ -518,38 +518,6 @@
   color: var(--muted);
 }
 
-.recognition {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 2.5fr);
-  gap: var(--s5);
-  align-items: baseline;
-  margin-top: var(--s5);
-}
-
-.recognition-title {
-  font-size: var(--text);
-  font-weight: 500;
-  line-height: 1.5;
-  letter-spacing: 0;
-  color: var(--muted);
-}
-
-.award-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: var(--s3) var(--s4);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  font-size: var(--text);
-  font-weight: 600;
-}
-
-.award-list a {
-  text-decoration-color: var(--line);
-}
-
 .hero-foot {
   display: flex;
   flex-wrap: wrap;
@@ -1225,15 +1193,6 @@
 
   .portrait figcaption {
     margin: 0;
-  }
-
-  .recognition {
-    grid-template-columns: 1fr;
-    gap: var(--s3);
-  }
-
-  .award-list {
-    justify-content: flex-start;
   }
 
   :global(:root) {

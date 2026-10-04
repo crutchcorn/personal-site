@@ -1,0 +1,39 @@
+---
+import styles from '../styles/site.module.scss';
+import awards from '../styles/awards.module.scss';
+import Icon from './Icon.astro';
+---
+
+<section
+  class:list={[styles['container'], awards['section']]}
+  id="awards"
+  aria-labelledby="awards-heading"
+>
+  <div class={awards['panel']}>
+    <div class={awards['heading']}>
+      <span class={awards['medal']}><Icon name="award" /></span>
+      <h2 id="awards-heading">Awards &amp; recognition</h2>
+    </div>
+    <ul class={awards['awards-list']}>
+      <li class={awards['award']}>
+        <h3>
+          <a href="https://stars.github.com/profiles/crutchcorn/">
+            GitHub Star<Icon name="out" />
+          </a>
+        </h3>
+      </li>
+      <li class={awards['award']}>
+        <h3>
+          <a
+            href="https://mvp.microsoft.com/en-US/MVP/profile/0ab92fa3-8847-4304-8104-0cdfc5b79ed8"
+          >
+            Microsoft MVP<Icon name="out" />
+          </a>
+        </h3>
+      </li>
+      <li class={awards['award']}>
+        <h3>JetBrains Community Contributor</h3>
+      </li>
+    </ul>
+  </div>
+</section>
