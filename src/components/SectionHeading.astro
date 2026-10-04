@@ -3,18 +3,22 @@ import styles from '../styles/site.module.scss';
 
 interface Props {
   id: string;
+  description: string;
 }
 
-const { id } = Astro.props;
+const { id, description } = Astro.props;
 ---
 
 <div class={styles['section-intro']} data-reveal>
-  <h2 id={id}><slot /></h2>
-  <div class={styles['section-trace']} aria-hidden="true">
-    <svg viewBox="0 0 112 32" width="112" height="32" focusable="false">
-      <path d="M0 10h32c16 0 16 12 32 12h40M0 16h30c16 0 16 12 32 12h26" />
-      <circle cx="104" cy="22" r="4" />
-      <path d="M50 2v8m-4-4h8" />
-    </svg>
+  <div class={styles['section-heading']}>
+    <h2 id={id}><slot /></h2>
+    <div class={styles['section-trace']} aria-hidden="true">
+      <svg viewBox="0 0 112 32" width="112" height="32" focusable="false">
+        <path d="M0 10h32c16 0 16 12 32 12h40M0 16h30c16 0 16 12 32 12h26" />
+        <circle cx="104" cy="22" r="4" />
+        <path d="M50 2v8m-4-4h8" />
+      </svg>
+    </div>
   </div>
+  <p class={styles['section-description']}>{description}</p>
 </div>

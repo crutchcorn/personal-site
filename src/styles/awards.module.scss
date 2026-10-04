@@ -6,7 +6,7 @@
 
 .shelf {
   display: grid;
-  grid-template-columns: 140px minmax(0, 1fr);
+  grid-template-columns: 240px minmax(0, 1fr);
   align-items: center;
   gap: var(--space-layout);
   padding-block: var(--space-content);
@@ -20,6 +20,13 @@
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.06em;
+}
+
+.intro p {
+  margin-top: var(--s2);
+  max-width: 48ch;
+  color: var(--muted);
+  font-size: 0.875rem;
 }
 
 .awards-list {

@@ -28,7 +28,11 @@ const groups = [
   aria-labelledby="speaking-heading"
   tabindex="-1"
 >
-  <SectionHeading id="speaking-heading"> Talks &amp; podcasts </SectionHeading>
+  <SectionHeading
+    id="speaking-heading"
+    description="From conference stages to podcast conversations, I share what I’m learning about building software and working with people."
+    >Talks &amp; podcasts</SectionHeading
+  >
   <div class={speaking['groups']}>
     {groups.map((group) => <div class={speaking['group']} data-reveal>
       <div class={speaking['group-heading']}>

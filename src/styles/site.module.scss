@@ -280,14 +280,25 @@
 }
 
 .section-intro {
-  display: flex;
-  align-items: center;
+  display: grid;
   gap: var(--s3);
   margin-bottom: var(--space-heading);
 }
 
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+}
+
 .section-intro h2 {
   min-width: 0;
+}
+
+.section-description {
+  max-width: 65ch;
+  color: var(--muted);
+  font-size: var(--body);
 }
 
 .section-trace {
@@ -961,7 +972,9 @@
   align-items: center;
 }
 
-.contact-copy p {
+.contact-description {
+  margin-top: var(--s3);
+  max-width: 42ch;
   color: var(--dark-muted);
   font-size: var(--body);
 }
@@ -970,7 +983,6 @@
   background: var(--paper);
   color: var(--ink);
   border-color: var(--paper);
-  margin-top: var(--space-inset);
 }
 
 .contact-section:focus-visible,

@@ -12,7 +12,11 @@ import SectionHeading from './SectionHeading.astro';
   tabindex="-1"
 >
   <div class={styles['container']}>
-    <SectionHeading id="consulting-heading">Consulting</SectionHeading>
+    <SectionHeading
+      id="consulting-heading"
+      description="When the business is growing, the next technical choice rarely stands alone. I help connect what you need to achieve with what your team can realistically build and support."
+      >Consulting</SectionHeading
+    >
     <div class:list={[styles['od-grid'], styles['service-grid']]}>
       <article class={styles['service']} data-reveal>
         <ConnectionStudy variant="direction" />
