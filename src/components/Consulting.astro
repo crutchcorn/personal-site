@@ -2,6 +2,7 @@
 import styles from '../styles/site.module.scss';
 import Icon from './Icon.astro';
 import ConnectionStudy from './ConnectionStudy.astro';
+import SectionHeading from './SectionHeading.astro';
 ---
 
 <section
@@ -11,9 +12,9 @@ import ConnectionStudy from './ConnectionStudy.astro';
   tabindex="-1"
 >
   <div class={styles['container']}>
-    <div class={styles['section-intro']} data-reveal>
-      <h2 id="consulting-heading">Consulting</h2>
-    </div>
+    <SectionHeading id="consulting-heading" index="02"
+      >Consulting</SectionHeading
+    >
     <div class:list={[styles['od-grid'], styles['service-grid']]}>
       <article class={styles['service']} data-reveal>
         <ConnectionStudy variant="direction" />

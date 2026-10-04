@@ -1,0 +1,75 @@
+.project {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.study {
+  width: 100%;
+  max-width: 320px;
+  margin-bottom: var(--space-content);
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.drawing {
+  display: block;
+  width: 100%;
+  height: auto;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.registration,
+.construction {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.construction {
+  stroke-dasharray: 2 6;
+}
+
+.line,
+.tick,
+.sheet {
+  stroke: currentcolor;
+  stroke-width: 1.25;
+}
+
+.tick {
+  opacity: 0.6;
+}
+
+.sheet,
+.top-sheet,
+.node {
+  fill: var(--paper);
+}
+
+.accent,
+.top-sheet,
+.node {
+  stroke: var(--accent);
+  stroke-width: 1.75;
+}
+
+.pencil {
+  stroke: var(--accent);
+  stroke-width: 0.75;
+  opacity: 0.35;
+}
+
+.caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--s1) var(--s2);
+  padding-top: var(--s2);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.6;
+}
+
+.index {
+  color: var(--accent);
+}

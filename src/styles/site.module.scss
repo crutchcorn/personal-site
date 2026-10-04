@@ -282,21 +282,52 @@
 .section-intro {
   display: flex;
   align-items: center;
-  gap: var(--s4);
+  gap: var(--s3);
   margin-bottom: var(--space-heading);
 }
 
-.section-intro::after {
+.section-index {
+  flex: none;
+  align-self: flex-start;
+  padding-top: 0.45em;
+  color: var(--accent);
+  font: 400 0.8125rem/1.6 var(--font-mono);
+}
+
+.section-intro h2 {
+  min-width: 0;
+}
+
+.section-trace {
+  display: flex;
+  align-items: center;
+  min-width: 24px;
+  flex: 1;
+  margin-left: var(--s2);
+  color: var(--accent);
+}
+
+.section-trace::before {
   content: '';
   flex: 1;
-  height: 9px;
-  border-block: 1px solid var(--line);
-  background: repeating-linear-gradient(
-    90deg,
-    var(--line) 0 1px,
-    transparent 1px 12px
-  );
-  mask-image: linear-gradient(to right, #000, transparent);
+  border-top: 1px solid var(--line);
+  transform: translateY(-6px);
+}
+
+.section-trace svg {
+  width: min(112px, 100%);
+  height: auto;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 1;
+}
+
+.section-trace circle {
+  fill: var(--paper);
+}
+
+.section-trace path:last-child {
+  stroke: var(--line);
 }
 
 .rule {
@@ -443,23 +474,22 @@
 }
 
 .career-list {
-  overflow: hidden;
-  border-block: 1px solid var(--line);
+  padding-left: var(--s4);
 }
 
 .career {
   --disclosure-duration: 220ms;
 
   border-bottom: 1px solid var(--line);
+  border-left: 1px solid var(--accent);
 }
 
-.career:last-child {
-  border-bottom: 0;
+.career:first-child {
+  border-top: 1px solid var(--line);
 }
 
 .career[open] {
   background: var(--white);
-  box-shadow: inset 3px 0 var(--accent);
 }
 
 @supports selector(::details-content) and (interpolate-size: allow-keywords) and
@@ -488,10 +518,28 @@
 }
 
 .career-summary {
+  position: relative;
   display: grid;
   grid-template-columns: 208px minmax(0, 1fr) 48px;
   gap: var(--space-inset);
   align-items: center;
+}
+
+.career-summary::before {
+  content: '';
+  position: absolute;
+  left: calc(-1 * var(--space-inset) - 6px);
+  top: calc(50% - 5px);
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  background: var(--paper);
+  box-shadow: 0 0 0 5px var(--paper);
+}
+
+.career[open] .career-summary::before {
+  background: var(--accent);
 }
 
 .career summary::-webkit-details-marker {
@@ -508,7 +556,8 @@
 
 .career-period {
   display: block;
-  font-size: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
   font-weight: 400;
   letter-spacing: normal;
   line-height: 1.6;
@@ -612,12 +661,31 @@
 .community {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
-  align-items: start;
+  align-items: center;
   gap: var(--space-layout);
   margin-top: var(--space-heading);
   padding: var(--space-inset);
-  border-left: 3px solid var(--accent);
-  background: color-mix(in srgb, var(--accent) 4%, var(--paper));
+  border-block: 1px solid var(--line);
+  border-left: 1px solid var(--accent);
+  background: var(--white);
+}
+
+.community-drawing {
+  width: 152px;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: var(--s3);
+  stroke: var(--accent);
+  stroke-width: 1.25;
+}
+
+.community-drawing path:first-child {
+  stroke: var(--line);
+  stroke-dasharray: 2 4;
+}
+
+.community-drawing circle {
+  fill: var(--white);
 }
 
 .community h3 {
@@ -864,23 +932,30 @@
   overflow: hidden;
 }
 
-.contact-section::before {
-  content: '';
-  position: absolute;
-  width: 420px;
-  height: 420px;
-  left: -100px;
-  top: -160px;
-  z-index: -1;
-  border: 1px solid var(--muted);
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 24px var(--ink),
-    0 0 0 25px var(--muted),
-    0 0 0 49px var(--ink),
-    0 0 0 50px var(--muted);
-  opacity: 0.25;
-  pointer-events: none;
+.contact-index {
+  margin-bottom: var(--s4);
+  color: var(--accent-on-dark);
+  font: 400 0.75rem/1.6 var(--font-mono);
+}
+
+.contact-drawing {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  margin-top: var(--s4);
+  stroke: var(--accent-on-dark);
+  stroke-width: 1.25;
+}
+
+.contact-drawing circle {
+  fill: var(--ink);
+}
+
+.contact-drawing .contact-guide {
+  stroke: var(--muted);
+  stroke-width: 1;
+  stroke-dasharray: 2 5;
 }
 
 .contact-grid h2 {
@@ -892,7 +967,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
   gap: var(--space-layout);
-  align-items: start;
+  align-items: center;
 }
 
 .contact-copy p {
@@ -1073,6 +1148,10 @@
 
   .main-nav {
     width: 100%;
+  }
+
+  .section-trace {
+    display: none;
   }
 
   .nav-links {

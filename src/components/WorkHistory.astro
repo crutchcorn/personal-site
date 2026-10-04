@@ -4,6 +4,7 @@ import Icon from './Icon.astro';
 import Dialog from './Dialog.astro';
 import EarlyCareerList from './EarlyCareerList.astro';
 import history from '../styles/work-history.module.scss';
+import SectionHeading from './SectionHeading.astro';
 
 const earlyCareerGroups = [
   {
@@ -73,9 +74,7 @@ const earlyCareerDialogId = 'earlier-career-dialog';
   aria-labelledby="work-heading"
   tabindex="-1"
 >
-  <div class={styles['section-intro']} data-reveal>
-    <h2 id="work-heading">Work history</h2>
-  </div>
+  <SectionHeading id="work-heading" index="01">Work history</SectionHeading>
 
   <div class={styles['career-list']}>
     <details class={styles['career']} open>
@@ -302,6 +301,23 @@ const earlyCareerDialogId = 'earlier-career-dialog';
     data-reveal
   >
     <div>
+      <svg
+        class={styles['community-drawing']}
+        viewBox="0 0 152 52"
+        width="152"
+        height="52"
+        aria-hidden="true"
+        focusable="false"
+        fill="none"
+      >
+        <path d="M8 26h136M34 6v40M76 6v40M118 6v40" />
+        <path
+          d="M34 26c0-24 42-24 42 0s42 24 42 0M34 26c0 24 42 24 42 0s42-24 42 0"
+        />
+        <circle cx="34" cy="26" r="5" />
+        <circle cx="76" cy="26" r="5" />
+        <circle cx="118" cy="26" r="5" />
+      </svg>
       <h3 id="community-heading">Playful Programming</h3>
       <p>
         Executive Director<span aria-hidden="true"> · </span

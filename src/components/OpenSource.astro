@@ -1,6 +1,9 @@
 ---
 import styles from '../styles/site.module.scss';
+import projects from '../styles/open-source.module.scss';
 import Icon from './Icon.astro';
+import ProjectStudy from './ProjectStudy.astro';
+import SectionHeading from './SectionHeading.astro';
 ---
 
 <section
@@ -9,11 +12,10 @@ import Icon from './Icon.astro';
   aria-labelledby="oss-heading"
   tabindex="-1"
 >
-  <div class={styles['section-intro']} data-reveal>
-    <h2 id="oss-heading">Open source</h2>
-  </div>
+  <SectionHeading id="oss-heading" index="04">Open source</SectionHeading>
   <div class:list={[styles['od-grid'], styles['project-grid']]}>
-    <article class={styles['project']} data-reveal>
+    <article class:list={[styles['project'], projects['project']]} data-reveal>
+      <ProjectStudy variant="layers" />
       <h3>TanStack</h3>
       <p>
         I lead maintenance of Form, Store, and Config, and contribute to Query
@@ -38,7 +40,8 @@ import Icon from './Icon.astro';
         /></a>
       </div>
     </article>
-    <article class={styles['project']} data-reveal>
+    <article class:list={[styles['project'], projects['project']]} data-reveal>
+      <ProjectStudy variant="bridges" />
       <h3>Redux</h3>
       <p>
         I ported Redux integrations to Angular and Vue and contribute across the
@@ -61,7 +64,8 @@ import Icon from './Icon.astro';
         /></a>
       </div>
     </article>
-    <article class={styles['project']} data-reveal>
+    <article class:list={[styles['project'], projects['project']]} data-reveal>
+      <ProjectStudy variant="templates" />
       <h3>Plop</h3>
       <p>
         I maintain Plop, a tool for generating files from reusable templates.

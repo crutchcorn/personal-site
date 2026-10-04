@@ -2,6 +2,7 @@
 import styles from '../styles/site.module.scss';
 import writingStyles from '../styles/writing.module.scss';
 import Icon from './Icon.astro';
+import SectionHeading from './SectionHeading.astro';
 
 const books = [
   {
@@ -42,10 +43,26 @@ const books = [
   aria-labelledby="writing-heading"
   tabindex="-1"
 >
-  <div class={styles['section-intro']} data-reveal>
-    <h2 id="writing-heading">Writing</h2>
-  </div>
-  <h3 class={writingStyles['group-heading']}>Books</h3>
+  <SectionHeading id="writing-heading" index="03">Writing</SectionHeading>
+  <h3 class={writingStyles['group-heading']}>
+    Books
+    <svg
+      class={writingStyles['book-study']}
+      viewBox="0 0 88 44"
+      width="88"
+      height="44"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path class={writingStyles['study-guide']} d="M4 37h80M44 3v38" />
+      <path
+        class={writingStyles['study-ink']}
+        d="M44 13C33 5 19 6 10 9v25c10-3 23-2 34 4 11-6 24-7 34-4V9c-9-3-23-4-34 4Zm0 0v25M18 15c7-1 13 0 19 3m-19 4c7-1 13 0 19 3m14-7c6-3 12-4 19-3m-19 10c6-3 12-4 19-3"
+      />
+      <path class={writingStyles['study-pencil']} d="M47 40c9-4 20-6 30-4" />
+    </svg>
+  </h3>
   <div class={writingStyles['books-grid']}>
     {books.map((book, index) => <article
       class={writingStyles['book-card']}
@@ -57,7 +74,7 @@ const books = [
         aria-label={`Read ${book.title}`}
       >
         <span class={writingStyles['book-folio']} aria-hidden="true">
-          {String(index + 1).padStart(2, '0')}
+          Book / {String(index + 1).padStart(2, '0')}
         </span>
         <img
           src={book.image}
@@ -89,13 +106,13 @@ const books = [
     <h3 class={writingStyles['group-heading']}>Essays on leadership & teams</h3>
     <div class={writingStyles['collections-grid']}>
       <a
-        class={styles['collection-link']}
+        class:list={[styles['collection-link'], writingStyles['collection']]}
         href="https://playfulprogramming.com/collections/harsh-leadership-truths/"
         data-reveal
       >
         <div class={styles['collection-top']}>
           <span class={writingStyles['collection-folio']} aria-hidden="true"
-            >01 /</span
+            >Collection / 01</span
           >
           <Icon name="out" />
         </div>
@@ -108,13 +125,13 @@ const books = [
         </p>
       </a>
       <a
-        class={styles['collection-link']}
+        class:list={[styles['collection-link'], writingStyles['collection']]}
         href="https://playfulprogramming.com/collections/pragmatic-advice-for-teams/"
         data-reveal
       >
         <div class={styles['collection-top']}>
           <span class={writingStyles['collection-folio']} aria-hidden="true"
-            >02 /</span
+            >Collection / 02</span
           >
           <Icon name="out" />
         </div>
@@ -126,18 +143,20 @@ const books = [
     </div>
     <div class={writingStyles['essays-grid']}>
       <a
-        class={styles['article-link']}
+        class:list={[styles['article-link'], writingStyles['essay']]}
         href="https://playfulprogramming.com/posts/working-with-crutchcorn/"
       >
+        <span class={writingStyles['essay-mark']} aria-hidden="true">↳</span>
         <div class={styles['od-field']}>
           <h4 class={writingStyles['essay-title']}>Working with Me</h4>
         </div>
         <Icon name="out" />
       </a>
       <a
-        class={styles['article-link']}
+        class:list={[styles['article-link'], writingStyles['essay']]}
         href="https://playfulprogramming.com/posts/how-to-communicate"
       >
+        <span class={writingStyles['essay-mark']} aria-hidden="true">↳</span>
         <div class={styles['od-field']}>
           <h4 class={writingStyles['essay-title']}>How to Communicate</h4>
         </div>
