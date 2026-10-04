@@ -1,0 +1,133 @@
+---
+import styles from '../styles/connection-study.module.scss';
+
+interface Props {
+  variant: 'direction' | 'rhythm' | 'knowledge';
+}
+
+const { variant } = Astro.props;
+const studies = {
+  direction: { index: '01', caption: 'Find the shared direction' },
+  rhythm: { index: '02', caption: 'Build a rhythm that lasts' },
+  knowledge: { index: '03', caption: 'Let the knowledge travel' },
+};
+const study = studies[variant];
+---
+
+<div class={styles['study']} aria-hidden="true">
+  <svg
+    class={styles['drawing']}
+    viewBox="0 0 320 120"
+    width="320"
+    height="120"
+    fill="none"
+    focusable="false"
+  >
+    <path
+      class={styles['registration']}
+      d="M8 20V8h12M300 8h12v12M8 100v12h12M300 112h12v-12"
+    />
+    {variant === 'direction' && (
+      <>
+        <path
+          class={styles['construction']}
+          d="M32 13v92M196 13v92M276 13v92M18 60h281"
+        />
+        <path
+          class={styles['line']}
+          d="M32 28c74-4 78 36 164 32M32 92c67 3 87-35 164-32"
+        />
+        <path class={styles['accent']} d="M32 60c68-3 114 2 164 0h80" />
+        <path class={styles['pencil']} d="M52 22c42 1 67 21 93 28" />
+        <circle class={styles['node']} cx="32" cy="28" r="4" />
+        <circle class={styles['accent-node']} cx="32" cy="60" r="4" />
+        <circle class={styles['node']} cx="32" cy="92" r="4" />
+        <circle class={styles['accent-node']} cx="196" cy="60" r="4" />
+        <path
+          class={styles['accent']}
+          d="M291 60c0 9-6 16-15 16s-16-7-16-16 8-16 16-16 15 7 15 16Z"
+        />
+        <circle class={styles['solid']} cx="276" cy="60" r="4" />
+        <path
+          class={styles['tick']}
+          d="M261 26h30M276 22v8M261 94h30M276 90v8"
+        />
+      </>
+    )}
+    {variant === 'rhythm' && (
+      <>
+        <path
+          class={styles['construction']}
+          d="M18 59h284M50 16v87M123 16v87M196 16v87M269 16v87"
+        />
+        <path
+          class={styles['line']}
+          d="M23 60h9c8 0 8-30 18-30 15 0 12 55 39 55 24 0 23-54 34-54 14 0 13 55 39 55 25 0 22-56 34-56 14 0 12 55 38 55 25 0 24-54 35-54 13 0 15 29 28 29"
+        />
+        <path
+          class={styles['accent']}
+          d="M89 85c24 0 23-54 34-54 14 0 13 55 39 55 25 0 22-56 34-56"
+        />
+        <path class={styles['pencil']} d="M94 91c24-4 21-55 31-55" />
+        <circle class={styles['node']} cx="23" cy="60" r="3" />
+        <circle class={styles['node']} cx="50" cy="30" r="3" />
+        <circle class={styles['accent-node']} cx="123" cy="31" r="4" />
+        <circle class={styles['accent-node']} cx="196" cy="30" r="4" />
+        <circle class={styles['node']} cx="269" cy="31" r="3" />
+        <circle class={styles['node']} cx="297" cy="60" r="3" />
+        <path
+          class={styles['tick']}
+          d="M50 101h73m-73-3v6m73-6v6M196 101h73m-73-3v6m73-6v6"
+        />
+      </>
+    )}
+    {variant === 'knowledge' && (
+      <>
+        <path
+          class={styles['construction']}
+          d="M56 14v92M152 14v92M279 14v92M20 60h275"
+        />
+        <path
+          class={styles['line']}
+          d="M30 60h26c45 0 50-33 96-33h36M56 60c43 0 54 33 96 33h127M152 27c54-1 62 33 96 33h31"
+        />
+        <path class={styles['accent']} d="M30 60h26c45 0 50-33 96-33h127" />
+        <path class={styles['pencil']} d="M86 63c31-10 32-28 66-30h88" />
+        <circle class={styles['accent-node']} cx="30" cy="60" r="3" />
+        <circle class={styles['accent-node']} cx="56" cy="60" r="7" />
+        <circle class={styles['accent-node']} cx="152" cy="27" r="4" />
+        <circle class={styles['node']} cx="152" cy="93" r="4" />
+        <rect
+          class={styles['accent-node']}
+          x="273"
+          y="21"
+          width="12"
+          height="12"
+          rx="1"
+        />
+        <rect
+          class={styles['node']}
+          x="273"
+          y="54"
+          width="12"
+          height="12"
+          rx="1"
+        />
+        <rect
+          class={styles['node']}
+          x="273"
+          y="87"
+          width="12"
+          height="12"
+          rx="1"
+        />
+        <circle class={styles['solid']} cx="279" cy="27" r="2" />
+        <path class={styles['tick']} d="M51 27h10m-5-5v10M219 93v-8m-4 0h8" />
+      </>
+    )}
+  </svg>
+  <div class={styles['caption']}>
+    <span class={styles['index']}>Fig. {study.index}</span>
+    <span>{study.caption}</span>
+  </div>
+</div>

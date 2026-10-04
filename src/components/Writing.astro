@@ -47,7 +47,7 @@ const books = [
   </div>
   <h3 class={writingStyles['group-heading']}>Books</h3>
   <div class={writingStyles['books-grid']}>
-    {books.map((book) => <article
+    {books.map((book, index) => <article
       class={writingStyles['book-card']}
       data-reveal
     >
@@ -56,6 +56,9 @@ const books = [
         href={book.href}
         aria-label={`Read ${book.title}`}
       >
+        <span class={writingStyles['book-folio']} aria-hidden="true">
+          {String(index + 1).padStart(2, '0')}
+        </span>
         <img
           src={book.image}
           width={book.width}
@@ -91,6 +94,9 @@ const books = [
         data-reveal
       >
         <div class={styles['collection-top']}>
+          <span class={writingStyles['collection-folio']} aria-hidden="true"
+            >01 /</span
+          >
           <Icon name="out" />
         </div>
         <h4 class={writingStyles['collection-title']}>
@@ -107,6 +113,9 @@ const books = [
         data-reveal
       >
         <div class={styles['collection-top']}>
+          <span class={writingStyles['collection-folio']} aria-hidden="true"
+            >02 /</span
+          >
           <Icon name="out" />
         </div>
         <h4 class={writingStyles['collection-title']}>

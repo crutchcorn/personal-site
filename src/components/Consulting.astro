@@ -1,6 +1,7 @@
 ---
 import styles from '../styles/site.module.scss';
 import Icon from './Icon.astro';
+import ConnectionStudy from './ConnectionStudy.astro';
 ---
 
 <section
@@ -15,6 +16,7 @@ import Icon from './Icon.astro';
     </div>
     <div class:list={[styles['od-grid'], styles['service-grid']]}>
       <article class={styles['service']} data-reveal>
+        <ConnectionStudy variant="direction" />
         <h3>Architecture</h3>
         <p>
           Architecture reviews, prototypes, and technical recommendations with
@@ -22,10 +24,12 @@ import Icon from './Icon.astro';
         </p>
       </article>
       <article class={styles['service']} data-reveal>
+        <ConnectionStudy variant="rhythm" />
         <h3>Engineering leadership</h3>
         <p>Release practices, quality, hiring, and team communication.</p>
       </article>
       <article class={styles['service']} data-reveal>
+        <ConnectionStudy variant="knowledge" />
         <h3>Developer education</h3>
         <p>Documentation, technical writing, and training for developers.</p>
       </article>

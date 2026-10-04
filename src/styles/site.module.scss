@@ -280,7 +280,23 @@
 }
 
 .section-intro {
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
   margin-bottom: var(--space-heading);
+}
+
+.section-intro::after {
+  content: '';
+  flex: 1;
+  height: 9px;
+  border-block: 1px solid var(--line);
+  background: repeating-linear-gradient(
+    90deg,
+    var(--line) 0 1px,
+    transparent 1px 12px
+  );
+  mask-image: linear-gradient(to right, #000, transparent);
 }
 
 .rule {
@@ -309,6 +325,7 @@
   justify-content: space-between;
   gap: var(--s5);
   min-height: 88px;
+  border-bottom: 1px solid var(--line);
 }
 
 .brand {
@@ -405,23 +422,6 @@
   height: 20px;
 }
 
-.hero {
-  padding-top: var(--space-layout);
-  padding-bottom: var(--space-heading);
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 2.3fr) minmax(0, 1fr);
-  align-items: center;
-  gap: var(--space-layout);
-}
-
-.hero h1 {
-  font-size: var(--hero-title);
-  line-height: 1.1;
-}
-
 .hero-description {
   max-width: 48ch;
   margin-top: var(--space-inset);
@@ -437,19 +437,6 @@
   margin-top: var(--space-inset);
 }
 
-.portrait {
-  width: 100%;
-  max-width: 360px;
-  place-self: center end;
-}
-
-.portrait-frame {
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-surface);
-  background: var(--white);
-}
-
 /* Career detail belongs to the reader: native disclosures, no modal. */
 .work-section {
   padding-top: 0;
@@ -457,8 +444,7 @@
 
 .career-list {
   overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-surface);
+  border-block: 1px solid var(--line);
 }
 
 .career {
@@ -473,6 +459,7 @@
 
 .career[open] {
   background: var(--white);
+  box-shadow: inset 3px 0 var(--accent);
 }
 
 @supports selector(::details-content) and (interpolate-size: allow-keywords) and
@@ -629,8 +616,8 @@
   gap: var(--space-layout);
   margin-top: var(--space-heading);
   padding: var(--space-inset);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-surface);
+  border-left: 3px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 4%, var(--paper));
 }
 
 .community h3 {
@@ -665,7 +652,6 @@
 
 .service {
   padding-top: var(--space-content);
-  border-top: 1px solid var(--ink);
 }
 
 .service h3 {
@@ -873,6 +859,33 @@
   background: var(--ink);
   color: var(--paper);
   padding-block: var(--space-subsection);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.contact-section::before {
+  content: '';
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  left: -100px;
+  top: -160px;
+  z-index: -1;
+  border: 1px solid var(--muted);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 24px var(--ink),
+    0 0 0 25px var(--muted),
+    0 0 0 49px var(--ink),
+    0 0 0 50px var(--muted);
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.contact-grid h2 {
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  font-weight: 500;
 }
 
 .contact-grid {
@@ -982,12 +995,6 @@
   }
 }
 
-@media (width >= breakpoints.$wide) {
-  .hero {
-    padding-top: var(--s7);
-  }
-}
-
 @media (width <= breakpoints.$tablet) {
   .project-grid {
     --od-cols: 1;
@@ -1005,10 +1012,6 @@
 
   .nav-links {
     gap: var(--s3);
-  }
-
-  .hero-grid {
-    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
   }
 
   .hero-actions {
@@ -1037,11 +1040,6 @@
 }
 
 @media (width <= breakpoints.$mobile) {
-  .portrait {
-    max-width: 200px;
-    justify-self: start;
-  }
-
   :global(:root) {
     --page-gutter: 24px;
     --space-section: var(--s7);
@@ -1049,7 +1047,6 @@
     --space-heading: var(--s5);
     --space-layout: var(--s4);
     --space-content: var(--s3);
-    --hero-title: clamp(2.75rem, 8vw, 3.5rem);
     --section-title: 2rem;
   }
 
@@ -1081,15 +1078,6 @@
   .nav-links {
     justify-content: flex-start;
     gap: var(--s2) var(--s4);
-  }
-
-  .hero {
-    padding-top: var(--space-heading);
-  }
-
-  .hero-grid {
-    grid-template-columns: 1fr;
-    row-gap: var(--space-heading);
   }
 
   .hero-description {
@@ -1198,7 +1186,6 @@
   :global(:root) {
     --page-gutter: 16px;
     --space-inset: var(--s3);
-    --hero-title: 2.75rem;
   }
 
   .brand {

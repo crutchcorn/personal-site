@@ -10,11 +10,11 @@ export const prerender = true;
 
 // Match the palette and type in global.css and the portfolio's hero.
 const colors = {
-  paper: '#f6f7f9',
-  ink: '#141923',
-  muted: '#545d6d',
-  accent: '#713dc5',
-  line: '#d8dde7',
+  paper: '#f5f3ed',
+  ink: '#242329',
+  muted: '#615e68',
+  accent: '#6839b5',
+  line: '#d9d5df',
 };
 
 // Satori accepts plain element objects, so the static card needs no React runtime.

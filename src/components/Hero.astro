@@ -1,15 +1,19 @@
 ---
 import styles from '../styles/site.module.scss';
+import hero from '../styles/hero.module.scss';
 import Icon from './Icon.astro';
 ---
 
 <section
-  class:list={[styles['hero'], styles['container']]}
+  class:list={[hero['hero'], styles['container']]}
   aria-labelledby="hero-heading"
 >
-  <div class={styles['hero-grid']}>
-    <div data-reveal>
-      <h1 id="hero-heading">Corbin Crutchley</h1>
+  <div class={hero['grid']}>
+    <div class={hero['introduction']} data-reveal>
+      <p class={hero['eyebrow']}>Engineering / Education / Community</p>
+      <h1 id="hero-heading">
+        Corbin <span>Crutchley<span class={hero['period']}>.</span></span>
+      </h1>
       <p class={styles['hero-description']}>
         I’m an engineering leader, consultant, author, and open-source
         maintainer in Sacramento, California.
@@ -23,17 +27,64 @@ import Icon from './Icon.astro';
         /></a>
       </div>
     </div>
-    <figure class={styles['portrait']} data-reveal>
-      <div class={styles['portrait-frame']}>
-        <img
-          class={styles['od-media']}
-          src="/assets/corbin-profile.jpg"
-          width="460"
-          height="460"
-          alt="Corbin Crutchley smiling, wearing glasses and a pink shirt"
-          fetchpriority="high"
-        />
+    <figure class={hero['portrait']}>
+      <div class={hero['drawing']}>
+        <svg
+          class={hero['connections']}
+          viewBox="0 0 460 460"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <g class={hero['guides']}>
+            <path d="M0 92H460M0 368H460M92 0V460M368 0V460" />
+            <circle cx="230" cy="230" r="204" />
+            <path
+              d="M16 16h16m-8-8v16M428 16h16m-8-8v16M16 444h16m-8-8v16M428 444h16m-8-8v16"
+            />
+          </g>
+          <g class={hero['routes']}>
+            <path
+              d="M24 148h26a22 22 0 0 0 22-22V82a30 30 0 0 1 30-30h224a62 62 0 0 1 62 62v250a34 34 0 0 1-34 34H154"
+            />
+            <path
+              d="M24 160h38a22 22 0 0 0 22-22V94a30 30 0 0 1 30-30h200a62 62 0 0 1 62 62v226a34 34 0 0 1-34 34H154"
+            />
+            <path
+              d="M306 24v6a22 22 0 0 0 22 22h20a52 52 0 0 1 52 52v228a78 78 0 0 1-78 78H106a46 46 0 0 1-46-46V242a30 30 0 0 0-30-30h-6"
+            />
+            <path
+              d="M318 24v6a10 10 0 0 0 10 10h20a64 64 0 0 1 64 64v228a90 90 0 0 1-90 90H106a58 58 0 0 1-58-58V254a30 30 0 0 0-30-30h-6"
+            />
+          </g>
+          <g class={hero['nodes']}>
+            <circle cx="24" cy="154" r="7" />
+            <circle cx="312" cy="24" r="7" />
+            <circle cx="154" cy="392" r="7" />
+          </g>
+        </svg>
+        <div class={hero['photo']}>
+          <img
+            class={styles['od-media']}
+            src="/assets/corbin-profile.jpg"
+            width="460"
+            height="460"
+            alt="Corbin Crutchley smiling, wearing glasses and a pink shirt"
+            fetchpriority="high"
+          />
+        </div>
+        <span class={hero['code-label']} aria-hidden="true">01 / Code</span>
+        <span class={hero['people-label']} aria-hidden="true">02 / People</span>
+        <span class={hero['ideas-label']} aria-hidden="true">03 / Ideas</span>
       </div>
+      <figcaption class={hero['caption']}>
+        <span class={hero['location-mark']} aria-hidden="true">↗</span>
+        Sacramento, California
+        <span class={hero['caption-rule']} aria-hidden="true"></span>
+      </figcaption>
     </figure>
+  </div>
+  <div class={hero['colophon']}>
+    <span>A practice in making things connect.</span>
+    <span>People & systems & everything between.</span>
   </div>
 </section>
