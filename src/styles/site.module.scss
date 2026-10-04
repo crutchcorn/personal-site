@@ -788,11 +788,20 @@
 .client-list a {
   display: flex;
   align-items: center;
-  min-height: 44px;
-  font-size: var(--lead);
-  font-weight: 600;
-  letter-spacing: -0.045em;
+  min-height: 48px;
   text-decoration: none;
+}
+
+.client-list img {
+  display: block;
+  height: auto;
+  filter: grayscale(1);
+  opacity: 0.8;
+  transition: opacity var(--quick) var(--ease);
+}
+
+.client-list a:focus-visible img {
+  opacity: 1;
 }
 
 .consulting-bottom {
@@ -1050,11 +1059,14 @@
 
 @media (hover: hover) {
   .nav-links a:hover,
-  .client-list a:hover,
   .article-link:hover h4,
   .collection-link:hover h4,
   .text-link:hover {
     color: var(--accent);
+  }
+
+  .client-list a:hover img {
+    opacity: 1;
   }
 
   .button:hover .icon,
