@@ -45,7 +45,11 @@ function play(drawing: SVGSVGElement): void {
   if (previousStart !== undefined && now - previousStart < replayCooldown)
     return;
   const bounds = drawing.getBoundingClientRect();
-  const inset = previousStart === undefined ? visibleInset() : 0;
+  const inset =
+    previousStart === undefined &&
+    !drawing.hasAttribute('data-illustration-on-visible')
+      ? visibleInset()
+      : 0;
   if (
     !bounds.width ||
     !bounds.height ||
@@ -165,27 +169,36 @@ function play(drawing: SVGSVGElement): void {
 }
 
 let observer: IntersectionObserver | undefined;
+let visibleObserver: IntersectionObserver | undefined;
 
 // Prepare only when the entrance observer can run; static fallbacks stay complete.
 function observeEntrances(): void {
   if (!('IntersectionObserver' in window)) return;
   observer?.disconnect();
-  observer = new IntersectionObserver(
-    (entries, currentObserver) => {
-      for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        const drawing = entry.target as SVGSVGElement;
-        play(drawing);
-        if (lastPlayed.has(drawing) || reducedMotion.matches)
-          currentObserver.unobserve(drawing);
-      }
-    },
-    { rootMargin: `-${visibleInset()}px 0px`, threshold: 0 },
-  );
+  visibleObserver?.disconnect();
+  const onEnter: IntersectionObserverCallback = (entries, currentObserver) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      const drawing = entry.target as SVGSVGElement;
+      play(drawing);
+      if (lastPlayed.has(drawing) || reducedMotion.matches)
+        currentObserver.unobserve(drawing);
+    }
+  };
+  observer = new IntersectionObserver(onEnter, {
+    rootMargin: `-${visibleInset()}px 0px`,
+    threshold: 0,
+  });
+  visibleObserver = new IntersectionObserver(onEnter, { threshold: 0 });
   for (const drawing of drawings) {
     if (lastPlayed.has(drawing)) continue;
     prepare(drawing);
-    observer.observe(drawing);
+    const entranceObserver = drawing.hasAttribute(
+      'data-illustration-on-visible',
+    )
+      ? visibleObserver
+      : observer;
+    entranceObserver.observe(drawing);
   }
 }
 
