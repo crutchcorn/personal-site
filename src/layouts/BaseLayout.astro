@@ -2,6 +2,10 @@
 import '../styles/global.css';
 import styles from '../styles/site.module.scss';
 import IconSprite from '../components/IconSprite.astro';
+import { social } from '../data/social';
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const socialImageURL = new URL(social.image.path, Astro.site);
 ---
 
 <!doctype html>
@@ -14,16 +18,22 @@ import IconSprite from '../components/IconSprite.astro';
       name="description"
       content="Corbin Crutchley is an engineering leader, consultant, author, and open-source maintainer. Thinking of people behind the screen."
     />
-    <meta
-      property="og:title"
-      content="Corbin Crutchley — Thinking of people behind the screen"
-    />
-    <meta
-      property="og:description"
-      content="Engineering leadership that connects the business, the codebase, and the people behind both. Explore my work, consulting, writing, and open source."
-    />
+    <link rel="canonical" href={canonicalURL} />
+    <meta property="og:title" content={social.title} />
+    <meta property="og:description" content={social.description} />
     <meta property="og:type" content="website" />
-    <title>Corbin Crutchley — Thinking of people behind the screen</title>
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={socialImageURL} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content={String(social.image.width)} />
+    <meta property="og:image:height" content={String(social.image.height)} />
+    <meta property="og:image:alt" content={social.image.alt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={social.title} />
+    <meta name="twitter:description" content={social.description} />
+    <meta name="twitter:image" content={socialImageURL} />
+    <meta name="twitter:image:alt" content={social.image.alt} />
+    <title>{social.title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link
       rel="preload"

@@ -24,6 +24,8 @@ npm run dev
 
 Components import `src/styles/site.module.scss` as a CSS Module and access hyphenated classes with bracket notation, such as `styles['site-header']`. Books and talks have dedicated `writing.module.scss` and `speaking.module.scss` files. Global resets, font faces, and CSS custom properties belong in `src/styles/global.css`.
 
+The portfolio's Open Graph image is generated at `/og.png` by `src/pages/og.png.ts` using Satori and resvg. It reuses the hero portrait, favicon, palette, and fonts, and builds into a static 1200 × 630 PNG with no image service required in production. Preview it at `http://localhost:4321/og.png` while running `npm run dev`. Social metadata lives in `src/data/social.ts`; the production URL is set with `site` in `astro.config.mjs`. The static font instances used by Satori are documented in `public/assets/fonts/og/README.md`.
+
 Edit `src/data/appearances.ts` to maintain talks and podcasts. The first two entries of each list appear on the page, and the complete lists appear in native HTML dialogs. Source and artwork references live in `public/assets/SOURCES.md`.
 
 SCSS is limited to media query breakpoint variables. Declare plain length values in `src/styles/_breakpoints.scss`, import them with `@use './breakpoints'`, and refer to them as `breakpoints.$name` inside media queries. Colors, spacing, and other reusable values remain CSS custom properties. Stylelint enforces this restriction and disallows Sass nesting, mixins, functions, loops, conditionals, and interpolation.
