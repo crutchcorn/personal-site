@@ -25,7 +25,7 @@
 
 .group-heading > p {
   margin-bottom: var(--s2);
-  color: var(--blue);
+  color: var(--accent);
 }
 
 .group-heading > h3 {
@@ -60,7 +60,7 @@
 
 .feature > svg {
   margin-top: var(--s1);
-  color: var(--blue);
+  color: var(--accent);
 }
 
 .appearance-copy {
@@ -96,7 +96,7 @@
   min-height: 44px;
   border: 0;
   background: transparent;
-  color: var(--blue);
+  color: var(--accent);
 }
 
 .dialog {
@@ -132,7 +132,7 @@
 
 .dialog-header p {
   margin-bottom: var(--s2);
-  color: var(--blue);
+  color: var(--accent);
 }
 
 .dialog-heading {
@@ -176,7 +176,7 @@
 }
 
 .dialog-link > svg {
-  color: var(--blue);
+  color: var(--accent);
 }
 
 .dialog-title {
@@ -186,7 +186,7 @@
 
 @media (hover: hover) {
   .feature:hover {
-    border-color: var(--blue);
+    border-color: var(--accent);
   }
 
   .feature:hover .title,

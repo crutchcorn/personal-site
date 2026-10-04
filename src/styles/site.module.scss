@@ -266,9 +266,9 @@
   gap: var(--s4);
   min-height: 56px;
   padding: var(--s3) var(--s4);
-  border: 1px solid var(--blue);
+  border: 1px solid var(--accent);
   border-radius: var(--radius-control);
-  background: var(--blue);
+  background: var(--accent);
   color: var(--white);
   font-size: var(--text);
   font-weight: 600;
@@ -292,7 +292,7 @@
 }
 
 .section-label .index {
-  color: var(--blue);
+  color: var(--accent);
   font-variant-numeric: tabular-nums;
 }
 
@@ -346,7 +346,7 @@
 }
 
 .brand-mark {
-  color: var(--blue);
+  color: var(--accent);
   width: 32px;
   height: 32px;
 }
@@ -369,7 +369,7 @@
 }
 
 .nav-links a[aria-current='location'] {
-  color: var(--blue);
+  color: var(--accent);
   text-decoration: underline;
   text-underline-offset: 8px;
   text-decoration-thickness: 2px;
@@ -432,11 +432,11 @@
 }
 
 .hero h1 em {
-  color: var(--blue);
+  color: var(--accent);
 }
 
 .hero .period {
-  color: var(--blue);
+  color: var(--accent);
 }
 
 .hero-description {
@@ -625,7 +625,7 @@
 
 .detail-copy .text-link {
   margin-top: var(--s3);
-  color: var(--blue);
+  color: var(--accent);
 }
 
 .metrics {
@@ -706,7 +706,7 @@
 }
 
 .community .eyebrow {
-  color: var(--blue);
+  color: var(--accent);
 }
 
 .community p {
@@ -715,7 +715,7 @@
 }
 
 .community-role {
-  color: var(--blue);
+  color: var(--accent);
   font-weight: 700;
 }
 
@@ -741,7 +741,7 @@
 
 .service .service-number {
   display: block;
-  color: var(--blue);
+  color: var(--accent);
   font-size: var(--text);
   margin-bottom: var(--space-content);
 }
@@ -810,7 +810,7 @@
 }
 
 .consulting-bottom .text-link {
-  color: var(--blue);
+  color: var(--accent);
 }
 
 /* The book retains its actual cover geometry. */
@@ -905,7 +905,7 @@
 .project .project-symbol {
   flex: none;
   white-space: nowrap;
-  color: var(--blue);
+  color: var(--accent);
   font-size: var(--lead);
   font-weight: 500;
   letter-spacing: -0.04em;
@@ -930,7 +930,7 @@
 }
 
 .project-links .text-link {
-  color: var(--blue);
+  color: var(--accent);
   gap: var(--s2);
 }
 
@@ -978,7 +978,7 @@
 }
 
 .contact-section .section-label .index {
-  color: var(--dark-link);
+  color: var(--accent-on-dark);
 }
 
 .contact-grid {
@@ -995,7 +995,7 @@
 }
 
 .contact-grid h2 em {
-  color: var(--dark-link);
+  color: var(--accent-on-dark);
 }
 
 .contact-copy p {
@@ -1011,7 +1011,7 @@
 }
 
 .contact-section a:focus-visible {
-  outline-color: var(--dark-link);
+  outline-color: var(--accent-on-dark);
 }
 
 .site-footer {
@@ -1054,7 +1054,7 @@
   .article-link:hover h4,
   .collection-link:hover h4,
   .text-link:hover {
-    color: var(--blue);
+    color: var(--accent);
   }
 
   .button:hover .icon,
@@ -1067,12 +1067,12 @@
   }
 
   .career summary:hover .career-heading h3 {
-    color: var(--blue);
+    color: var(--accent);
   }
 
   .career summary:hover .disclosure-icon {
-    border-color: var(--blue);
-    color: var(--blue);
+    border-color: var(--accent);
+    color: var(--accent);
   }
 
   .footer-links a:hover {

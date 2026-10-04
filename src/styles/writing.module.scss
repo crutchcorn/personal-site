@@ -62,7 +62,7 @@
 }
 
 .book-link {
-  color: var(--blue);
+  color: var(--accent);
 }
 
 .essays-group {
@@ -101,7 +101,7 @@
 @media (hover: hover) and (pointer: fine) {
   .collections-grid a:hover .collection-title,
   .essays-grid a:hover .essay-title {
-    color: var(--blue);
+    color: var(--accent);
   }
 }
 

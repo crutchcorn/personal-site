@@ -21,10 +21,10 @@
   --white: #fff;
   --ink: #141923;
   --muted: #545d6d;
-  --blue: #2449db;
+  --accent: #713dc5;
   --line: #d8dde7;
   --dark-muted: #b6bfce;
-  --dark-link: #abc0ff;
+  --accent-on-dark: #ccb4f5;
   --font: manrope, system-ui, sans-serif;
   --serif: newsreader, georgia, serif;
   --text: 1rem;
@@ -82,7 +82,7 @@ body {
 }
 
 ::selection {
-  background: var(--blue);
+  background: var(--accent);
   color: var(--white);
 }
 
@@ -160,7 +160,7 @@ button:disabled {
 a:focus-visible,
 button:focus-visible,
 summary:focus-visible {
-  outline: 3px solid var(--blue);
+  outline: 3px solid var(--accent);
   outline-offset: 6px;
 }
 
