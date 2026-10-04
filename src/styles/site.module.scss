@@ -1043,6 +1043,12 @@
   gap: var(--s4);
 }
 
+.footer-signature {
+  display: block;
+  width: auto;
+  height: var(--s5);
+}
+
 .footer-links a {
   display: flex;
   align-items: center;

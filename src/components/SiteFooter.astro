@@ -4,7 +4,15 @@ import Icon from './Icon.astro';
 ---
 
 <footer class={styles['site-footer']}>
-  <p>© 2026 Corbin Crutchley</p>
+  <img
+    class={styles['footer-signature']}
+    src="/assets/signature.svg"
+    width="960"
+    height="192"
+    alt="Corbin Crutchley"
+    loading="lazy"
+    decoding="async"
+  />
   <div class={styles['footer-links']}>
     <a href="https://github.com/crutchcorn">GitHub <Icon name="out" /></a>
     <a href="https://www.linkedin.com/in/corbincrutchley/"
