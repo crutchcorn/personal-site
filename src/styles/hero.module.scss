@@ -43,6 +43,28 @@
   aspect-ratio: 1;
 }
 
+/* Align the label and leader with the illustration's node at (288, 12). */
+.availability {
+  position: absolute;
+  top: calc(100% * 12 / 460);
+  left: 0;
+  width: calc(100% * 288 / 460 - 12px);
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  background: var(--paper);
+  color: var(--accent);
+  font: 400 0.75rem/1.5 var(--font-mono);
+  transform: translateY(-50%);
+}
+
+.availability::after {
+  content: '';
+  height: 1px;
+  flex: 1 0 var(--s2);
+  background: currentcolor;
+}
+
 .connections {
   width: 100%;
   height: 100%;
