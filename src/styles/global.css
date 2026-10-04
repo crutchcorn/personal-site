@@ -94,6 +94,18 @@ figure {
   transform-origin: center;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  [data-illustration-waiting] [data-draw] {
+    stroke-dasharray: var(--illustration-path-length);
+    stroke-dashoffset: var(--illustration-path-length);
+  }
+
+  [data-illustration-waiting] [data-illustration-node] {
+    opacity: 0.5;
+    transform: scale(0.85);
+  }
+}
+
 h1,
 h2,
 h3 {

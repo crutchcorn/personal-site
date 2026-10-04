@@ -6,7 +6,37 @@ const drawings = document.querySelectorAll<SVGSVGElement>(
 const active = new Map<SVGSVGElement, Set<Animation>>();
 const lastPlayed = new WeakMap<SVGSVGElement, number>();
 const replayCooldown = 3000;
+const entranceInset = 300;
 const easing = 'cubic-bezier(.2,.7,.2,1)';
+
+function visibleInset(): number {
+  // Keep a trigger region in short windows, including after a device rotates.
+  return Math.min(
+    entranceInset,
+    Math.max(0, Math.floor((innerHeight - 1) / 2)),
+  );
+}
+
+function pathLength(path: SVGGeometryElement): number | null {
+  try {
+    const length = path.getTotalLength();
+    return Number.isFinite(length) && length > 0 ? length : null;
+  } catch {
+    return null;
+  }
+}
+
+function prepare(drawing: SVGSVGElement): void {
+  if (reducedMotion.matches || typeof drawing.animate !== 'function') return;
+  drawing
+    .querySelectorAll<SVGGeometryElement>('[data-draw]')
+    .forEach((path) => {
+      const length = pathLength(path);
+      if (length !== null)
+        path.style.setProperty('--illustration-path-length', `${length}px`);
+    });
+  drawing.setAttribute('data-illustration-waiting', '');
+}
 
 function play(drawing: SVGSVGElement): void {
   if (reducedMotion.matches || active.has(drawing)) return;
@@ -15,11 +45,12 @@ function play(drawing: SVGSVGElement): void {
   if (previousStart !== undefined && now - previousStart < replayCooldown)
     return;
   const bounds = drawing.getBoundingClientRect();
+  const inset = previousStart === undefined ? visibleInset() : 0;
   if (
     !bounds.width ||
     !bounds.height ||
-    bounds.bottom <= 0 ||
-    bounds.top >= innerHeight
+    bounds.bottom < inset ||
+    bounds.top > innerHeight - inset
   )
     return;
 
@@ -93,14 +124,8 @@ function play(drawing: SVGSVGElement): void {
   drawing
     .querySelectorAll<SVGGeometryElement>('[data-draw]')
     .forEach((path, index) => {
-      let length: number;
-      try {
-        length = path.getTotalLength();
-      } catch {
-        // An unsupported or hidden path keeps its ordinary, fully drawn appearance.
-        return;
-      }
-      if (!Number.isFinite(length) || length <= 0) return;
+      const length = pathLength(path);
+      if (length === null) return;
       animate(
         path,
         [
@@ -131,28 +156,41 @@ function play(drawing: SVGSVGElement): void {
       );
     });
 
+  // The attached animations now own the initial pose, including staggered starts.
+  drawing.removeAttribute('data-illustration-waiting');
   if (animations.size) {
     active.set(drawing, animations);
     lastPlayed.set(drawing, now);
   }
 }
 
-// Illustrations are complete without JavaScript. Each entrance runs just once.
-if ('IntersectionObserver' in window) {
-  const threshold = 0.35;
-  const observer = new IntersectionObserver(
-    (entries) => {
+let observer: IntersectionObserver | undefined;
+
+// Prepare only when the entrance observer can run; static fallbacks stay complete.
+function observeEntrances(): void {
+  if (!('IntersectionObserver' in window)) return;
+  observer?.disconnect();
+  observer = new IntersectionObserver(
+    (entries, currentObserver) => {
       for (const entry of entries) {
-        if (!entry.isIntersecting || entry.intersectionRatio < threshold)
-          continue;
-        observer.unobserve(entry.target);
-        play(entry.target as SVGSVGElement);
+        if (!entry.isIntersecting) continue;
+        const drawing = entry.target as SVGSVGElement;
+        play(drawing);
+        if (lastPlayed.has(drawing) || reducedMotion.matches)
+          currentObserver.unobserve(drawing);
       }
     },
-    { threshold },
+    { rootMargin: `-${visibleInset()}px 0px`, threshold: 0 },
   );
-  drawings.forEach((drawing) => observer.observe(drawing));
+  for (const drawing of drawings) {
+    if (lastPlayed.has(drawing)) continue;
+    prepare(drawing);
+    observer.observe(drawing);
+  }
 }
+
+observeEntrances();
+window.addEventListener('resize', observeEntrances, { passive: true });
 
 for (const drawing of drawings) {
   // Use the surrounding card so decorative SVGs never need their own tab stop.
@@ -172,11 +210,17 @@ for (const drawing of drawings) {
 }
 
 reducedMotion.addEventListener('change', (event) => {
-  if (!event.matches) return;
+  if (!event.matches) {
+    observeEntrances();
+    return;
+  }
   for (const animations of active.values()) {
     for (const animation of animations) animation.cancel();
   }
   active.clear();
+  drawings.forEach((drawing) =>
+    drawing.removeAttribute('data-illustration-waiting'),
+  );
 });
 
 export {};
