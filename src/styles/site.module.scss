@@ -346,7 +346,8 @@
 }
 
 .brand-mark {
-  color: var(--accent);
+  display: block;
+  flex: none;
   width: 32px;
   height: 32px;
 }
