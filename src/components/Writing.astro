@@ -1,6 +1,43 @@
 ---
 import styles from '../styles/site.module.scss';
+import writingStyles from '../styles/writing.module.scss';
 import Icon from './Icon.astro';
+
+const books = [
+  {
+    title: 'The Framework Field Guide',
+    category: 'Frameworks',
+    description:
+      'A free, practical way to learn React, Angular, and Vue together. Build mental models that travel with you from one framework to the next.',
+    href: 'https://framework.guide',
+    image: '/assets/framework-field-guide.png',
+    width: 1200,
+    height: 675,
+    alt: 'The Framework Field Guide artwork, with a forest landscape and Angular, React, and Vue symbols',
+  },
+  {
+    title: 'The Big Bot Builders',
+    category: 'AI · Early access',
+    description:
+      'Explore how modern AI models learn, generate responses, use tools, and remember information, from first principles to practical applications.',
+    href: 'https://playfulprogramming.com/collections/big-bot-builders/',
+    image: '/assets/big-bot-builders.png',
+    width: 1920,
+    height: 1080,
+    alt: 'The Big Bot Builders early access artwork showing a robot under construction',
+  },
+  {
+    title: 'The Art of Accessibility',
+    category: 'Accessibility',
+    description:
+      'Learn to build more accessible web applications. Make thoughtful choices that help more people use the things you create.',
+    href: 'https://playfulprogramming.com/collections/art-of-accessibility/',
+    image: '/assets/art-of-accessibility.png',
+    width: 1920,
+    height: 1080,
+    alt: 'The Art of Accessibility artwork showing people outside a café, including a wheelchair user and a person with a white cane',
+  },
+];
 ---
 
 <section
@@ -24,36 +61,50 @@ import Icon from './Icon.astro';
       </p>
     </div>
   </div>
-  <div class={styles['writing-grid']}>
-    <article class={styles['book-feature']} data-reveal>
+  <h3 class:list={[styles['eyebrow'], writingStyles['group-heading']]}>
+    Books
+  </h3>
+  <div class={writingStyles['books-grid']}>
+    {books.map((book) => <article
+      class={writingStyles['book-card']}
+      data-reveal
+    >
       <a
-        class={styles['book-image-link']}
-        href="https://framework.guide"
-        aria-label="Read The Framework Field Guide"
+        class={writingStyles['book-image-link']}
+        href={book.href}
+        aria-label={`Read ${book.title}`}
       >
         <img
-          class={styles['od-media']}
-          src="/assets/framework-field-guide.png"
-          width="1200"
-          height="675"
-          alt="The Framework Field Guide artwork, with a forest landscape and Angular, React, and Vue symbols"
+          src={book.image}
+          width={book.width}
+          height={book.height}
+          alt={book.alt}
           loading="lazy"
           decoding="async"
         />
       </a>
-      <div class={styles['book-caption']}>
-        <p class={styles['eyebrow']}>A book for the curious</p>
-        <h3>The Framework Field Guide</h3>
-        <p>
-          A free, practical way to learn React, Angular, and Vue together. Build
-          the mental models that travel with you from one framework to the next.
+      <div class={writingStyles['book-caption']}>
+        <p class:list={[styles['eyebrow'], writingStyles['book-category']]}>
+          {book.category}
         </p>
-        <a class={styles['text-link']} href="https://framework.guide"
-          ><span>Read the guide</span><Icon name="out"
-        /></a>
+        <h4>{book.title}</h4>
+        <p class={writingStyles['book-description']}>{book.description}</p>
+        <a
+          class:list={[styles['text-link'], writingStyles['book-link']]}
+          href={book.href}
+          aria-label={`Read ${book.title}`}
+        >
+          <span>Read the book</span>
+          <Icon name="out" />
+        </a>
       </div>
-    </article>
-    <div class={styles['reading-list']}>
+    </article>)}
+  </div>
+  <div class={writingStyles['essays-group']}>
+    <h3 class:list={[styles['eyebrow'], writingStyles['group-heading']]}>
+      Essays on leadership & teams
+    </h3>
+    <div class={writingStyles['collections-grid']}>
       <a
         class={styles['collection-link']}
         href="https://playfulprogramming.com/collections/harsh-leadership-truths/"
@@ -63,7 +114,9 @@ import Icon from './Icon.astro';
           <span class={styles['eyebrow']}>Essay collection</span
           ><Icon name="out" />
         </div>
-        <h3>Harsh Leadership Truths</h3>
+        <h4 class={writingStyles['collection-title']}>
+          Harsh Leadership Truths
+        </h4>
         <p>
           The uncomfortable parts of leadership: inherited systems, changing
           responsibilities, and growing alongside the team.
@@ -78,19 +131,25 @@ import Icon from './Icon.astro';
           <span class={styles['eyebrow']}>Essay collection</span
           ><Icon name="out" />
         </div>
-        <h3>Pragmatic Advice for Teams</h3>
+        <h4 class={writingStyles['collection-title']}>
+          Pragmatic Advice for Teams
+        </h4>
         <p>
           Thoughtful tradeoffs, shared context, and practical ways to help
           people work well together.
         </p>
       </a>
+    </div>
+    <div class={writingStyles['essays-grid']}>
       <a
         class={styles['article-link']}
         href="https://playfulprogramming.com/posts/inheriting-bad-tech"
       >
         <span class={styles['od-field']}
           ><span class={styles['article-type']}>Start here · Leadership</span>
-          <h3>What I Did When I Inherited Bad Tech</h3></span
+          <h4 class={writingStyles['essay-title']}>
+            What I Did When I Inherited Bad Tech
+          </h4></span
         >
         <Icon name="out" />
       </a>
@@ -100,7 +159,7 @@ import Icon from './Icon.astro';
       >
         <span class={styles['od-field']}
           ><span class={styles['article-type']}>On teams · Communication</span>
-          <h3>How to Communicate</h3></span
+          <h4 class={writingStyles['essay-title']}>How to Communicate</h4></span
         >
         <Icon name="out" />
       </a>

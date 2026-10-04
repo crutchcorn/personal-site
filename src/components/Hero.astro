@@ -37,9 +37,6 @@ import Icon from './Icon.astro';
     </div>
     <figure class={styles['portrait']} data-reveal>
       <div class={styles['portrait-frame']}>
-        <div class={styles['portrait-label']}>
-          <span>A human first.</span><Icon name="screen" />
-        </div>
         <img
           class={styles['od-media']}
           src="/assets/corbin-profile.jpg"
@@ -50,11 +47,8 @@ import Icon from './Icon.astro';
         />
       </div>
       <figcaption>
-        <strong>Corbin Crutchley <span>(they/them)</span></strong>
-        <span
-          >Engineering leader.<br />Open-source maintainer.<br />Perpetual
-          teacher.</span
-        >
+        <strong>Corbin Crutchley</strong>
+        <span>Engineering leader &amp; author</span>
       </figcaption>
     </figure>
   </div>
@@ -68,5 +62,22 @@ import Icon from './Icon.astro';
       <span>Staff engineer</span>
       <span>Nonprofit leader</span>
     </div>
+  </div>
+  <div class={styles['recognition']} aria-labelledby="recognition-heading">
+    <h2 id="recognition-heading" class={styles['recognition-title']}>
+      Community recognition
+    </h2>
+    <ul class={styles['award-list']} aria-label="Awards and recognition">
+      <li>
+        <a href="https://stars.github.com/profiles/crutchcorn/">GitHub Star</a>
+      </li>
+      <li>
+        <a
+          href="https://mvp.microsoft.com/en-US/MVP/profile/0ab92fa3-8847-4304-8104-0cdfc5b79ed8"
+          >Microsoft MVP</a
+        >
+      </li>
+      <li>JetBrains Community Contributor</li>
+    </ul>
   </div>
 </section>

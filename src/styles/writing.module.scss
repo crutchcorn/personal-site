@@ -1,0 +1,148 @@
+@use 'breakpoints';
+
+.group-heading {
+  margin-bottom: var(--s4);
+  color: var(--muted);
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s4);
+}
+
+.book-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.book-image-link {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--white);
+}
+
+.book-image-link img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+}
+
+.book-caption {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: var(--s4);
+}
+
+.book-category {
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.book-caption h4 {
+  margin-block: var(--s2) var(--s3);
+  font-size: clamp(1.375rem, 2.1vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.book-description {
+  flex: 1;
+  margin-bottom: var(--s3);
+  color: var(--muted);
+  font-size: var(--text);
+}
+
+.book-link {
+  color: var(--blue);
+}
+
+.essays-group {
+  margin-top: var(--s7);
+}
+
+.collections-grid,
+.essays-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--s6);
+}
+
+.collection-title {
+  margin: 0;
+  font-size: clamp(1.5rem, 2.3vw, 2rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.essay-title {
+  margin: 0;
+  font-size: var(--lead);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.essays-grid > a {
+  border-bottom: 1px solid var(--line);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .collections-grid a:hover .collection-title,
+  .essays-grid a:hover .essay-title {
+    color: var(--blue);
+  }
+}
+
+@media (width <= breakpoints.$tablet) {
+  .books-grid {
+    gap: var(--s3);
+  }
+
+  .book-caption {
+    padding-top: var(--s3);
+  }
+
+  .book-category {
+    font-size: 0.75rem;
+  }
+}
+
+@media (width <= breakpoints.$mobile) {
+  .books-grid,
+  .collections-grid,
+  .essays-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .books-grid {
+    gap: var(--s6);
+  }
+
+  .book-caption h4 {
+    font-size: 1.75rem;
+  }
+
+  .book-category {
+    font-size: 0.8125rem;
+  }
+
+  .essays-group {
+    margin-top: var(--s6);
+  }
+
+  .essay-title {
+    font-size: 1.25rem;
+  }
+}

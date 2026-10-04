@@ -353,6 +353,7 @@
 
 .nav-links {
   display: flex;
+  justify-content: flex-end;
   flex-wrap: wrap;
   align-items: center;
   gap: var(--s5);
@@ -486,60 +487,18 @@
   margin-top: var(--s5);
 }
 
+/* An understated, full-frame portrait with a concise professional caption. */
 .portrait {
-  align-self: end;
-  margin-bottom: var(--s2);
+  width: 100%;
+  max-width: 360px;
+  place-self: center end;
 }
 
 .portrait-frame {
-  position: relative;
-  padding: var(--s3);
+  overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   background: var(--white);
-}
-
-.portrait-frame::before,
-.portrait-frame::after {
-  content: '';
-  position: absolute;
-  display: block;
-  width: 24px;
-  height: 24px;
-  pointer-events: none;
-  border-color: var(--blue);
-  border-style: solid;
-}
-
-.portrait-frame::before {
-  top: -1px;
-  left: -1px;
-  border-width: 2px 0 0 2px;
-}
-
-.portrait-frame::after {
-  right: -1px;
-  bottom: -1px;
-  border-width: 0 2px 2px 0;
-}
-
-.portrait-label {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--s2);
-  margin-bottom: var(--s3);
-  font-size: var(--text);
-}
-
-.portrait-label .icon {
-  color: var(--blue);
-  width: 20px;
-  height: 20px;
-}
-
-.portrait img {
-  border-radius: 0;
 }
 
 .portrait figcaption {
@@ -551,12 +510,44 @@
 }
 
 .portrait figcaption strong {
+  font-size: var(--body);
   font-weight: 600;
 }
 
 .portrait figcaption span {
-  display: block;
   color: var(--muted);
+}
+
+.recognition {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2.5fr);
+  gap: var(--s5);
+  align-items: baseline;
+  margin-top: var(--s5);
+}
+
+.recognition-title {
+  font-size: var(--text);
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
+.award-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--s3) var(--s4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text);
+  font-weight: 600;
+}
+
+.award-list a {
+  text-decoration-color: var(--line);
 }
 
 .hero-foot {
@@ -866,48 +857,6 @@
 }
 
 /* The book retains its actual cover geometry. */
-.writing-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
-  gap: var(--s7);
-}
-
-.book-feature {
-  align-self: start;
-}
-
-.book-image-link {
-  display: block;
-  text-decoration: none;
-}
-
-.book-feature .book-caption {
-  padding-top: var(--s4);
-}
-
-.book-feature .eyebrow {
-  color: var(--muted);
-}
-
-.book-feature h3 {
-  font-size: var(--title);
-  margin-block: var(--s3);
-}
-
-.book-feature p {
-  color: var(--muted);
-  font-size: var(--text);
-}
-
-.book-feature .text-link {
-  margin-top: var(--s3);
-  color: var(--blue);
-}
-
-.reading-list {
-  display: grid;
-  gap: 0;
-}
 
 .collection-link {
   display: block;
@@ -927,10 +876,6 @@
 
 .collection-top .eyebrow {
   color: var(--muted);
-}
-
-.collection-link h3 {
-  font-size: var(--title);
 }
 
 .collection-link p {
@@ -962,11 +907,6 @@
   --od-gap: var(--s2);
 }
 
-.article-link h3 {
-  font-size: var(--lead);
-  line-height: 1.4;
-}
-
 .article-link .article-type {
   color: var(--muted);
   font-size: var(--text);
@@ -982,17 +922,20 @@
 }
 
 .project-grid {
-  --od-cols: 2;
+  --od-cols: 3;
   --od-gap: var(--s6);
 }
 
 .project {
+  display: flex;
+  flex-direction: column;
   border-top: 1px solid var(--ink);
   padding-block: var(--s4);
 }
 
 .project .project-top {
   display: flex;
+  min-height: var(--s6);
   justify-content: space-between;
   align-items: center;
   gap: var(--s3);
@@ -1003,6 +946,8 @@
 }
 
 .project .project-symbol {
+  flex: none;
+  white-space: nowrap;
   color: var(--blue);
   font-size: var(--lead);
   font-weight: 500;
@@ -1010,7 +955,7 @@
 }
 
 .project h3 {
-  font-size: clamp(2.5rem, 4vw, 3rem);
+  font-size: var(--title);
   margin-block: var(--s4);
 }
 
@@ -1023,7 +968,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--s3) var(--s5);
-  margin-top: var(--s4);
+  margin-top: auto;
+  padding-top: var(--s4);
 }
 
 .project-links .text-link {
@@ -1055,7 +1001,7 @@
   margin-top: var(--s5);
 }
 
-/* A direct invitation, with an email address that works without scripting. */
+/* A direct invitation to schedule a conversation. */
 .contact-section {
   background: var(--ink);
   color: var(--paper);
@@ -1099,48 +1045,7 @@
   margin-top: var(--s5);
 }
 
-.contact-email-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--s3);
-  margin-top: var(--s5);
-}
-
-.contact-email {
-  display: inline-block;
-  font-size: var(--text);
-  color: var(--paper);
-  overflow-wrap: anywhere;
-}
-
-.copy-button {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s2);
-  min-height: 44px;
-  padding: var(--s2);
-  border: 1px solid var(--dark-muted);
-  background: transparent;
-  border-radius: var(--radius);
-  font-size: var(--text);
-}
-
-.copy-button .icon {
-  width: 16px;
-  height: 16px;
-}
-
-.copy-status {
-  display: block;
-  min-height: 64px;
-  margin-top: var(--s2);
-  font-size: var(--text);
-  color: var(--dark-muted);
-}
-
-.contact-section a:focus-visible,
-.contact-section button:focus-visible {
+.contact-section a:focus-visible {
   outline-color: var(--dark-link);
 }
 
@@ -1181,8 +1086,8 @@
 @media (hover: hover) {
   .nav-links a:hover,
   .client-list a:hover,
-  .article-link:hover h3,
-  .collection-link:hover h3,
+  .article-link:hover h4,
+  .collection-link:hover h4,
   .text-link:hover {
     color: var(--blue);
   }
@@ -1205,14 +1110,8 @@
     color: var(--blue);
   }
 
-  .footer-links a:hover,
-  .contact-email:hover {
+  .footer-links a:hover {
     text-decoration: underline;
-  }
-
-  .copy-button:hover {
-    background: var(--paper);
-    color: var(--ink);
   }
 }
 
@@ -1227,6 +1126,14 @@
 }
 
 @media (width <= breakpoints.$tablet) {
+  .project .project-top {
+    min-height: 0;
+  }
+
+  .project-grid {
+    --od-cols: 1;
+  }
+
   :global(:root) {
     --page-gutter: 40px;
     --hero-title: clamp(3.25rem, 7vw, 5rem);
@@ -1296,10 +1203,6 @@
     font-size: var(--lead);
   }
 
-  .writing-grid {
-    gap: var(--s5);
-  }
-
   .community {
     gap: var(--s5);
   }
@@ -1311,6 +1214,28 @@
 }
 
 @media (width <= breakpoints.$mobile) {
+  .portrait {
+    display: grid;
+    grid-template-columns: 136px minmax(0, 1fr);
+    align-items: center;
+    gap: var(--s4);
+    max-width: 520px;
+    justify-self: start;
+  }
+
+  .portrait figcaption {
+    margin: 0;
+  }
+
+  .recognition {
+    grid-template-columns: 1fr;
+    gap: var(--s3);
+  }
+
+  .award-list {
+    justify-content: flex-start;
+  }
+
   :global(:root) {
     --page-gutter: 24px;
     --hero-title: clamp(3rem, 9.3vw, 4.5rem);
@@ -1346,6 +1271,7 @@
   }
 
   .nav-links {
+    justify-content: flex-start;
     flex-wrap: wrap;
     gap: var(--s2) var(--s4);
     padding-block: var(--s3);
@@ -1389,31 +1315,6 @@
   .hero-actions {
     margin-top: var(--s4);
     gap: var(--s3) var(--s4);
-  }
-
-  .portrait {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    align-items: center;
-    gap: var(--s4);
-    max-width: 520px;
-    margin: 0;
-  }
-
-  .portrait-frame {
-    padding: var(--s2);
-  }
-
-  .portrait-label {
-    margin-bottom: var(--s2);
-  }
-
-  .portrait-label .icon {
-    display: none;
-  }
-
-  .portrait figcaption {
-    margin: 0;
   }
 
   .hero-foot {
@@ -1554,21 +1455,6 @@
     gap: var(--s2) var(--s4);
   }
 
-  .writing-grid {
-    grid-template-columns: 1fr;
-    gap: var(--s6);
-  }
-
-  .collection-link h3,
-  .book-feature h3 {
-    font-size: var(--title);
-  }
-
-  .project-grid {
-    --od-cols: 1;
-    --od-gap: var(--s4);
-  }
-
   .project h3 {
     font-size: var(--section-title);
   }
@@ -1596,16 +1482,17 @@
     margin-top: var(--s4);
   }
 
-  .contact-email-row {
-    margin-top: var(--s4);
-  }
-
   .site-footer {
     margin-top: var(--s5);
   }
 }
 
 @media (width <= breakpoints.$small) {
+  .portrait {
+    grid-template-columns: 112px minmax(0, 1fr);
+    gap: var(--s3);
+  }
+
   :global(:root) {
     --page-gutter: 16px;
     --hero-title: 2.75rem;
@@ -1613,15 +1500,6 @@
 
   .brand {
     white-space: normal;
-  }
-
-  .portrait {
-    gap: var(--s3);
-  }
-
-  .portrait-label {
-    font-size: var(--text);
-    letter-spacing: -0.035em;
   }
 
   .button {

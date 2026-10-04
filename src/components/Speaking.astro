@@ -1,0 +1,126 @@
+---
+import { talks, podcasts } from '../data/appearances';
+import styles from '../styles/site.module.scss';
+import speaking from '../styles/speaking.module.scss';
+import Icon from './Icon.astro';
+
+const groups = [
+  {
+    id: 'talks',
+    heading: 'Talks',
+    label: 'On stage',
+    action: 'View all talks',
+    entries: talks,
+    source:
+      'https://github.com/crutchcorn/crutchcorn/blob/master/README.md#%EF%B8%8F-talks',
+  },
+  {
+    id: 'podcasts',
+    heading: 'Podcasts',
+    label: 'In conversation',
+    action: 'View all episodes',
+    entries: podcasts,
+    source:
+      'https://github.com/crutchcorn/crutchcorn/blob/master/README.md#%EF%B8%8F-podcasts',
+  },
+];
+---
+
+<section
+  class:list={[styles['section'], styles['container'], speaking['section']]}
+  id="speaking"
+  aria-labelledby="speaking-heading"
+  tabindex="-1"
+>
+  <div class={styles['section-intro']} data-reveal>
+    <p class:list={[styles['eyebrow'], styles['section-label']]}>
+      <span class={styles['index']}>05</span> Talks &amp; podcasts
+    </p>
+    <div>
+      <h2 id="speaking-heading">
+        Good ideas start<br />a <em>conversation.</em>
+      </h2>
+      <p>
+        From conference stages to podcast conversations, I share what I’m
+        learning about building software and working with people.
+      </p>
+    </div>
+  </div>
+  <div class={speaking['groups']}>
+    {groups.map((group) => <div class={speaking['group']} data-reveal>
+      <div class={speaking['group-heading']}>
+        <p class={styles['eyebrow']}>{group.label}</p>
+        <h3>{group.heading}</h3>
+      </div>
+      <ul class={speaking['featured-list']}>
+        {group.entries.slice(0, 2).map((appearance) => <li>
+          <a class={speaking['feature']} href={appearance.href}>
+            <span class={speaking['appearance-copy']}>
+              <span class={speaking['venue']}>{appearance.venue}</span>
+              <span class={speaking['title']}>{appearance.title}</span>
+            </span>
+            <Icon name="out" />
+          </a>
+        </li>)}
+      </ul>
+      <div class={speaking['group-actions']}>
+        <button
+          type="button"
+          class:list={[styles['text-link'], speaking['more-button']]}
+          data-appearance-dialog-open={`${group.id}-dialog`}
+          aria-haspopup="dialog"
+          aria-controls={`${group.id}-dialog`}
+          hidden
+        >
+          <span>{group.action} ({group.entries.length})</span>
+          <Icon name="plus" />
+        </button>
+        <a class={speaking['source-link']} href={group.source}>
+          Full list on GitHub<Icon name="out" />
+        </a>
+      </div>
+      <dialog
+        class={speaking['dialog']}
+        id={`${group.id}-dialog`}
+        aria-labelledby={`${group.id}-dialog-heading`}
+        data-appearance-dialog
+      >
+        <div class={speaking['dialog-header']}>
+          <div>
+            <p class={styles['eyebrow']}>{group.label}</p>
+            <h2
+              id={`${group.id}-dialog-heading`}
+              class={speaking['dialog-heading']}
+              tabindex="-1"
+              data-dialog-focus
+            >
+              All {group.heading.toLowerCase()}
+            </h2>
+          </div>
+          <form method="dialog">
+            <button
+              type="submit"
+              class={speaking['close-button']}
+              aria-label={`Close ${group.heading.toLowerCase()}`}
+            >
+              <Icon name="close" />
+            </button>
+          </form>
+        </div>
+        <ul class={speaking['dialog-list']}>
+          {group.entries.map((appearance) => <li>
+            <a class={speaking['dialog-link']} href={appearance.href}>
+              <span class={speaking['appearance-copy']}>
+                <span class={speaking['venue']}>{appearance.venue}</span>
+                <span class={speaking['dialog-title']}>
+                  {appearance.title}
+                </span>
+              </span>
+              <Icon name="out" />
+            </a>
+          </li>)}
+        </ul>
+      </dialog>
+    </div>)}
+  </div>
+</section>

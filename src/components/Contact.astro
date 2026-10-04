@@ -12,7 +12,7 @@ import SiteFooter from './SiteFooter.astro';
 >
   <div class={styles['container']}>
     <p class:list={[styles['eyebrow'], styles['section-label']]}>
-      <span class={styles['index']}>05</span> Let’s talk
+      <span class={styles['index']}>06</span> Let’s talk
     </p>
     <div class={styles['contact-grid']}>
       <h2 id="contact-heading" data-reveal>
@@ -24,34 +24,9 @@ import SiteFooter from './SiteFooter.astro';
           difficult technical decision? I’d love to understand what you’re
           building and who you’re building it for.
         </p>
-        <a
-          class={styles['button']}
-          href="mailto:contact@crutchcorn.dev?subject=Let%27s%20talk%20about%20what%27s%20next"
+        <a class={styles['button']} href="https://cal.com/crutchcorn/"
           >Start a conversation <Icon name="out"
         /></a>
-        <div class={styles['contact-email-row']}>
-          <a
-            data-contact-email
-            class={styles['contact-email']}
-            href="mailto:contact@crutchcorn.dev"
-            >contact@crutchcorn.dev</a
-          >
-          <button
-            class={styles['copy-button']}
-            type="button"
-            data-copy-email
-            hidden
-          >
-            <Icon name="copy" /><span data-copy-label>Copy email</span>
-          </button>
-        </div>
-        <p
-          data-copy-status
-          class={styles['copy-status']}
-          role="status"
-          aria-live="polite"
-          aria-atomic="true"
-        ></p>
       </div>
     </div>
     <SiteFooter />
