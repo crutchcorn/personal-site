@@ -368,6 +368,11 @@
   height: 32px;
 }
 
+.brand-mark svg {
+  width: 100%;
+  height: 100%;
+}
+
 /* The monitor stays still; its screen wakes once per interaction. */
 @keyframes brand-screen-wake {
   0%,
