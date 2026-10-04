@@ -1,5 +1,4 @@
 const header = document.querySelector<HTMLElement>('[data-site-header]');
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const pageSections = [
   ...document.querySelectorAll<HTMLElement>('#main > section'),
 ];
@@ -100,54 +99,5 @@ if ('ResizeObserver' in window) {
   if (main) layoutObserver.observe(main);
 }
 markCurrentSection();
-
-// Content is visible by default. Motion is an enhancement, never a gate.
-if ('IntersectionObserver' in window && !reducedMotion.matches) {
-  const activeAnimations = new Map<Element, Animation>();
-  const observer = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        observer.unobserve(entry.target);
-        if (
-          reducedMotion.matches ||
-          entry.target.contains(document.activeElement) ||
-          typeof entry.target.animate !== 'function'
-        )
-          continue;
-        const animation = entry.target.animate(
-          [
-            { opacity: 0, transform: 'translateY(16px)' },
-            { opacity: 1, transform: 'translateY(0)' },
-          ],
-          { duration: 320, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'none' },
-        );
-        activeAnimations.set(entry.target, animation);
-        const forgetAnimation = (): void => {
-          activeAnimations.delete(entry.target);
-        };
-        animation.addEventListener('finish', forgetAnimation, { once: true });
-        animation.addEventListener('cancel', forgetAnimation, { once: true });
-      }
-    },
-    { threshold: 0.12 },
-  );
-  document
-    .querySelectorAll('[data-reveal]')
-    .forEach((element) => observer.observe(element));
-  document.addEventListener('focusin', (event) => {
-    if (!(event.target instanceof Node)) return;
-    for (const [element, animation] of activeAnimations) {
-      if (element.contains(event.target)) animation.cancel();
-    }
-  });
-  reducedMotion.addEventListener('change', (event) => {
-    if (event.matches) {
-      observer.disconnect();
-      activeAnimations.forEach((animation) => animation.cancel());
-      activeAnimations.clear();
-    }
-  });
-}
 
 export {};

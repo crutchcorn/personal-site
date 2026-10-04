@@ -18,7 +18,10 @@ import SectionHeading from './SectionHeading.astro';
     >Open source</SectionHeading
   >
   <div class:list={[styles['od-grid'], styles['project-grid']]}>
-    <article class:list={[styles['project'], projects['project']]} data-reveal>
+    <article
+      class:list={[styles['project'], projects['project']]}
+      data-illustration-trigger
+    >
       <ProjectStudy variant="layers" />
       <h3>TanStack</h3>
       <p>
@@ -44,7 +47,10 @@ import SectionHeading from './SectionHeading.astro';
         /></a>
       </div>
     </article>
-    <article class:list={[styles['project'], projects['project']]} data-reveal>
+    <article
+      class:list={[styles['project'], projects['project']]}
+      data-illustration-trigger
+    >
       <ProjectStudy variant="bridges" />
       <h3>Redux</h3>
       <p>
@@ -68,7 +74,10 @@ import SectionHeading from './SectionHeading.astro';
         /></a>
       </div>
     </article>
-    <article class:list={[styles['project'], projects['project']]} data-reveal>
+    <article
+      class:list={[styles['project'], projects['project']]}
+      data-illustration-trigger
+    >
       <ProjectStudy variant="templates" />
       <h3>Plop</h3>
       <p>

@@ -18,7 +18,7 @@ import SectionHeading from './SectionHeading.astro';
       >Consulting</SectionHeading
     >
     <div class:list={[styles['od-grid'], styles['service-grid']]}>
-      <article class={styles['service']} data-reveal>
+      <article class={styles['service']} data-illustration-trigger>
         <ConnectionStudy variant="direction" />
         <h3>Architecture</h3>
         <p>
@@ -26,12 +26,12 @@ import SectionHeading from './SectionHeading.astro';
           documented tradeoffs.
         </p>
       </article>
-      <article class={styles['service']} data-reveal>
+      <article class={styles['service']} data-illustration-trigger>
         <ConnectionStudy variant="rhythm" />
         <h3>Engineering leadership</h3>
         <p>Release practices, quality, hiring, and team communication.</p>
       </article>
-      <article class={styles['service']} data-reveal>
+      <article class={styles['service']} data-illustration-trigger>
         <ConnectionStudy variant="knowledge" />
         <h3>Developer education</h3>
         <p>Documentation, technical writing, and training for developers.</p>

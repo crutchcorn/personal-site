@@ -15,7 +15,7 @@ import {
   aria-labelledby="hero-heading"
 >
   <div class={hero['grid']}>
-    <div class={hero['introduction']} data-reveal>
+    <div class={hero['introduction']}>
       <h1 id="hero-heading">
         Technical <span>depth<span class={hero['period']}>.</span></span>
         Organizational
@@ -35,12 +35,13 @@ import {
       </div>
     </div>
     <figure class={hero['portrait']}>
-      <div class={hero['drawing']}>
+      <div class={hero['drawing']} data-illustration-trigger>
         <svg
           class={hero['connections']}
           viewBox="0 0 460 460"
           aria-hidden="true"
           focusable="false"
+          data-illustration
         >
           <g class={hero['guides']}>
             <path d={portraitGuides} />
@@ -49,12 +50,12 @@ import {
           </g>
           <g class={hero['routes']}>
             {portraitRoutes.map((d) => (
-              <path d={d} />
+              <path d={d} data-draw />
             ))}
           </g>
           <g class={hero['nodes']}>
             {portraitNodes.map(({ cx, cy }) => (
-              <circle cx={cx} cy={cy} r="7" />
+              <circle cx={cx} cy={cy} r="7" data-illustration-node />
             ))}
           </g>
         </svg>

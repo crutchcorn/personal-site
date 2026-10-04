@@ -81,9 +81,6 @@
     3px 3px 0 1px var(--line),
     6px 6px 0 var(--paper),
     6px 6px 0 1px var(--line);
-  transition:
-    border-color var(--quick) var(--ease),
-    transform var(--quick) var(--ease);
 }
 
 .book-image-link::before {
@@ -228,7 +225,6 @@
 @media (hover: hover) and (pointer: fine) {
   .book-image-link:hover {
     border-color: var(--accent);
-    transform: translate(-2px, -3px);
   }
 
   .collections-grid a:hover .collection-title,
@@ -241,6 +237,25 @@
   }
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .book-image-link {
+    transform-origin: bottom left;
+    transition:
+      border-color var(--quick) var(--ease),
+      transform 280ms var(--ease);
+  }
+
+  .book-card:focus-within .book-image-link {
+    transform: translate(-2px, -3px) rotate(-0.75deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .book-card:hover .book-image-link {
+    transform: translate(-2px, -3px) rotate(-0.75deg);
+  }
+}
+
 @media (width <= breakpoints.$tablet) {
   .books-grid {
     gap: var(--s3);
@@ -248,16 +263,6 @@
 
   .collection {
     padding-right: var(--s3);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .book-image-link {
-    transition: none;
-  }
-
-  .book-image-link:hover {
-    transform: none;
   }
 }
 

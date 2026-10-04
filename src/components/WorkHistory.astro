@@ -302,7 +302,7 @@ const earlyCareerDialogId = 'earlier-career-dialog';
   <aside
     class={styles['community']}
     aria-labelledby="community-heading"
-    data-reveal
+    data-illustration-trigger
   >
     <div>
       <svg
@@ -313,14 +313,16 @@ const earlyCareerDialogId = 'earlier-career-dialog';
         aria-hidden="true"
         focusable="false"
         fill="none"
+        data-illustration
       >
         <path d="M8 26h136M34 6v40M76 6v40M118 6v40" />
         <path
+          data-draw
           d="M34 26c0-24 42-24 42 0s42 24 42 0M34 26c0 24 42 24 42 0s42-24 42 0"
         />
-        <circle cx="34" cy="26" r="5" />
-        <circle cx="76" cy="26" r="5" />
-        <circle cx="118" cy="26" r="5" />
+        <circle cx="34" cy="26" r="5" data-illustration-node />
+        <circle cx="76" cy="26" r="5" data-illustration-node />
+        <circle cx="118" cy="26" r="5" data-illustration-node />
       </svg>
       <h3 id="community-heading">Playful Programming</h3>
       <p>
