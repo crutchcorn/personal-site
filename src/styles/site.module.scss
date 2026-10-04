@@ -1023,6 +1023,10 @@
   height: 16px;
 }
 
+.rest-nav {
+  display: contents;
+}
+
 @media (hover: hover) {
   .nav-links a:hover {
     color: var(--header-accent, var(--accent));
@@ -1121,8 +1125,8 @@
   }
 
   .header-inner {
-    flex-direction: column;
-    align-items: flex-start;
+    justify-content: space-between;
+    align-items: center;
     gap: var(--s2);
     min-height: 72px;
     padding-block: var(--s2);
@@ -1137,8 +1141,8 @@
     height: 24px;
   }
 
-  .main-nav {
-    width: 100%;
+  .rest-nav {
+    display: none;
   }
 
   .section-trace {

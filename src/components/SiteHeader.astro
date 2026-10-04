@@ -21,11 +21,13 @@ const brandSvg = brandMark.replace(
     </a>
     <nav class={styles['main-nav']} aria-label="Main navigation">
       <div class={styles['nav-links']}>
-        <a href="#work" data-nav>Work</a>
-        <a href="#consulting" data-nav>Consulting</a>
-        <a href="#writing" data-nav>Writing</a>
-        <a href="#open-source" data-nav>Open source</a>
-        <a href="#speaking" data-nav>Speaking</a>
+        <div class={styles['rest-nav']}>
+          <a href="#work" data-nav>Work</a>
+          <a href="#consulting" data-nav>Consulting</a>
+          <a href="#writing" data-nav>Writing</a>
+          <a href="#open-source" data-nav>Open source</a>
+          <a href="#speaking" data-nav>Speaking</a>
+        </div>
         <a class={styles['contact-nav']} href="https://cal.com/crutchcorn/"
           >Let’s talk <Icon name="out"
         /></a>
