@@ -16,11 +16,26 @@
   content: '';
 }
 
+.books-heading {
+  gap: var(--s3);
+}
+
+.books-heading > span {
+  flex: none;
+  white-space: nowrap;
+}
+
+.books-heading::after {
+  min-width: 0;
+}
+
 .book-study {
-  flex: 0 0 auto;
+  order: 1;
+  flex: 0 1 88px;
+  min-width: 32px;
   width: 88px;
-  height: 44px;
-  margin-top: -8px;
+  height: auto;
+  max-height: 44px;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -80,7 +95,7 @@
 
 .book-image-link::after {
   position: absolute;
-  inset: -7px -7px auto auto;
+  inset: -1px -1px auto auto;
   width: 15px;
   height: 15px;
   border-top: 1px solid var(--accent);
@@ -247,6 +262,10 @@
 }
 
 @media (width <= breakpoints.$mobile) {
+  .books-heading {
+    gap: var(--s2);
+  }
+
   .books-grid,
   .collections-grid,
   .essays-grid {

@@ -44,8 +44,13 @@ const books = [
   tabindex="-1"
 >
   <SectionHeading id="writing-heading">Writing</SectionHeading>
-  <h3 class={writingStyles['group-heading']}>
-    Books
+  <h3
+    class:list={[
+      writingStyles['group-heading'],
+      writingStyles['books-heading'],
+    ]}
+  >
+    <span>Books</span>
     <svg
       class={writingStyles['book-study']}
       viewBox="0 0 88 44"
