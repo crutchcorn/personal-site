@@ -43,23 +43,29 @@ import Icon from './Icon.astro';
             />
           </g>
           <g class={hero['routes']}>
+            <!-- Shared corner centers keep all four routes 12 units apart. -->
             <path
-              d="M24 148h26a22 22 0 0 0 22-22V82a30 30 0 0 1 30-30h224a62 62 0 0 1 62 62v250a34 34 0 0 1-34 34H154"
+              d="M24 176h2a32 32 0 0 0 32-32v-16a76 76 0 0 1 76-76h192a76 76 0 0 1 76 76v212a76 76 0 0 1-76 76H154"
             />
             <path
-              d="M24 160h38a22 22 0 0 0 22-22V94a30 30 0 0 1 30-30h200a62 62 0 0 1 62 62v226a34 34 0 0 1-34 34H154"
+              d="M24 188h2a44 44 0 0 0 44-44v-16a64 64 0 0 1 64-64h192a64 64 0 0 1 64 64v212a64 64 0 0 1-64 64H154"
             />
             <path
-              d="M306 24v6a22 22 0 0 0 22 22h20a52 52 0 0 1 52 52v228a78 78 0 0 1-78 78H106a46 46 0 0 1-46-46V242a30 30 0 0 0-30-30h-6"
+              d="M282 12a28 28 0 0 0 28 28h16a88 88 0 0 1 88 88v212a88 88 0 0 1-88 88H134a88 88 0 0 1-88-88v-74a36 36 0 0 0-36-36"
             />
             <path
-              d="M318 24v6a10 10 0 0 0 10 10h20a64 64 0 0 1 64 64v228a90 90 0 0 1-90 90H106a58 58 0 0 1-58-58V254a30 30 0 0 0-30-30h-6"
+              d="M294 12a16 16 0 0 0 16 16h16a100 100 0 0 1 100 100v212a100 100 0 0 1-100 100H134a100 100 0 0 1-100-100v-74a24 24 0 0 0-24-24"
             />
           </g>
           <g class={hero['nodes']}>
-            <circle cx="24" cy="154" r="7" />
-            <circle cx="312" cy="24" r="7" />
-            <circle cx="154" cy="392" r="7" />
+            <circle cx="24" cy="182" r="7" />
+            <circle cx="288" cy="12" r="7" />
+            <circle cx="154" cy="410" r="7" />
+          </g>
+          <g class={hero['annotations']}>
+            <text x="8" y="213">01 / Code</text>
+            <text x="330" y="20">02 / People</text>
+            <text x="174" y="390">03 / Ideas</text>
           </g>
         </svg>
         <div class={hero['photo']}>
@@ -72,9 +78,6 @@ import Icon from './Icon.astro';
             fetchpriority="high"
           />
         </div>
-        <span class={hero['code-label']} aria-hidden="true">01 / Code</span>
-        <span class={hero['people-label']} aria-hidden="true">02 / People</span>
-        <span class={hero['ideas-label']} aria-hidden="true">03 / Ideas</span>
       </div>
       <figcaption class={hero['caption']}>
         <span class={hero['location-mark']} aria-hidden="true">↗</span>
