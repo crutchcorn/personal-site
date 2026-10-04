@@ -1,11 +1,16 @@
 @use 'breakpoints';
 
-:global(html:has(dialog[open])) {
-  overflow: hidden;
+:global(html) {
   scrollbar-gutter: stable;
 }
 
+:global(html:has(dialog[open])) {
+  overflow: hidden;
+}
+
 .dialog {
+  /* Keep the layout intact while display is retained for the exit fade. */
+  flex-direction: column;
   width: min(780px, calc(100% - 48px));
   max-height: calc(100dvh - 64px);
   padding: 0;
@@ -16,15 +21,52 @@
   background: var(--paper);
   color: var(--ink);
   box-shadow: 0 24px 120px rgb(20 25 35 / 20%);
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity calc(var(--quick) / 2) var(--ease),
+    transform calc(var(--quick) / 2) var(--ease),
+    display calc(var(--quick) / 2) allow-discrete,
+    overlay calc(var(--quick) / 2) allow-discrete;
 }
 
 .dialog::backdrop {
-  background: rgb(20 25 35 / 65%);
+  background: transparent;
+  transition:
+    background-color calc(var(--quick) / 2) var(--ease),
+    display calc(var(--quick) / 2) allow-discrete,
+    overlay calc(var(--quick) / 2) allow-discrete;
 }
 
 .dialog[open] {
   display: flex;
-  flex-direction: column;
+  opacity: 1;
+  transform: translateY(0);
+  transition-duration: var(--quick);
+}
+
+.dialog[open]::backdrop {
+  background: rgb(20 25 35 / 65%);
+  transition-duration: var(--quick);
+}
+
+.dialog:not([open]) {
+  pointer-events: none;
+}
+
+.dialog:not([open])::backdrop {
+  pointer-events: none;
+}
+
+@starting-style {
+  .dialog[open] {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  .dialog[open]::backdrop {
+    background: transparent;
+  }
 }
 
 .header {
@@ -95,5 +137,12 @@
 
   .heading {
     font-size: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialog,
+  .dialog::backdrop {
+    transition: none;
   }
 }

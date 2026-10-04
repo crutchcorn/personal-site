@@ -1,6 +1,12 @@
 ---
 import styles from '../styles/site.module.scss';
 import Icon from './Icon.astro';
+import brandMark from '../../public/favicon.svg?raw';
+
+const brandSvg = brandMark.replace(
+  '<svg ',
+  '<svg aria-hidden="true" focusable="false" ',
+);
 ---
 
 <header data-site-header class={styles['site-header']}>
@@ -10,13 +16,7 @@ import Icon from './Icon.astro';
       href="#top"
       aria-label="Corbin Crutchley, back to top"
     >
-      <img
-        src="/favicon.svg"
-        width="32"
-        height="32"
-        alt=""
-        class={styles['brand-mark']}
-      />
+      <span class={styles['brand-mark']} set:html={brandSvg} />
       <span>Corbin Crutchley</span>
     </a>
     <nav class={styles['main-nav']} aria-label="Main navigation">

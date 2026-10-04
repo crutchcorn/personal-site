@@ -363,6 +363,49 @@
   height: 32px;
 }
 
+/* The monitor stays still; its screen wakes once per interaction. */
+@keyframes brand-screen-wake {
+  0%,
+  100% {
+    fill: var(--paper);
+  }
+
+  45% {
+    fill: color-mix(in srgb, var(--accent) 18%, var(--paper));
+  }
+}
+
+@keyframes brand-glyph-wake {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  35% {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .brand:focus-visible [data-brand-screen] {
+    animation: brand-screen-wake var(--enter) var(--ease);
+  }
+
+  .brand:focus-visible [data-brand-glyph] {
+    animation: brand-glyph-wake var(--enter) var(--ease);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .brand:hover [data-brand-screen] {
+    animation: brand-screen-wake var(--enter) var(--ease);
+  }
+
+  .brand:hover [data-brand-glyph] {
+    animation: brand-glyph-wake var(--enter) var(--ease);
+  }
+}
+
 .nav-links {
   display: flex;
   justify-content: flex-end;
@@ -529,6 +572,8 @@
 }
 
 .career {
+  --disclosure-duration: 220ms;
+
   border-bottom: 1px solid var(--line);
 }
 
@@ -538,6 +583,25 @@
 
 .career[open] {
   background: var(--white);
+}
+
+@supports selector(::details-content) and (interpolate-size: allow-keywords) and
+  (transition-behavior: allow-discrete) {
+  .career {
+    interpolate-size: allow-keywords;
+  }
+
+  .career::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition:
+      block-size var(--disclosure-duration) var(--ease),
+      content-visibility var(--disclosure-duration) allow-discrete;
+  }
+
+  .career[open]::details-content {
+    block-size: auto;
+  }
 }
 
 .career summary {
@@ -604,7 +668,7 @@
 }
 
 .disclosure-icon .icon {
-  transition: transform var(--quick) var(--ease);
+  transition: transform var(--disclosure-duration) var(--ease);
 }
 
 .career[open] .disclosure-icon .icon {
@@ -1371,6 +1435,10 @@
 @media (prefers-reduced-motion: reduce) {
   :global(html) {
     scroll-behavior: auto;
+  }
+
+  .career::details-content {
+    transition: none;
   }
 
   :global(*),
