@@ -88,19 +88,6 @@
   content: '';
 }
 
-.book-folio {
-  position: absolute;
-  inset: -0.85em auto auto var(--s4);
-  padding-inline: var(--s2);
-  background: var(--paper);
-  color: var(--accent);
-  font-family: var(--font-mono, monospace);
-  font-size: 0.6875rem;
-  font-variant-numeric: tabular-nums;
-  line-height: 1.5;
-  letter-spacing: 0.05em;
-}
-
 .book-image-link img {
   display: block;
   width: 100%;
@@ -198,15 +185,6 @@
   line-height: 1.25;
   letter-spacing: -0.035em;
   text-wrap: balance;
-}
-
-.collection-folio {
-  margin-right: auto;
-  color: var(--accent);
-  font-family: var(--font-mono, monospace);
-  font-size: 0.6875rem;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.05em;
 }
 
 .essay-mark {

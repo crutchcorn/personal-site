@@ -3,14 +3,12 @@ import styles from '../styles/site.module.scss';
 
 interface Props {
   id: string;
-  index: string;
 }
 
-const { id, index } = Astro.props;
+const { id } = Astro.props;
 ---
 
 <div class={styles['section-intro']} data-reveal>
-  <span class={styles['section-index']} aria-hidden="true">{index} /</span>
   <h2 id={id}><slot /></h2>
   <div class={styles['section-trace']} aria-hidden="true">
     <svg viewBox="0 0 112 32" width="112" height="32" focusable="false">

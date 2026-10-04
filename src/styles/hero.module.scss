@@ -16,14 +16,6 @@
   min-width: 0;
 }
 
-.eyebrow {
-  margin-bottom: var(--s4);
-  color: var(--accent);
-  font: 500 0.75rem/1.7 var(--font-mono);
-  letter-spacing: 0.045em;
-  text-transform: uppercase;
-}
-
 .introduction h1 {
   font-size: clamp(3.25rem, 7.2vw, 6.5rem);
   font-weight: 500;
@@ -92,15 +84,6 @@
   transition: transform 500ms var(--ease);
 }
 
-/* Scale the annotations with the paths so they cannot cut across a route. */
-.annotations {
-  fill: var(--accent);
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.015em;
-}
-
 .caption {
   display: flex;
   align-items: center;
@@ -121,18 +104,6 @@
   background: var(--line);
 }
 
-.colophon {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: var(--s2) var(--s4);
-  margin-top: var(--s6);
-  padding-top: var(--s3);
-  border-top: 1px solid var(--line);
-  color: var(--muted);
-  font: 400 0.6875rem/1.6 var(--font-mono);
-}
-
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .drawing:hover .photo img {
     transform: scale(1.04) rotate(4deg);
@@ -146,10 +117,6 @@
 
   .grid {
     gap: var(--s4);
-  }
-
-  .eyebrow {
-    max-width: 28ch;
   }
 }
 
@@ -167,22 +134,8 @@
     font-size: clamp(3.5rem, 12.5vw, 5.5rem);
   }
 
-  .eyebrow {
-    max-width: none;
-    margin-bottom: var(--s3);
-    font-size: 0.6875rem;
-  }
-
   .portrait {
     max-width: 360px;
     justify-self: center;
-  }
-
-  .colophon {
-    margin-top: var(--s5);
-  }
-
-  .colophon > span:last-child {
-    display: none;
   }
 }

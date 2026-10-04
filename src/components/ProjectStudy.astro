@@ -6,12 +6,6 @@ interface Props {
 }
 
 const { variant } = Astro.props;
-const studies = {
-  layers: { index: '01', caption: 'Shared foundations' },
-  bridges: { index: '02', caption: 'Framework connections' },
-  templates: { index: '03', caption: 'Reusable templates' },
-};
-const study = studies[variant];
 ---
 
 <div class={styles['study']} aria-hidden="true">
@@ -107,8 +101,4 @@ const study = studies[variant];
       </>
     )}
   </svg>
-  <div class={styles['caption']}>
-    <span class={styles['index']}>{study.index} /</span>
-    <span>{study.caption}</span>
-  </div>
 </div>

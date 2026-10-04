@@ -98,30 +98,16 @@
 
 .feature {
   display: grid;
-  grid-template-columns: 42px minmax(0, 1fr) 20px;
+  grid-template-columns: minmax(0, 1fr) 20px;
   align-items: start;
   gap: var(--s3);
   min-height: 190px;
-  padding-right: var(--s4);
+  padding: var(--s4);
   text-decoration: none;
   transition: background-color var(--quick) var(--ease);
 }
 
-.feature-number {
-  align-self: stretch;
-  padding-top: var(--s4);
-  border-right: 1px dashed var(--line);
-  color: var(--accent);
-  font: 400 0.6875rem/1.8 var(--font-mono);
-  text-align: center;
-}
-
-.feature > .appearance-copy {
-  padding-block: var(--s4);
-}
-
 .feature > svg {
-  margin-top: var(--s4);
   color: var(--accent);
 }
 
@@ -152,7 +138,6 @@
   align-items: center;
   gap: var(--space-content);
   margin-top: var(--s3);
-  padding-left: calc(42px + var(--s3));
 }
 
 .more-button {
@@ -224,13 +209,8 @@
   }
 
   .feature {
-    grid-template-columns: 32px minmax(0, 1fr) 20px;
     gap: var(--s2);
-    padding-right: var(--s3);
-  }
-
-  .group-actions {
-    padding-left: calc(32px + var(--s2));
+    padding-inline: var(--s3);
   }
 }
 

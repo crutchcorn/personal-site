@@ -286,14 +286,6 @@
   margin-bottom: var(--space-heading);
 }
 
-.section-index {
-  flex: none;
-  align-self: flex-start;
-  padding-top: 0.45em;
-  color: var(--accent);
-  font: 400 0.8125rem/1.6 var(--font-mono);
-}
-
 .section-intro h2 {
   min-width: 0;
 }
@@ -930,12 +922,6 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-}
-
-.contact-index {
-  margin-bottom: var(--s4);
-  color: var(--accent-on-dark);
-  font: 400 0.75rem/1.6 var(--font-mono);
 }
 
 .contact-drawing {

@@ -60,18 +60,3 @@
 .solid {
   fill: var(--accent);
 }
-
-.caption {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--s2) var(--s3);
-  padding-top: var(--s2);
-  font-family: var(--font-mono, monospace);
-  font-size: 0.6875rem;
-  line-height: 1.6;
-}
-
-.index {
-  color: var(--accent);
-}
