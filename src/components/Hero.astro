@@ -50,10 +50,14 @@ import Icon from './Icon.astro';
   </div>
   <div class={styles['hero-foot']}>
     <p>Over a decade of hands-on engineering.</p>
-    <div class={styles['chapter-links']} aria-label="Professional focus">
-      <span>OSS Developer</span>
-      <span>Author</span>
-      <span>Engineering Leader</span>
-    </div>
+    <ul
+      class={styles['chapter-links']}
+      role="list"
+      aria-label="Professional focus"
+    >
+      <li>OSS Developer</li>
+      <li>Author</li>
+      <li>Engineering Leader</li>
+    </ul>
   </div>
 </section>

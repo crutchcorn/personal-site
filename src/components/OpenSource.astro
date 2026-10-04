@@ -11,10 +11,10 @@ import Icon from './Icon.astro';
 >
   <div class={styles['section-intro']} data-reveal>
     <p class:list={[styles['eyebrow'], styles['section-label']]}>
-      <span class={styles['index']}>04</span> Open source
+      <span class={styles['index']} aria-hidden="true">04</span> Open source
     </p>
     <div>
-      <h2 id="oss-heading">Built in the open.<br />Better with others.</h2>
+      <h2 id="oss-heading">Built in the <em>open</em>.<br />Better with others.</h2>
       <p>
         A library is part of someone else’s working day. I stay close to the
         code, the documentation, and the people relying on both.
@@ -33,15 +33,22 @@ import Icon from './Icon.astro';
         and Table. Practical tools, with attention to the developer experience
         behind every API.
       </p>
-      <div class={styles['project-links']} aria-label="TanStack projects">
+      <div
+        class={styles['project-links']}
+        role="group"
+        aria-label="TanStack projects"
+      >
         <a class={styles['text-link']} href="https://tanstack.com/form"
-          ><span>Form</span><Icon name="out"
+          ><span><span class={styles['sr-only']}>TanStack </span>Form</span
+          ><Icon name="out"
         /></a>
         <a class={styles['text-link']} href="https://tanstack.com/store"
-          ><span>Store</span><Icon name="out"
+          ><span><span class={styles['sr-only']}>TanStack </span>Store</span
+          ><Icon name="out"
         /></a>
         <a class={styles['text-link']} href="https://tanstack.com/config"
-          ><span>Config</span><Icon name="out"
+          ><span><span class={styles['sr-only']}>TanStack </span>Config</span
+          ><Icon name="out"
         /></a>
       </div>
     </article>
@@ -56,7 +63,11 @@ import Icon from './Icon.astro';
         I ported Redux integrations to Angular and Vue and contribute across the
         Redux ecosystem, helping familiar tools meet developers where they work.
       </p>
-      <div class={styles['project-links']} aria-label="Redux integrations">
+      <div
+        class={styles['project-links']}
+        role="group"
+        aria-label="Redux integrations"
+      >
         <a
           class={styles['text-link']}
           href="https://github.com/reduxjs/angular-redux"
@@ -80,7 +91,7 @@ import Icon from './Icon.astro';
         developers scaffold files consistently, with templates that grow
         alongside the codebase.
       </p>
-      <div class={styles['project-links']} aria-label="Plop">
+      <div class={styles['project-links']}>
         <a class={styles['text-link']} href="https://plopjs.com/">
           <span>Explore Plop</span><Icon name="out" />
         </a>

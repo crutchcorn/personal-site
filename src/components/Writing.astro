@@ -17,10 +17,11 @@ const books = [
   },
   {
     title: 'The Big Bot Builders',
-    category: 'AI · Early access',
+    category: 'AI',
+    status: 'Early access',
     description:
       'Explore how modern AI models learn, generate responses, use tools, and remember information, from first principles to practical applications.',
-    href: 'https://playfulprogramming.com/collections/big-bot-builders/',
+    href: 'https://bigbot.builders',
     image: '/assets/big-bot-builders.png',
     width: 1920,
     height: 1080,
@@ -31,7 +32,7 @@ const books = [
     category: 'Accessibility',
     description:
       'Learn to build more accessible web applications. Make thoughtful choices that help more people use the things you create.',
-    href: 'https://playfulprogramming.com/collections/art-of-accessibility/',
+    href: 'https://a11y.art',
     image: '/assets/art-of-accessibility.png',
     width: 1920,
     height: 1080,
@@ -48,7 +49,7 @@ const books = [
 >
   <div class={styles['section-intro']} data-reveal>
     <p class:list={[styles['eyebrow'], styles['section-label']]}>
-      <span class={styles['index']}>03</span> Writing
+      <span class={styles['index']} aria-hidden="true">03</span> Writing
     </p>
     <div>
       <h2 id="writing-heading">
@@ -85,16 +86,19 @@ const books = [
       </a>
       <div class={writingStyles['book-caption']}>
         <p class:list={[styles['eyebrow'], writingStyles['book-category']]}>
-          {book.category}
+          {book.category}{'status' in book && (
+            <><span aria-hidden="true"> · </span
+              ><span class={styles['sr-only']}>, </span>{book.status}</>
+          )}
         </p>
         <h4>{book.title}</h4>
         <p class={writingStyles['book-description']}>{book.description}</p>
         <a
           class:list={[styles['text-link'], writingStyles['book-link']]}
           href={book.href}
-          aria-label={`Read ${book.title}`}
         >
           <span>Read the book</span>
+          <span class={styles['sr-only']}>: {book.title}</span>
           <Icon name="out" />
         </a>
       </div>
@@ -145,20 +149,26 @@ const books = [
         class={styles['article-link']}
         href="https://playfulprogramming.com/posts/working-with-crutchcorn/"
       >
-        <span class={styles['od-field']}
-          ><span class={styles['article-type']}>Start here · Leadership</span>
-          <h4 class={writingStyles['essay-title']}>Working with Me</h4></span
-        >
+        <div class={styles['od-field']}>
+          <span class={styles['article-type']}
+            >Start here<span aria-hidden="true"> · </span
+            ><span class={styles['sr-only']}>, </span>Leadership</span
+          >
+          <h4 class={writingStyles['essay-title']}>Working with Me</h4>
+        </div>
         <Icon name="out" />
       </a>
       <a
         class={styles['article-link']}
         href="https://playfulprogramming.com/posts/how-to-communicate"
       >
-        <span class={styles['od-field']}
-          ><span class={styles['article-type']}>On teams · Communication</span>
-          <h4 class={writingStyles['essay-title']}>How to Communicate</h4></span
-        >
+        <div class={styles['od-field']}>
+          <span class={styles['article-type']}
+            >On teams<span aria-hidden="true"> · </span
+            ><span class={styles['sr-only']}>, </span>Communication</span
+          >
+          <h4 class={writingStyles['essay-title']}>How to Communicate</h4>
+        </div>
         <Icon name="out" />
       </a>
     </div>

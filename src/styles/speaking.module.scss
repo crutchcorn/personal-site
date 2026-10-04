@@ -94,6 +94,18 @@
   color: var(--accent);
 }
 
+.fallback {
+  width: 100%;
+}
+
+.fallback > summary {
+  min-height: 44px;
+  padding-block: var(--s2);
+  color: var(--accent);
+  font-size: var(--text);
+  font-weight: 600;
+}
+
 .dialog-list {
   padding: 0 var(--space-inset) var(--space-inset);
 }

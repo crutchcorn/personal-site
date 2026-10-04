@@ -22,11 +22,14 @@
   background: rgb(20 25 35 / 65%);
 }
 
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 1;
+.dialog[open] {
   display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  flex: none;
   padding: var(--space-inset) var(--space-inset) var(--space-content);
   background: var(--paper);
   align-items: flex-start;
@@ -34,6 +37,14 @@
   gap: var(--space-content);
   margin-bottom: 0;
   border-bottom: 1px solid var(--line);
+}
+
+.header > div {
+  min-width: 0;
+}
+
+.header > form {
+  flex: none;
 }
 
 .header p {
@@ -45,8 +56,24 @@
   font-size: 2.5rem;
 }
 
-.heading:focus {
-  outline: none;
+.heading:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 6px;
+}
+
+.content {
+  /* If enlarged headings fill a short viewport, the outer dialog can scroll
+     while the list retains a usable keyboard-scroll area. */
+  min-height: min(16rem, 50dvh);
+  padding-block: var(--s3);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-padding-block: var(--s3);
+}
+
+.content:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: -3px;
 }
 
 .close-button {

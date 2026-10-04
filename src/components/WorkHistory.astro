@@ -75,10 +75,10 @@ const earlyCareerDialogId = 'earlier-career-dialog';
 >
   <div class={styles['section-intro']} data-reveal>
     <p class:list={[styles['eyebrow'], styles['section-label']]}>
-      <span class={styles['index']}>01</span> Work history
+      <span class={styles['index']} aria-hidden="true">01</span> Work history
     </p>
     <div>
-      <h2 id="work-heading">Building the product.<br />Growing the team.</h2>
+      <h2 id="work-heading">Building the product.<br />Growing the <em>team</em>.</h2>
       <p>
         Good technical decisions need business context. Good teams need it, too.
         I bring the architecture, delivery practices, and everyday conversations
@@ -90,16 +90,18 @@ const earlyCareerDialogId = 'earlier-career-dialog';
   <div class={styles['career-list']}>
     <details class={styles['career']} open>
       <summary>
-        <span class={styles['career-period']}>Apr 2025 – Jun 2026</span>
-        <span class:list={[styles['career-heading'], styles['od-field']]}
-          ><h3>Immersive Homes</h3>
-          <span class={styles['role']}
-            >Vice President of Software Engineering</span
-          ></span
-        >
-        <span class={styles['disclosure-icon']} aria-hidden="true"
-          ><Icon name="plus"
-        /></span>
+        <h3 class={styles['career-summary']}>
+          <span class={styles['career-period']}>Apr 2025 – Jun 2026</span>
+          <span class:list={[styles['career-heading'], styles['od-field']]}>
+            <span class={styles['career-title']}>Immersive Homes</span>
+            <span class={styles['role']}
+              >Vice President of Software Engineering</span
+            >
+          </span>
+          <span class={styles['disclosure-icon']} aria-hidden="true"
+            ><Icon name="plus"
+          /></span>
+        </h3>
       </summary>
       <div class={styles['career-body']}>
         <div class={styles['detail-copy']}>
@@ -114,12 +116,20 @@ const earlyCareerDialogId = 'earlier-career-dialog';
             aria-label="Selected outcomes at Immersive Homes"
           >
             <div class:list={[styles['od-stat'], styles['metric']]}>
-              <strong class={styles['od-nowrap']}>20 → 5 min</strong
-              ><span class={styles['metric-label']}>Deployment time</span>
+              <strong class={styles['od-nowrap']}>
+                <span aria-hidden="true">20 → 5 min</span>
+                <span class={styles['sr-only']}
+                  >Reduced from 20 minutes to 5 minutes</span
+                >
+              </strong>
+              <span class={styles['metric-label']}>Deployment time</span>
             </div>
             <div class:list={[styles['od-stat'], styles['metric']]}>
-              <strong class={styles['od-nowrap']}>680+</strong
-              ><span class={styles['metric-label']}>New automated tests</span>
+              <strong class={styles['od-nowrap']}>
+                <span aria-hidden="true">680+</span>
+                <span class={styles['sr-only']}>More than 680</span>
+              </strong>
+              <span class={styles['metric-label']}>New automated tests</span>
             </div>
             <div class:list={[styles['od-stat'], styles['metric']]}>
               <strong class={styles['od-nowrap']}>2 products</strong
@@ -141,14 +151,16 @@ const earlyCareerDialogId = 'earlier-career-dialog';
     </details>
     <details class={styles['career']}>
       <summary>
-        <span class={styles['career-period']}>May 2024 – Apr 2025</span>
-        <span class:list={[styles['career-heading'], styles['od-field']]}
-          ><h3>Descript</h3>
-          <span class={styles['role']}>Staff Frontend Engineer</span></span
-        >
-        <span class={styles['disclosure-icon']} aria-hidden="true"
-          ><Icon name="plus"
-        /></span>
+        <h3 class={styles['career-summary']}>
+          <span class={styles['career-period']}>May 2024 – Apr 2025</span>
+          <span class:list={[styles['career-heading'], styles['od-field']]}>
+            <span class={styles['career-title']}>Descript</span>
+            <span class={styles['role']}>Staff Frontend Engineer</span>
+          </span>
+          <span class={styles['disclosure-icon']} aria-hidden="true"
+            ><Icon name="plus"
+          /></span>
+        </h3>
       </summary>
       <div class={styles['career-body']}>
         <div class={styles['detail-copy']}>
@@ -166,11 +178,17 @@ const earlyCareerDialogId = 'earlier-career-dialog';
             aria-label="Selected work at Descript"
           >
             <div class:list={[styles['od-stat'], styles['metric']]}>
-              <strong class={styles['od-nowrap']}>16 → 18</strong>
+              <strong class={styles['od-nowrap']}>
+                <span aria-hidden="true">16 → 18</span>
+                <span class={styles['sr-only']}>From React 16 to React 18</span>
+              </strong>
               <span class={styles['metric-label']}>React migration</span>
             </div>
             <div class:list={[styles['od-stat'], styles['metric']]}>
-              <strong class={styles['od-nowrap']}>1.2M lines</strong>
+              <strong class={styles['od-nowrap']}>
+                <span aria-hidden="true">1.2M lines</span>
+                <span class={styles['sr-only']}>1.2 million lines</span>
+              </strong>
               <span class={styles['metric-label']}>Codebase migrated</span>
             </div>
           </div>
@@ -186,14 +204,16 @@ const earlyCareerDialogId = 'earlier-career-dialog';
     </details>
     <details class={styles['career']}>
       <summary>
-        <span class={styles['career-period']}>Aug 2022 – May 2024</span>
-        <span class:list={[styles['career-heading'], styles['od-field']]}
-          ><h3>NWYC</h3>
-          <span class={styles['role']}>Staff Frontend Engineer</span></span
-        >
-        <span class={styles['disclosure-icon']} aria-hidden="true"
-          ><Icon name="plus"
-        /></span>
+        <h3 class={styles['career-summary']}>
+          <span class={styles['career-period']}>Aug 2022 – May 2024</span>
+          <span class:list={[styles['career-heading'], styles['od-field']]}>
+            <span class={styles['career-title']}>NWYC</span>
+            <span class={styles['role']}>Staff Frontend Engineer</span>
+          </span>
+          <span class={styles['disclosure-icon']} aria-hidden="true"
+            ><Icon name="plus"
+          /></span>
+        </h3>
       </summary>
       <div class={styles['career-body']}>
         <div class={styles['detail-copy']}>
@@ -217,7 +237,10 @@ const earlyCareerDialogId = 'earlier-career-dialog';
               <span class={styles['metric-label']}>React and React Native</span>
             </div>
             <div class:list={[styles['od-stat'], styles['metric']]}>
-              <strong class={styles['od-nowrap']}>+350%</strong>
+              <strong class={styles['od-nowrap']}>
+                <span aria-hidden="true">+350%</span>
+                <span class={styles['sr-only']}>350 percent increase</span>
+              </strong>
               <span class={styles['metric-label']}
                 >Mobile app growth in my first year</span
               >
@@ -297,7 +320,10 @@ const earlyCareerDialogId = 'earlier-career-dialog';
     <div>
       <p class={styles['eyebrow']}>Leadership beyond the day job</p>
       <h3 id="community-heading">Playful Programming</h3>
-      <p>Executive Director · Jun 2019 – present</p>
+      <p>
+        Executive Director<span aria-hidden="true"> · </span
+        ><span class={styles['sr-only']}>, </span>Jun 2019 – present
+      </p>
     </div>
     <div>
       <p>

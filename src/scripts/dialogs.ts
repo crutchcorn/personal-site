@@ -12,8 +12,14 @@ for (const dialog of dialogs) {
     opener.hidden = false;
     opener.addEventListener('click', () => {
       activeOpener = opener;
-      if (!dialog.open) dialog.showModal();
-      dialog.querySelector<HTMLElement>('[data-dialog-focus]')?.focus();
+      if (!dialog.open) {
+        dialog.showModal();
+        dialog.scrollTop = 0;
+        const content = dialog.querySelector<HTMLElement>(
+          '[data-dialog-content]',
+        );
+        if (content) content.scrollTop = 0;
+      }
     });
   }
 
@@ -27,6 +33,30 @@ for (const dialog of dialogs) {
 
   dialog.addEventListener('close', () => {
     if (activeOpener?.isConnected) activeOpener.focus();
+  });
+
+  const content = dialog.querySelector<HTMLElement>('[data-dialog-content]');
+  content?.addEventListener('focusin', (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement) || target === content) return;
+    // Native focus scrolling can leave a link clipped after keyboard scrolling.
+    // Correct only the body after the browser finishes moving focus.
+    window.requestAnimationFrame(() => {
+      if (document.activeElement !== target) return;
+      const bounds = content.getBoundingClientRect();
+      const targetBounds = target.getBoundingClientRect();
+      const style = window.getComputedStyle(content);
+      const top = bounds.top + Number.parseFloat(style.scrollPaddingTop);
+      const bottom =
+        bounds.bottom - Number.parseFloat(style.scrollPaddingBottom);
+      const distance =
+        targetBounds.height > bottom - top || targetBounds.top < top
+          ? targetBounds.top - top
+          : targetBounds.bottom > bottom
+            ? targetBounds.bottom - bottom
+            : 0;
+      if (distance) content.scrollBy({ top: distance, behavior: 'instant' });
+    });
   });
 
   // A click outside the dialog's box is a click on its native backdrop.

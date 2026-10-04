@@ -6,6 +6,6 @@ export const social = {
     path: '/og.png',
     width: 1200,
     height: 630,
-    alt: 'Corbin Crutchley smiling beside “Thinking of people behind the screen.” Engineering leader, consultant, author, and open-source maintainer.',
+    alt: 'Corbin Crutchley smiling beside “Thinking of people behind the screen.” Engineering leader, author, and open-source maintainer. corbincrutchley.com.',
   },
 };

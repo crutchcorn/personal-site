@@ -12,11 +12,11 @@ import Icon from './Icon.astro';
   <div class={styles['container']}>
     <div class={styles['section-intro']} data-reveal>
       <p class:list={[styles['eyebrow'], styles['section-label']]}>
-        <span class={styles['index']}>02</span> Consulting
+        <span class={styles['index']} aria-hidden="true">02</span> Consulting
       </p>
       <div>
         <h2 id="consulting-heading">
-          A partner for your<br />next hard decision.
+          A <em>partner</em> for your<br />next hard decision.
         </h2>
         <p>
           When the business is growing, the next technical choice rarely stands
@@ -56,9 +56,16 @@ import Icon from './Icon.astro';
     <div class={styles['consulting-history']}>
       <div class={styles['history-top']}>
         <p>Selected consulting clients through OceanBit</p>
-        <p>Founder · Feb 2020 – Present</p>
+        <p>
+          Founder<span aria-hidden="true"> · </span
+          ><span class={styles['sr-only']}>, </span>Feb 2020 – Present
+        </p>
       </div>
-      <ul class={styles['client-list']} aria-label="Past OceanBit clients">
+      <ul
+        class={styles['client-list']}
+        role="list"
+        aria-label="Past OceanBit clients"
+      >
         <li>
           <a href="https://clerk.com/">
             <img

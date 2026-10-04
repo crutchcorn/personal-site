@@ -70,7 +70,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 112px;
+  scroll-padding-top: calc(var(--header-offset, 88px) + 24px);
 }
 
 body {
@@ -78,6 +78,7 @@ body {
   background: var(--paper);
   color: var(--ink);
   font: 400 var(--body)/1.6 var(--font);
+  overflow-wrap: anywhere;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -141,6 +142,7 @@ a,
 button,
 summary {
   -webkit-tap-highlight-color: transparent;
+  scroll-margin-block: 24px;
 }
 
 button,
@@ -157,11 +159,15 @@ button:disabled {
   cursor: wait;
 }
 
-a:focus-visible,
-button:focus-visible,
-summary:focus-visible {
+:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 6px;
+}
+
+@media (forced-colors: active) {
+  :focus-visible {
+    outline-color: Highlight !important;
+  }
 }
 
 svg {

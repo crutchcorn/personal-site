@@ -62,7 +62,14 @@ let scrollQueued = false;
 function markCurrentSection(): void {
   scrollQueued = false;
   let current = '';
-  const headerBottom = Math.max(0, header?.getBoundingClientRect().bottom ?? 0);
+  const headerBounds = header?.getBoundingClientRect();
+  const stickyHeader =
+    header && window.getComputedStyle(header).position === 'sticky';
+  document.documentElement.style.setProperty(
+    '--header-offset',
+    `${stickyHeader ? (headerBounds?.height ?? 0) : 0}px`,
+  );
+  const headerBottom = Math.max(0, headerBounds?.bottom ?? 0);
   syncHeaderSurface(headerBottom);
   const readingLine = headerBottom + window.innerHeight * 0.2;
   for (const section of sections) {
@@ -96,13 +103,17 @@ markCurrentSection();
 
 // Content is visible by default. Motion is an enhancement, never a gate.
 if ('IntersectionObserver' in window && !reducedMotion.matches) {
-  const activeAnimations = new Set<Animation>();
+  const activeAnimations = new Map<Element, Animation>();
   const observer = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
         if (!entry.isIntersecting) continue;
         observer.unobserve(entry.target);
-        if (reducedMotion.matches || typeof entry.target.animate !== 'function')
+        if (
+          reducedMotion.matches ||
+          entry.target.contains(document.activeElement) ||
+          typeof entry.target.animate !== 'function'
+        )
           continue;
         const animation = entry.target.animate(
           [
@@ -111,9 +122,9 @@ if ('IntersectionObserver' in window && !reducedMotion.matches) {
           ],
           { duration: 320, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'none' },
         );
-        activeAnimations.add(animation);
+        activeAnimations.set(entry.target, animation);
         const forgetAnimation = (): void => {
-          activeAnimations.delete(animation);
+          activeAnimations.delete(entry.target);
         };
         animation.addEventListener('finish', forgetAnimation, { once: true });
         animation.addEventListener('cancel', forgetAnimation, { once: true });
@@ -124,6 +135,12 @@ if ('IntersectionObserver' in window && !reducedMotion.matches) {
   document
     .querySelectorAll('[data-reveal]')
     .forEach((element) => observer.observe(element));
+  document.addEventListener('focusin', (event) => {
+    if (!(event.target instanceof Node)) return;
+    for (const [element, animation] of activeAnimations) {
+      if (element.contains(event.target)) animation.cancel();
+    }
+  });
   reducedMotion.addEventListener('change', (event) => {
     if (event.matches) {
       observer.disconnect();

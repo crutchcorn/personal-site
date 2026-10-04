@@ -31,7 +31,8 @@ const groups = [
 >
   <div class={styles['section-intro']} data-reveal>
     <p class:list={[styles['eyebrow'], styles['section-label']]}>
-      <span class={styles['index']}>05</span> Talks &amp; podcasts
+      <span class={styles['index']} aria-hidden="true">05</span> Talks &amp;
+      podcasts
     </p>
     <div>
       <h2 id="speaking-heading">
@@ -49,7 +50,7 @@ const groups = [
         <p class={styles['eyebrow']}>{group.label}</p>
         <h3>{group.heading}</h3>
       </div>
-      <ul class={speaking['featured-list']}>
+      <ul class={speaking['featured-list']} role="list">
         {group.entries.slice(0, 2).map((appearance) => <li>
           <a class={speaking['feature']} href={appearance.href}>
             <span class={speaking['appearance-copy']}>
@@ -73,12 +74,29 @@ const groups = [
           <Icon name="plus" />
         </button>
       </div>
+      <details
+        class={speaking['fallback']}
+        data-dialog-fallback={`${group.id}-dialog`}
+      >
+        <summary>{group.action} ({group.entries.length})</summary>
+        <ul class={speaking['dialog-list']} role="list">
+          {group.entries.map((appearance) => <li>
+            <a class={speaking['dialog-link']} href={appearance.href}>
+              <span class={speaking['appearance-copy']}>
+                <span class={speaking['venue']}>{appearance.venue}</span>
+                <span class={speaking['dialog-title']}>{appearance.title}</span>
+              </span>
+              <Icon name="out" />
+            </a>
+          </li>)}
+        </ul>
+      </details>
       <Dialog
         id={`${group.id}-dialog`}
         title={`All ${group.heading.toLowerCase()}`}
         eyebrow={group.label}
       >
-        <ul class={speaking['dialog-list']}>
+        <ul class={speaking['dialog-list']} role="list">
           {group.entries.map((appearance) => <li>
             <a class={speaking['dialog-link']} href={appearance.href}>
               <span class={speaking['appearance-copy']}>

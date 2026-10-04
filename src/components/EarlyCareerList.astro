@@ -16,7 +16,10 @@ interface Props {
 const { entries, headingTag: Heading = 'h3', compact = false } = Astro.props;
 ---
 
-<ul class:list={[history['role-list'], { [history['compact']]: compact }]}>
+<ul
+  class:list={[history['role-list'], { [history['compact']]: compact }]}
+  role="list"
+>
   {entries.map((entry) => <li class={history['role']}>
     <p class={styles['career-period']}>{entry.period}</p>
     <div class:list={[styles['od-field'], history['role-heading']]}>

@@ -4,23 +4,25 @@ import Icon from './Icon.astro';
 ---
 
 <footer class={styles['site-footer']}>
-  <img
-    class={styles['footer-signature']}
-    src="/assets/signature.svg"
-    width="960"
-    height="192"
-    alt="Corbin Crutchley"
-    loading="lazy"
-    decoding="async"
-  />
-  <div class={styles['footer-links']}>
-    <a href="https://github.com/crutchcorn">GitHub <Icon name="out" /></a>
-    <a href="https://www.linkedin.com/in/corbincrutchley/"
-      >LinkedIn <Icon name="out"
-    /></a>
-    <a href="https://bsky.app/profile/crutchcorn.dev"
-      >Bluesky <Icon name="out"
-    /></a>
-    <a href="https://x.com/crutchcorn">X <Icon name="out" /></a>
+  <div class={styles['container']}>
+    <img
+      class={styles['footer-signature']}
+      src="/assets/signature.svg"
+      width="960"
+      height="192"
+      alt="Corbin Crutchley"
+      loading="lazy"
+      decoding="async"
+    />
+    <nav class={styles['footer-links']} aria-label="Social profiles">
+      <a href="https://github.com/crutchcorn">GitHub <Icon name="out" /></a>
+      <a href="https://www.linkedin.com/in/corbincrutchley/"
+        >LinkedIn <Icon name="out"
+      /></a>
+      <a href="https://bsky.app/profile/crutchcorn.dev"
+        >Bluesky <Icon name="out"
+      /></a>
+      <a href="https://x.com/crutchcorn">X <Icon name="out" /></a>
+    </nav>
   </div>
 </footer>

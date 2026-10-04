@@ -1,7 +1,6 @@
 ---
 import styles from '../styles/site.module.scss';
 import Icon from './Icon.astro';
-import SiteFooter from './SiteFooter.astro';
 ---
 
 <section
@@ -12,7 +11,7 @@ import SiteFooter from './SiteFooter.astro';
 >
   <div class={styles['container']}>
     <p class:list={[styles['eyebrow'], styles['section-label']]}>
-      <span class={styles['index']}>06</span> Let’s talk
+      <span class={styles['index']} aria-hidden="true">06</span> Let’s talk
     </p>
     <div class={styles['contact-grid']}>
       <h2 id="contact-heading" data-reveal>
@@ -29,6 +28,5 @@ import SiteFooter from './SiteFooter.astro';
         /></a>
       </div>
     </div>
-    <SiteFooter />
   </div>
 </section>

@@ -25,7 +25,7 @@ const { id, title, eyebrow } = Astro.props;
         id={`${id}-heading`}
         class={dialogStyles['heading']}
         tabindex="-1"
-        data-dialog-focus
+        autofocus
       >
         {title}
       </h2>
@@ -40,5 +40,13 @@ const { id, title, eyebrow } = Astro.props;
       </button>
     </form>
   </div>
-  <slot />
+  <div
+    class={dialogStyles['content']}
+    data-dialog-content
+    role="region"
+    aria-label={`${title} content`}
+    tabindex="0"
+  >
+    <slot />
+  </div>
 </dialog>

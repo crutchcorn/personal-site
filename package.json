@@ -11,6 +11,7 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "test:a11y": "npm run build && playwright test",
     "lint": "eslint . && stylelint \"src/**/*.{css,scss}\"",
     "lint:fix": "eslint . --fix && stylelint \"src/**/*.{css,scss}\" --fix",
     "format": "prettier . --write",
@@ -23,7 +24,9 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
+    "@axe-core/playwright": "^4.13.0",
     "@eslint/js": "10.0.1",
+    "@playwright/test": "^1.63.0",
     "@types/node": "26.6.4",
     "eslint": "10.12.0",
     "eslint-config-prettier": "10.1.8",
