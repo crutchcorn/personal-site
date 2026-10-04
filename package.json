@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro check && astro build",
+    "deploy": "npm run build && wrangler deploy",
     "preview": "astro preview",
     "check": "astro check",
     "test:a11y": "npm run build && playwright test",
@@ -39,6 +40,7 @@
     "stylelint": "17.16.0",
     "stylelint-config-standard-scss": "17.0.0",
     "typescript": "6.0.3",
-    "typescript-eslint": "8.71.0"
+    "typescript-eslint": "8.71.0",
+    "wrangler": "4.147.0"
   }
 }

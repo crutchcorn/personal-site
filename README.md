@@ -13,6 +13,7 @@ npm run dev
 | ---------------------- | --------------------------------------------------------------- |
 | `npm run dev`          | Start the development server.                                   |
 | `npm run build`        | Check Astro/TypeScript and generate the static site in `dist/`. |
+| `npm run deploy`       | Build and publish the static site to Cloudflare Workers.        |
 | `npm run preview`      | Preview the production build locally.                           |
 | `npm run check`        | Check Astro components and TypeScript.                          |
 | `npm run test:a11y`    | Test accessibility against the production build.                |
@@ -26,6 +27,10 @@ npm run dev
 Components import `src/styles/site.module.scss` as a CSS Module and access hyphenated classes with bracket notation, such as `styles['site-header']`. Books and talks have dedicated `writing.module.scss` and `speaking.module.scss` files. Global resets, font faces, and CSS custom properties belong in `src/styles/global.css`.
 
 The portfolio's Open Graph image is generated at `/og.png` by `src/pages/og.png.ts` using Satori and resvg. It reuses the hero portrait, favicon, palette, and fonts, and builds into a static 1200 × 630 PNG with no image service required in production. Preview it at `http://localhost:4321/og.png` while running `npm run dev`. Social metadata lives in `src/data/social.ts`; the production URL is set with `site` in `astro.config.mjs`. The static font instances used by Satori are documented in `public/assets/fonts/og/README.md`.
+
+Cloudflare Workers deployment uses `wrangler.jsonc` to publish `dist/` as static assets to the `personal-site` Worker. In Workers Builds, keep the build command as `npm run build` and the deploy command as `npx wrangler deploy`; the pinned local Wrangler dependency is used automatically. For a local deployment, run `npm run deploy`. To validate packaging without publishing, run `npm run build` followed by `npx wrangler deploy --dry-run`.
+
+The explicit Wrangler configuration prevents automatic framework setup during deployment. This project is entirely pre-rendered and follows [Cloudflare's static Astro deployment guide](https://developers.cloudflare.com/workers/framework-guides/web-apps/astro/#if-you-have-a-static-site). It needs no Astro Cloudflare adapter: Satori and the native resvg renderer run in Node.js during the build, and the generated PNG is deployed as a static file.
 
 Edit `src/data/appearances.ts` to maintain talks and podcasts. The first two entries of each list appear on the page, and the complete lists appear in native HTML dialogs. Source and artwork references live in `public/assets/SOURCES.md`.
 
