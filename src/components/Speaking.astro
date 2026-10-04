@@ -11,8 +11,6 @@ const groups = [
     label: 'On stage',
     action: 'View all talks',
     entries: talks,
-    source:
-      'https://github.com/crutchcorn/crutchcorn/blob/master/README.md#%EF%B8%8F-talks',
   },
   {
     id: 'podcasts',
@@ -20,8 +18,6 @@ const groups = [
     label: 'In conversation',
     action: 'View all episodes',
     entries: podcasts,
-    source:
-      'https://github.com/crutchcorn/crutchcorn/blob/master/README.md#%EF%B8%8F-podcasts',
   },
 ];
 ---
@@ -75,9 +71,6 @@ const groups = [
           <span>{group.action} ({group.entries.length})</span>
           <Icon name="plus" />
         </button>
-        <a class={speaking['source-link']} href={group.source}>
-          Full list on GitHub<Icon name="out" />
-        </a>
       </div>
       <dialog
         class={speaking['dialog']}

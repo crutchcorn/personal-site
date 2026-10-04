@@ -7,10 +7,6 @@ import Icon from './Icon.astro';
   class:list={[styles['hero'], styles['container']]}
   aria-labelledby="hero-heading"
 >
-  <div class={styles['hero-topline']}>
-    <p class={styles['eyebrow']}>Engineering leadership. Human perspective.</p>
-    <p class={styles['hero-coordinate']}>Sacramento, California</p>
-  </div>
   <div class={styles['hero-grid']}>
     <div data-reveal>
       <h1 id="hero-heading">
@@ -27,7 +23,7 @@ import Icon from './Icon.astro';
         software.
       </p>
       <div class={styles['hero-actions']}>
-        <a class={styles['button']} href="#contact"
+        <a class={styles['button']} href="https://cal.com/crutchcorn/"
           >Let’s build what’s next <Icon name="out"
         /></a>
         <a class={styles['text-link']} href="#work"
@@ -48,19 +44,16 @@ import Icon from './Icon.astro';
       </div>
       <figcaption>
         <strong>Corbin Crutchley</strong>
-        <span>Engineering leader &amp; author</span>
+        <span>Sacramento, CA, USA</span>
       </figcaption>
     </figure>
   </div>
   <div class={styles['hero-foot']}>
-    <p>A decade of hands-on engineering.</p>
-    <div
-      class={styles['chapter-links']}
-      aria-label="Selected professional experience"
-    >
-      <span>Former engineering VP</span>
-      <span>Staff engineer</span>
-      <span>Nonprofit leader</span>
+    <p>Over a decade of hands-on engineering.</p>
+    <div class={styles['chapter-links']} aria-label="Professional focus">
+      <span>OSS Developer</span>
+      <span>Author</span>
+      <span>Engineering Leader</span>
     </div>
   </div>
 </section>

@@ -414,34 +414,6 @@
   padding-bottom: var(--space-heading);
 }
 
-.hero-topline {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--s4);
-  margin-bottom: var(--space-heading);
-}
-
-.hero-topline .eyebrow {
-  color: var(--muted);
-}
-
-.hero-topline .hero-coordinate {
-  display: flex;
-  align-items: center;
-  gap: var(--s2);
-  font-size: var(--text);
-  color: var(--muted);
-}
-
-.hero-coordinate::before {
-  content: '';
-  display: block;
-  width: 8px;
-  height: 8px;
-  border: 1px solid currentcolor;
-  border-radius: var(--radius-round);
-}
-
 .hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 2.3fr) minmax(0, 1fr);
@@ -742,6 +714,11 @@
   font-size: var(--text);
 }
 
+.community-role {
+  color: var(--blue);
+  font-weight: 700;
+}
+
 .community .text-link {
   margin-top: var(--s3);
 }
@@ -959,13 +936,25 @@
 
 .more-projects {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: var(--s3) var(--s5);
+  gap: var(--s3) var(--space-layout);
   border-top: 1px solid var(--line);
   margin-top: var(--space-content);
   padding-top: var(--space-content);
+}
+
+.maintenance-projects {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s3) var(--space-content);
+  min-width: 0;
+}
+
+.more-projects > .text-link {
+  flex: none;
 }
 
 .more-projects p {
@@ -974,11 +963,7 @@
 }
 
 .more-projects .od-cluster {
-  --od-gap: var(--s5);
-}
-
-.oss-footer {
-  margin-top: var(--space-inset);
+  --od-gap: var(--space-content);
 }
 
 /* A direct invitation to schedule a conversation. */
@@ -1129,10 +1114,6 @@
     grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
   }
 
-  .hero-topline .hero-coordinate {
-    display: none;
-  }
-
   .hero-actions {
     gap: var(--s3);
   }
@@ -1241,11 +1222,6 @@
 
   .hero {
     padding-top: var(--space-heading);
-  }
-
-  .hero-topline .eyebrow {
-    letter-spacing: 0;
-    text-transform: none;
   }
 
   .hero-grid {
@@ -1374,6 +1350,12 @@
 
   .project h3 {
     font-size: var(--section-title);
+  }
+
+  .more-projects {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-content);
   }
 
   .contact-grid {
