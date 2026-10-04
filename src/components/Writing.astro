@@ -6,9 +6,7 @@ import Icon from './Icon.astro';
 const books = [
   {
     title: 'The Framework Field Guide',
-    category: 'Frameworks',
-    description:
-      'A free, practical way to learn React, Angular, and Vue together. Build mental models that travel with you from one framework to the next.',
+    description: 'A free guide to learning React, Angular, and Vue together.',
     href: 'https://framework.guide',
     image: '/assets/framework-field-guide.png',
     width: 1200,
@@ -17,10 +15,9 @@ const books = [
   },
   {
     title: 'The Big Bot Builders',
-    category: 'AI',
     status: 'Early access',
     description:
-      'Explore how modern AI models learn, generate responses, use tools, and remember information, from first principles to practical applications.',
+      'How AI models learn, generate responses, use tools, and remember information.',
     href: 'https://bigbot.builders',
     image: '/assets/big-bot-builders.png',
     width: 1920,
@@ -29,9 +26,7 @@ const books = [
   },
   {
     title: 'The Art of Accessibility',
-    category: 'Accessibility',
-    description:
-      'Learn to build more accessible web applications. Make thoughtful choices that help more people use the things you create.',
+    description: 'A guide to building accessible web applications.',
     href: 'https://a11y.art',
     image: '/assets/art-of-accessibility.png',
     width: 1920,
@@ -48,23 +43,9 @@ const books = [
   tabindex="-1"
 >
   <div class={styles['section-intro']} data-reveal>
-    <p class:list={[styles['eyebrow'], styles['section-label']]}>
-      <span class={styles['index']} aria-hidden="true">03</span> Writing
-    </p>
-    <div>
-      <h2 id="writing-heading">
-        Understanding is<br />a thing we can <em>share.</em>
-      </h2>
-      <p>
-        I write to make the next difficult decision a little easier. Sometimes
-        that’s understanding a framework. Sometimes it’s understanding the
-        person on the other side of a conversation.
-      </p>
-    </div>
+    <h2 id="writing-heading">Writing</h2>
   </div>
-  <h3 class:list={[styles['eyebrow'], writingStyles['group-heading']]}>
-    Books
-  </h3>
+  <h3 class={writingStyles['group-heading']}>Books</h3>
   <div class={writingStyles['books-grid']}>
     {books.map((book) => <article
       class={writingStyles['book-card']}
@@ -85,13 +66,10 @@ const books = [
         />
       </a>
       <div class={writingStyles['book-caption']}>
-        <p class:list={[styles['eyebrow'], writingStyles['book-category']]}>
-          {book.category}{'status' in book && (
-            <><span aria-hidden="true"> · </span
-              ><span class={styles['sr-only']}>, </span>{book.status}</>
-          )}
-        </p>
         <h4>{book.title}</h4>
+        {'status' in book && <p class={writingStyles['book-status']}>
+          {book.status}
+        </p>}
         <p class={writingStyles['book-description']}>{book.description}</p>
         <a
           class:list={[styles['text-link'], writingStyles['book-link']]}
@@ -105,9 +83,7 @@ const books = [
     </article>)}
   </div>
   <div class={writingStyles['essays-group']}>
-    <h3 class:list={[styles['eyebrow'], writingStyles['group-heading']]}>
-      Essays on leadership & teams
-    </h3>
+    <h3 class={writingStyles['group-heading']}>Essays on leadership & teams</h3>
     <div class={writingStyles['collections-grid']}>
       <a
         class={styles['collection-link']}
@@ -115,15 +91,14 @@ const books = [
         data-reveal
       >
         <div class={styles['collection-top']}>
-          <span class={styles['eyebrow']}>Essay collection</span
-          ><Icon name="out" />
+          <Icon name="out" />
         </div>
         <h4 class={writingStyles['collection-title']}>
           Harsh Leadership Truths
         </h4>
         <p>
-          The uncomfortable parts of leadership: inherited systems, changing
-          responsibilities, and growing alongside the team.
+          Essays on inherited systems, changing responsibilities, and team
+          growth.
         </p>
       </a>
       <a
@@ -132,16 +107,12 @@ const books = [
         data-reveal
       >
         <div class={styles['collection-top']}>
-          <span class={styles['eyebrow']}>Essay collection</span
-          ><Icon name="out" />
+          <Icon name="out" />
         </div>
         <h4 class={writingStyles['collection-title']}>
           Pragmatic Advice for Teams
         </h4>
-        <p>
-          Thoughtful tradeoffs, shared context, and practical ways to help
-          people work well together.
-        </p>
+        <p>Essays on tradeoffs, shared context, and working together.</p>
       </a>
     </div>
     <div class={writingStyles['essays-grid']}>
@@ -150,10 +121,6 @@ const books = [
         href="https://playfulprogramming.com/posts/working-with-crutchcorn/"
       >
         <div class={styles['od-field']}>
-          <span class={styles['article-type']}
-            >Start here<span aria-hidden="true"> · </span
-            ><span class={styles['sr-only']}>, </span>Leadership</span
-          >
           <h4 class={writingStyles['essay-title']}>Working with Me</h4>
         </div>
         <Icon name="out" />
@@ -163,10 +130,6 @@ const books = [
         href="https://playfulprogramming.com/posts/how-to-communicate"
       >
         <div class={styles['od-field']}>
-          <span class={styles['article-type']}
-            >On teams<span aria-hidden="true"> · </span
-            ><span class={styles['sr-only']}>, </span>Communication</span
-          >
           <h4 class={writingStyles['essay-title']}>How to Communicate</h4>
         </div>
         <Icon name="out" />

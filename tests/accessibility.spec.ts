@@ -4,7 +4,7 @@ import { platform } from 'node:process';
 import { podcasts, talks } from '../src/data/appearances';
 
 const dialogCases = [
-  { opener: /^View roles.*earlier chapters$/, title: 'Earlier chapters' },
+  { opener: /^View roles.*earlier roles$/, title: 'Earlier roles' },
   { opener: /^View all talks/, title: 'All conference talks' },
   { opener: /^View all episodes/, title: 'All podcasts' },
 ];

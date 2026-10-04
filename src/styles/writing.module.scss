@@ -2,7 +2,7 @@
 
 .group-heading {
   margin-bottom: var(--space-content);
-  color: var(--muted);
+  font-size: var(--title);
 }
 
 .books-grid {
@@ -40,13 +40,14 @@
   padding-top: var(--s3);
 }
 
-.book-category {
+.book-status {
+  margin-bottom: var(--s3);
   color: var(--muted);
   font-size: 0.8125rem;
 }
 
 .book-caption h4 {
-  margin-block: var(--s2) var(--s3);
+  margin-block: 0 var(--s3);
   font-size: clamp(1.375rem, 2.1vw, 1.75rem);
   font-weight: 600;
   line-height: 1.25;
@@ -109,10 +110,6 @@
   .books-grid {
     gap: var(--s3);
   }
-
-  .book-category {
-    font-size: 0.75rem;
-  }
 }
 
 @media (width <= breakpoints.$mobile) {
@@ -128,10 +125,6 @@
 
   .book-caption h4 {
     font-size: 1.75rem;
-  }
-
-  .book-category {
-    font-size: 0.8125rem;
   }
 
   .essay-title {

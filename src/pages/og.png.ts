@@ -39,7 +39,7 @@ function h(
 }
 
 export const GET: APIRoute = async () => {
-  const [portrait, mark, manrope400, manrope500, manrope600, newsreader500] =
+  const [portrait, mark, manrope400, manrope500, manrope600] =
     await Promise.all(
       [
         'assets/corbin-profile.jpg',
@@ -47,11 +47,8 @@ export const GET: APIRoute = async () => {
         'assets/fonts/og/manrope-400.ttf',
         'assets/fonts/og/manrope-500.ttf',
         'assets/fonts/og/manrope-600.ttf',
-        'assets/fonts/og/newsreader-italic-500-72pt.ttf',
       ].map((path) => readFile(new URL(path, publicDir))),
     );
-
-  const lineStyle = { display: 'flex', height: 86, alignItems: 'center' };
   const svg = await satori(
     h(
       'div',
@@ -61,7 +58,7 @@ export const GET: APIRoute = async () => {
           flexDirection: 'column',
           width: '100%',
           height: '100%',
-          padding: '48px 64px',
+          padding: '56px 64px',
           backgroundColor: colors.paper,
           color: colors.ink,
           fontFamily: 'Manrope',
@@ -70,69 +67,49 @@ export const GET: APIRoute = async () => {
       },
       h(
         'div',
-        { style: { display: 'flex', alignItems: 'center', gap: 14 } },
-        h('img', {
-          src: `data:image/svg+xml;base64,${mark.toString('base64')}`,
-          width: 36,
-          height: 36,
-        }),
-        h(
-          'div',
-          { style: { fontSize: 27, fontWeight: 600, letterSpacing: -0.8 } },
-          'Corbin Crutchley',
-        ),
-      ),
-      h(
-        'div',
         {
           style: {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            gap: 48,
-            marginTop: 44,
+            gap: 40,
             flex: 1,
           },
         },
         h(
           'div',
-          { style: { display: 'flex', flexDirection: 'column', width: 680 } },
+          { style: { display: 'flex', flexDirection: 'column', width: 652 } },
           h(
             'div',
             {
               style: {
                 display: 'flex',
                 flexDirection: 'column',
-                fontSize: 82,
-                fontWeight: 500,
-                letterSpacing: -4.5,
-                lineHeight: 1.04,
+                fontSize: 80,
+                fontWeight: 600,
+                letterSpacing: -3,
+                lineHeight: 1.08,
               },
             },
-            h('div', { style: lineStyle }, 'Thinking of'),
-            h(
-              'div',
-              { style: { ...lineStyle, gap: 16 } },
-              h(
-                'span',
-                {
-                  style: {
-                    fontFamily: 'Newsreader',
-                    fontStyle: 'italic',
-                    color: colors.accent,
-                    letterSpacing: -3.3,
-                  },
-                },
-                'people',
-              ),
-              h('span', {}, 'behind'),
-            ),
-            h(
-              'div',
-              { style: lineStyle },
-              h('span', {}, 'the screen'),
-              h('span', { style: { color: colors.accent } }, '.'),
-            ),
+            h('div', {}, 'Corbin'),
+            h('div', {}, 'Crutchley'),
+          ),
+          h(
+            'div',
+            {
+              style: {
+                marginTop: 28,
+                fontSize: 30,
+                lineHeight: 1.4,
+                color: colors.muted,
+              },
+            },
+            'Engineering leader, consultant, author, and open-source maintainer.',
+          ),
+          h(
+            'div',
+            { style: { marginTop: 18, fontSize: 26, color: colors.muted } },
+            'Sacramento, California',
           ),
         ),
         h('img', {
@@ -157,20 +134,20 @@ export const GET: APIRoute = async () => {
             justifyContent: 'space-between',
             borderTop: `1px solid ${colors.line}`,
             paddingTop: 24,
-            marginTop: 38,
-            fontSize: 32,
+            marginTop: 32,
+            fontSize: 28,
           },
         },
         h(
           'div',
-          { style: { display: 'flex', gap: 18 } },
-          h('span', {}, 'Engineering leader'),
-          h('span', { style: { color: colors.muted } }, '/'),
-          h('span', {}, 'Author'),
-          h('span', { style: { color: colors.muted } }, '/'),
-          h('span', {}, 'OSS maintainer'),
+          { style: { display: 'flex', alignItems: 'center', gap: 14 } },
+          h('img', {
+            src: `data:image/svg+xml;base64,${mark.toString('base64')}`,
+            width: 36,
+            height: 36,
+          }),
+          h('span', { style: { color: colors.accent } }, 'corbincrutchley.com'),
         ),
-        h('div', { style: { color: colors.accent } }, 'corbincrutchley.com'),
       ),
     ),
     {
@@ -180,12 +157,6 @@ export const GET: APIRoute = async () => {
         { name: 'Manrope', data: manrope400, weight: 400, style: 'normal' },
         { name: 'Manrope', data: manrope500, weight: 500, style: 'normal' },
         { name: 'Manrope', data: manrope600, weight: 600, style: 'normal' },
-        {
-          name: 'Newsreader',
-          data: newsreader500,
-          weight: 500,
-          style: 'italic',
-        },
       ],
     },
   );

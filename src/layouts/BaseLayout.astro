@@ -30,10 +30,7 @@ const socialImageURL = new URL(social.image.path, Astro.site);
         </script></>
     )}
     <meta name="theme-color" content="#f6f7f9" />
-    <meta
-      name="description"
-      content="Corbin Crutchley is an engineering leader, consultant, author, and open-source maintainer. Thinking of people behind the screen."
-    />
+    <meta name="description" content={social.description} />
     <link rel="canonical" href={canonicalURL} />
     <meta property="og:title" content={social.title} />
     <meta property="og:description" content={social.description} />
@@ -54,13 +51,6 @@ const socialImageURL = new URL(social.image.path, Astro.site);
     <link
       rel="preload"
       href="/assets/fonts/manrope-variable.ttf"
-      as="font"
-      type="font/ttf"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="preload"
-      href="/assets/fonts/newsreader-italic-variable.ttf"
       as="font"
       type="font/ttf"
       crossorigin="anonymous"

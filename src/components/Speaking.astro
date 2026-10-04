@@ -9,14 +9,12 @@ const groups = [
   {
     id: 'talks',
     heading: 'Conference Talks',
-    label: 'On stage',
     action: 'View all talks',
     entries: talks,
   },
   {
     id: 'podcasts',
     heading: 'Podcasts',
-    label: 'In conversation',
     action: 'View all episodes',
     entries: podcasts,
   },
@@ -30,24 +28,11 @@ const groups = [
   tabindex="-1"
 >
   <div class={styles['section-intro']} data-reveal>
-    <p class:list={[styles['eyebrow'], styles['section-label']]}>
-      <span class={styles['index']} aria-hidden="true">05</span> Talks &amp;
-      podcasts
-    </p>
-    <div>
-      <h2 id="speaking-heading">
-        Good ideas start<br />a <em>conversation.</em>
-      </h2>
-      <p>
-        From conference stages to podcast conversations, I share what I’m
-        learning about building software and working with people.
-      </p>
-    </div>
+    <h2 id="speaking-heading">Talks &amp; podcasts</h2>
   </div>
   <div class={speaking['groups']}>
     {groups.map((group) => <div class={speaking['group']} data-reveal>
       <div class={speaking['group-heading']}>
-        <p class={styles['eyebrow']}>{group.label}</p>
         <h3>{group.heading}</h3>
       </div>
       <ul class={speaking['featured-list']} role="list">
@@ -94,7 +79,6 @@ const groups = [
       <Dialog
         id={`${group.id}-dialog`}
         title={`All ${group.heading.toLowerCase()}`}
-        eyebrow={group.label}
       >
         <ul class={speaking['dialog-list']} role="list">
           {group.entries.map((appearance) => <li>
