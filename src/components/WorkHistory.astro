@@ -1,6 +1,70 @@
 ---
 import styles from '../styles/site.module.scss';
 import Icon from './Icon.astro';
+import Dialog from './Dialog.astro';
+import EarlyCareerList from './EarlyCareerList.astro';
+import history from '../styles/work-history.module.scss';
+
+const earlyCareerGroups = [
+  {
+    heading: 'Earlier chapters',
+    entries: [
+      {
+        period: 'Mar 2021 – Aug 2022',
+        company: 'CoderPad',
+        role: 'Developer Relations Specialist',
+        summary: 'Led developer engagement and the guest-author program.',
+      },
+      {
+        period: 'Apr 2020 – Mar 2021',
+        company: 'CooperVision',
+        role: 'Frontend Developer',
+        summary: 'Built the ordering frontend and shared component system.',
+      },
+      {
+        period: 'May 2019 – Apr 2020',
+        company: 'Hilton',
+        role: 'Render Tier Engineer',
+        summary:
+          'Part of the small team that rebuilt Hilton’s search experience.',
+      },
+      {
+        period: 'Jan 2017 – May 2019',
+        company: 'Linkd',
+        role: 'Full Stack Developer (MEAN)',
+        summary: 'Built full-stack web and mobile features.',
+      },
+      {
+        period: 'Feb 2016 – Jan 2017',
+        company: 'HCCTS',
+        role: 'Sysadmin',
+        summary: 'Managed 600+ desktops across 24 locations.',
+      },
+    ],
+  },
+  {
+    heading: 'Early career side jobs',
+    entries: [
+      {
+        period: 'Jan 2019 – Jan 2020',
+        company: 'SacTown Interactive',
+        role: 'Lead Developer',
+        summary: 'Built Unity gameplay and full-stack web system.',
+      },
+      {
+        period: 'May 2018 – Sep 2018',
+        company: 'Trilogy Education',
+        role: 'Assistant Instructor',
+        summary: 'Helped teach UC Davis’s full-stack bootcamp.',
+      },
+    ],
+  },
+];
+const earlyCareerCount = earlyCareerGroups.reduce(
+  (count, group) => count + group.entries.length,
+  0,
+);
+const earlyCareerDialogId = 'earlier-career-dialog';
 ---
 
 <section
@@ -133,78 +197,53 @@ import Icon from './Icon.astro';
     </details>
   </div>
 
-  <h3 class={styles['earlier-title']}>Earlier chapters</h3>
-  <div class={styles['past-role']}>
-    <p class={styles['career-period']}>Mar 2021 – Aug 2022</p>
-    <div class={styles['od-field']}>
-      <h3>CoderPad</h3>
-      <p class={styles['role']}>Developer Relations Specialist</p>
+  <div class={history['groups']}>
+    <div class={history['group']}>
+      <h3 class={history['group-heading']}>Earlier chapters</h3>
+      <button
+        type="button"
+        class:list={[styles['text-link'], history['more-button']]}
+        data-dialog-open={earlyCareerDialogId}
+        aria-haspopup="dialog"
+        aria-controls={earlyCareerDialogId}
+        aria-label={`View roles (${earlyCareerCount}) in earlier chapters`}
+        hidden
+      >
+        <span>View roles ({earlyCareerCount})</span>
+        <Icon name="plus" />
+      </button>
+      <details
+        class={history['fallback']}
+        data-dialog-fallback={earlyCareerDialogId}
+      >
+        <summary>View roles ({earlyCareerCount})</summary>
+        {earlyCareerGroups.map((group, index) => (
+          <>
+            {index > 0 && <h3 class={history['subheading']}>
+              {group.heading}
+            </h3>}
+            <EarlyCareerList entries={group.entries} headingTag="h4" />
+          </>
+        ))}
+      </details>
+      <Dialog
+        id={earlyCareerDialogId}
+        title="Earlier chapters"
+        eyebrow="Work history"
+      >
+        {earlyCareerGroups.map((group, index) => (
+          <>
+            {index > 0 && <h3 class={history['subheading']}>
+              {group.heading}
+            </h3>}
+            <EarlyCareerList
+              entries={group.entries}
+              headingTag={index === 0 ? 'h3' : 'h4'}
+            />
+          </>
+        ))}
+      </Dialog>
     </div>
-    <p class={styles['past-note']}>
-      Led developer engagement and the guest-author program.
-    </p>
-  </div>
-  <div class={styles['past-role']}>
-    <p class={styles['career-period']}>Apr 2020 – Mar 2021</p>
-    <div class={styles['od-field']}>
-      <h3>CooperVision</h3>
-      <p class={styles['role']}>Frontend Developer</p>
-    </div>
-    <p class={styles['past-note']}>
-      Built the ordering frontend and shared component system.
-    </p>
-  </div>
-  <div class={styles['past-role']}>
-    <p class={styles['career-period']}>May 2019 – Apr 2020</p>
-    <div class={styles['od-field']}>
-      <h3>Hilton</h3>
-      <p class={styles['role']}>Render Tier Engineer</p>
-    </div>
-    <p class={styles['past-note']}>
-      Part of the small team that rebuilt Hilton’s search experience.
-    </p>
-  </div>
-  <div class={styles['past-role']}>
-    <p class={styles['career-period']}>Jan 2017 – May 2019</p>
-    <div class={styles['od-field']}>
-      <h3>Linkd</h3>
-      <p class={styles['role']}>Full Stack Developer (MEAN)</p>
-    </div>
-    <p class={styles['past-note']}>
-      Built full-stack web and mobile features.
-    </p>
-  </div>
-  <div class={styles['past-role']}>
-    <p class={styles['career-period']}>Feb 2016 – Jan 2017</p>
-    <div class={styles['od-field']}>
-      <h3>HCCTS</h3>
-      <p class={styles['role']}>Sysadmin</p>
-    </div>
-    <p class={styles['past-note']}>
-      Managed 600+ desktops across 24 locations.
-    </p>
-  </div>
-
-  <h3 class={styles['earlier-title']}>Early career side jobs</h3>
-  <div class={styles['past-role']}>
-    <p class={styles['career-period']}>Jan 2019 – Jan 2020</p>
-    <div class={styles['od-field']}>
-      <h3>SacTown Interactive</h3>
-      <p class={styles['role']}>Lead Developer</p>
-    </div>
-    <p class={styles['past-note']}>
-      Built Unity gameplay and full-stack web system.
-    </p>
-  </div>
-  <div class={styles['past-role']}>
-    <p class={styles['career-period']}>May 2018 – Sep 2018</p>
-    <div class={styles['od-field']}>
-      <h3>Trilogy Education</h3>
-      <p class={styles['role']}>Assistant Instructor</p>
-    </div>
-    <p class={styles['past-note']}>
-      Helped teach UC Davis’s full-stack bootcamp.
-    </p>
   </div>
 
   <aside

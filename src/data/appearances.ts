@@ -8,11 +8,6 @@ export interface Appearance {
 // Keep the source order so the first two entries are featured on the page.
 export const talks: Appearance[] = [
   {
-    title: 'Modernizing ColdFusion Frontends: Time to Unwind',
-    venue: 'CFSummit 2026',
-    href: 'https://web.archive.org/web/20261004081523/https://cfsummit.adobeevents.com/agenda/',
-  },
-  {
     title: 'React 19 for the Rest of Us',
     venue: 'React Rally 2024',
     href: 'https://www.youtube.com/watch?v=zvSvBMljkZ8',
@@ -28,34 +23,14 @@ export const talks: Appearance[] = [
     href: 'https://www.gitkraken.com/gitkon/how-does-git-work-under-the-hood',
   },
   {
+    title: 'Modernizing ColdFusion Frontends: Time to Unwind',
+    venue: 'CFSummit 2026',
+    href: 'https://web.archive.org/web/20261004081523/https://cfsummit.adobeevents.com/agenda/',
+  },
+  {
     title: 'Using ColdFusion APIs in Expo Mobile Apps',
     venue: 'Adobe ColdFusion Developer Week 2021',
     href: 'https://web.archive.org/web/20210621181857/https://adobe.vconfex.com/site/adobe-coldfusion-developer-week/977',
-  },
-  {
-    title: 'Smooth Sailing with Angular',
-    venue: 'SacJS',
-    href: 'https://www.meetup.com/The-Sacramento-Javascript-Meetup/events/247295930/',
-  },
-  {
-    title: 'Reeling You In On React Hooks',
-    venue: 'SacJS',
-    href: 'https://github.com/sacjs/website/issues/130',
-  },
-  {
-    title: 'Using Slack API for App Integrations',
-    venue: 'Slack Sacramento Meetup',
-    href: 'https://slackcommunity.com/events/details/slack-sacramento-presents-building-communities-and-slack-api-integrations/',
-  },
-  {
-    title: 'Angular Templates — From Start to Source',
-    venue: 'GDG Sacramento',
-    href: 'https://www.meetup.com/gdgsacramento/events/tgxqkqyxqbrb/',
-  },
-  {
-    title: 'Blogging with Gatsby: An Introduction to Gatsby',
-    venue: 'Tracy Developers',
-    href: 'https://www.tracydevs.com/2020/04/blogging-with-gatsby-introduction-to-gatsby/',
   },
 ];
 

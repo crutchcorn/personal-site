@@ -1,12 +1,10 @@
-const appearanceDialogs = document.querySelectorAll<HTMLDialogElement>(
-  '[data-appearance-dialog]',
-);
+const dialogs = document.querySelectorAll<HTMLDialogElement>('[data-dialog]');
 
-for (const dialog of appearanceDialogs) {
+for (const dialog of dialogs) {
   if (typeof dialog.showModal !== 'function') continue;
 
   const openers = document.querySelectorAll<HTMLButtonElement>(
-    `[data-appearance-dialog-open="${dialog.id}"]`,
+    `[data-dialog-open="${dialog.id}"]`,
   );
   let activeOpener: HTMLButtonElement | undefined;
 
@@ -17,6 +15,14 @@ for (const dialog of appearanceDialogs) {
       if (!dialog.open) dialog.showModal();
       dialog.querySelector<HTMLElement>('[data-dialog-focus]')?.focus();
     });
+  }
+
+  if (openers.length > 0) {
+    for (const fallback of document.querySelectorAll<HTMLElement>(
+      `[data-dialog-fallback="${dialog.id}"]`,
+    )) {
+      fallback.hidden = true;
+    }
   }
 
   dialog.addEventListener('close', () => {

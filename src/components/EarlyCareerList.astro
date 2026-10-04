@@ -1,0 +1,27 @@
+---
+import styles from '../styles/site.module.scss';
+import history from '../styles/work-history.module.scss';
+
+interface Props {
+  headingTag?: 'h3' | 'h4';
+  entries: {
+    period: string;
+    company: string;
+    role: string;
+    summary: string;
+  }[];
+}
+
+const { entries, headingTag: Heading = 'h3' } = Astro.props;
+---
+
+<ul class={history['role-list']}>
+  {entries.map((entry) => <li class={history['role']}>
+    <p class={styles['career-period']}>{entry.period}</p>
+    <div class:list={[styles['od-field'], history['role-heading']]}>
+      <Heading>{entry.company}</Heading>
+      <p>{entry.role}</p>
+    </div>
+    <p class={history['role-summary']}>{entry.summary}</p>
+  </li>)}
+</ul>

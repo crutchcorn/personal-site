@@ -1,0 +1,72 @@
+@use 'breakpoints';
+
+:global(html:has(dialog[open])) {
+  overflow: hidden;
+  scrollbar-gutter: stable;
+}
+
+.dialog {
+  width: min(780px, calc(100% - 48px));
+  max-height: calc(100dvh - 64px);
+  padding: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-surface);
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 24px 120px rgb(20 25 35 / 20%);
+}
+
+.dialog::backdrop {
+  background: rgb(20 25 35 / 65%);
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  padding: var(--space-inset) var(--space-inset) var(--space-content);
+  background: var(--paper);
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-content);
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.header p {
+  margin-bottom: var(--s2);
+  color: var(--accent);
+}
+
+.heading {
+  font-size: 2.5rem;
+}
+
+.heading:focus {
+  outline: none;
+}
+
+.close-button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-round);
+  background: var(--white);
+}
+
+@media (width <= breakpoints.$mobile) {
+  .dialog {
+    width: calc(100% - 32px);
+    max-height: calc(100dvh - 32px);
+  }
+
+  .heading {
+    font-size: 2rem;
+  }
+}

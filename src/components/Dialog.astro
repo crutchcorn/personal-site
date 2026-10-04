@@ -1,0 +1,44 @@
+---
+import styles from '../styles/site.module.scss';
+import dialogStyles from '../styles/dialog.module.scss';
+import Icon from './Icon.astro';
+
+interface Props {
+  id: string;
+  title: string;
+  eyebrow?: string;
+}
+
+const { id, title, eyebrow } = Astro.props;
+---
+
+<dialog
+  class={dialogStyles['dialog']}
+  id={id}
+  aria-labelledby={`${id}-heading`}
+  data-dialog
+>
+  <div class={dialogStyles['header']}>
+    <div>
+      {eyebrow && <p class={styles['eyebrow']}>{eyebrow}</p>}
+      <h2
+        id={`${id}-heading`}
+        class={dialogStyles['heading']}
+        tabindex="-1"
+        data-dialog-focus
+      >
+        {title}
+      </h2>
+    </div>
+    <form method="dialog">
+      <button
+        type="submit"
+        class={dialogStyles['close-button']}
+        aria-label={`Close ${title.toLowerCase()}`}
+      >
+        <Icon name="close" />
+      </button>
+    </form>
+  </div>
+  <slot />
+</dialog>

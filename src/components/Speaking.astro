@@ -2,12 +2,13 @@
 import { talks, podcasts } from '../data/appearances';
 import styles from '../styles/site.module.scss';
 import speaking from '../styles/speaking.module.scss';
+import Dialog from './Dialog.astro';
 import Icon from './Icon.astro';
 
 const groups = [
   {
     id: 'talks',
-    heading: 'Talks',
+    heading: 'Conference Talks',
     label: 'On stage',
     action: 'View all talks',
     entries: talks,
@@ -63,7 +64,7 @@ const groups = [
         <button
           type="button"
           class:list={[styles['text-link'], speaking['more-button']]}
-          data-appearance-dialog-open={`${group.id}-dialog`}
+          data-dialog-open={`${group.id}-dialog`}
           aria-haspopup="dialog"
           aria-controls={`${group.id}-dialog`}
           hidden
@@ -72,34 +73,11 @@ const groups = [
           <Icon name="plus" />
         </button>
       </div>
-      <dialog
-        class={speaking['dialog']}
+      <Dialog
         id={`${group.id}-dialog`}
-        aria-labelledby={`${group.id}-dialog-heading`}
-        data-appearance-dialog
+        title={`All ${group.heading.toLowerCase()}`}
+        eyebrow={group.label}
       >
-        <div class={speaking['dialog-header']}>
-          <div>
-            <p class={styles['eyebrow']}>{group.label}</p>
-            <h2
-              id={`${group.id}-dialog-heading`}
-              class={speaking['dialog-heading']}
-              tabindex="-1"
-              data-dialog-focus
-            >
-              All {group.heading.toLowerCase()}
-            </h2>
-          </div>
-          <form method="dialog">
-            <button
-              type="submit"
-              class={speaking['close-button']}
-              aria-label={`Close ${group.heading.toLowerCase()}`}
-            >
-              <Icon name="close" />
-            </button>
-          </form>
-        </div>
         <ul class={speaking['dialog-list']}>
           {group.entries.map((appearance) => <li>
             <a class={speaking['dialog-link']} href={appearance.href}>
@@ -113,7 +91,7 @@ const groups = [
             </a>
           </li>)}
         </ul>
-      </dialog>
+      </Dialog>
     </div>)}
   </div>
 </section>

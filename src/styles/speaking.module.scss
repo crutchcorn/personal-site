@@ -1,10 +1,5 @@
 @use 'breakpoints';
 
-:global(html:has(dialog[open])) {
-  overflow: hidden;
-  scrollbar-gutter: stable;
-}
-
 .section {
   border-top: 1px solid var(--line);
 }
@@ -99,61 +94,6 @@
   color: var(--accent);
 }
 
-.dialog {
-  width: min(780px, calc(100% - 48px));
-  max-height: calc(100dvh - 64px);
-  padding: 0;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-surface);
-  background: var(--paper);
-  color: var(--ink);
-  box-shadow: 0 24px 120px rgb(20 25 35 / 20%);
-}
-
-.dialog::backdrop {
-  background: rgb(20 25 35 / 65%);
-}
-
-.dialog-header {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  display: flex;
-  padding: var(--space-inset) var(--space-inset) var(--space-content);
-  background: var(--paper);
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--space-content);
-  margin-bottom: 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.dialog-header p {
-  margin-bottom: var(--s2);
-  color: var(--accent);
-}
-
-.dialog-heading {
-  font-size: 2.5rem;
-}
-
-.dialog-heading:focus {
-  outline: none;
-}
-
-.close-button {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-round);
-  background: var(--white);
-}
-
 .dialog-list {
   padding: 0 var(--space-inset) var(--space-inset);
 }
@@ -204,15 +144,6 @@
 
   .feature {
     min-height: 0;
-  }
-
-  .dialog {
-    width: calc(100% - 32px);
-    max-height: calc(100dvh - 32px);
-  }
-
-  .dialog-heading {
-    font-size: 2rem;
   }
 }
 
