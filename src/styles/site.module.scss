@@ -636,6 +636,10 @@
   margin-block: var(--space-inset);
 }
 
+.metrics-pair {
+  --od-cols: 2;
+}
+
 .metric {
   --od-gap: var(--s2);
 

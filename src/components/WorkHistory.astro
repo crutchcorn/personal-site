@@ -110,6 +110,7 @@ const earlyCareerDialogId = 'earlier-career-dialog';
           </p>
           <div
             class:list={[styles['od-grid'], styles['metrics']]}
+            role="group"
             aria-label="Selected outcomes at Immersive Homes"
           >
             <div class:list={[styles['od-stat'], styles['metric']]}>
@@ -152,11 +153,28 @@ const earlyCareerDialogId = 'earlier-career-dialog';
       <div class={styles['career-body']}>
         <div class={styles['detail-copy']}>
           <p>
-            I migrated React 16 to React 18 in a 1.2-million-line codebase and
-            advised on architecture, technology adoption, and tooling across
-            engineering teams.
+            I migrated a large codebase to React 18 and advised on architecture,
+            technology adoption, and tooling across engineering teams.
           </p>
-          <p class:list={[styles['detail-note'], styles['detail-note-spaced']]}>
+          <div
+            class:list={[
+              styles['od-grid'],
+              styles['metrics'],
+              styles['metrics-pair'],
+            ]}
+            role="group"
+            aria-label="Selected work at Descript"
+          >
+            <div class:list={[styles['od-stat'], styles['metric']]}>
+              <strong class={styles['od-nowrap']}>16 → 18</strong>
+              <span class={styles['metric-label']}>React migration</span>
+            </div>
+            <div class:list={[styles['od-stat'], styles['metric']]}>
+              <strong class={styles['od-nowrap']}>1.2M lines</strong>
+              <span class={styles['metric-label']}>Codebase migrated</span>
+            </div>
+          </div>
+          <p class={styles['detail-note']}>
             My work also included a performance task force, CI/CD, and
             scaffolding applications within the company’s monorepo.
           </p>
@@ -180,12 +198,32 @@ const earlyCareerDialogId = 'earlier-career-dialog';
       <div class={styles['career-body']}>
         <div class={styles['detail-copy']}>
           <p>
-            I led frontend development across 14 React and React Native
+            I led frontend development across React and React Native
             applications, managed frontend hiring, and worked directly with the
             Director of Technology and CTO. I was promoted from Senior Frontend
             Engineer during my tenure.
           </p>
-          <p class:list={[styles['detail-note'], styles['detail-note-spaced']]}>
+          <div
+            class:list={[
+              styles['od-grid'],
+              styles['metrics'],
+              styles['metrics-pair'],
+            ]}
+            role="group"
+            aria-label="Selected outcomes at NWYC"
+          >
+            <div class:list={[styles['od-stat'], styles['metric']]}>
+              <strong class={styles['od-nowrap']}>14 apps</strong>
+              <span class={styles['metric-label']}>React and React Native</span>
+            </div>
+            <div class:list={[styles['od-stat'], styles['metric']]}>
+              <strong class={styles['od-nowrap']}>+350%</strong>
+              <span class={styles['metric-label']}
+                >Mobile app growth in my first year</span
+              >
+            </div>
+          </div>
+          <p class={styles['detail-note']}>
             I also rewrote and redesigned a primary mobile application and
             documented engineering practices for the wider development team.
           </p>
@@ -222,7 +260,11 @@ const earlyCareerDialogId = 'earlier-career-dialog';
             {index > 0 && <h3 class={history['subheading']}>
               {group.heading}
             </h3>}
-            <EarlyCareerList entries={group.entries} headingTag="h4" />
+            <EarlyCareerList
+              entries={group.entries}
+              headingTag="h4"
+              compact={index > 0}
+            />
           </>
         ))}
       </details>
@@ -239,6 +281,7 @@ const earlyCareerDialogId = 'earlier-career-dialog';
             <EarlyCareerList
               entries={group.entries}
               headingTag={index === 0 ? 'h3' : 'h4'}
+              compact={index > 0}
             />
           </>
         ))}

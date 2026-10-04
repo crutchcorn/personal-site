@@ -4,6 +4,7 @@ import history from '../styles/work-history.module.scss';
 
 interface Props {
   headingTag?: 'h3' | 'h4';
+  compact?: boolean;
   entries: {
     period: string;
     company: string;
@@ -12,10 +13,10 @@ interface Props {
   }[];
 }
 
-const { entries, headingTag: Heading = 'h3' } = Astro.props;
+const { entries, headingTag: Heading = 'h3', compact = false } = Astro.props;
 ---
 
-<ul class={history['role-list']}>
+<ul class:list={[history['role-list'], { [history['compact']]: compact }]}>
   {entries.map((entry) => <li class={history['role']}>
     <p class={styles['career-period']}>{entry.period}</p>
     <div class:list={[styles['od-field'], history['role-heading']]}>

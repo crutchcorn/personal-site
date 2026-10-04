@@ -85,6 +85,17 @@
   grid-column: 2;
 }
 
+.compact .role {
+  row-gap: var(--s2);
+  padding-block: var(--s3);
+}
+
+.compact .role-heading {
+  --od-gap: var(--s1);
+
+  align-content: start;
+}
+
 @media (width <= breakpoints.$mobile) {
   .group {
     grid-template-columns: minmax(0, 1fr);
