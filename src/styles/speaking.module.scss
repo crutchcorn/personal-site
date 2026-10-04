@@ -12,7 +12,7 @@
 .groups {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--s6);
+  gap: var(--space-layout);
 }
 
 .group {
@@ -20,7 +20,7 @@
 }
 
 .group-heading {
-  margin-bottom: var(--s4);
+  margin-bottom: var(--space-content);
 }
 
 .group-heading > p {
@@ -48,12 +48,12 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: var(--s4);
+  gap: var(--space-content);
   min-height: 190px;
-  padding: var(--s5);
+  padding: var(--space-inset);
   background: var(--white);
   border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-surface);
   text-decoration: none;
   transition: border-color var(--quick) var(--ease);
 }
@@ -87,8 +87,8 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--s3) var(--s4);
-  margin-top: var(--s4);
+  gap: var(--space-content);
+  margin-top: var(--space-content);
 }
 
 .more-button {
@@ -120,7 +120,7 @@
   overflow-y: auto;
   overscroll-behavior: contain;
   border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-surface);
   background: var(--paper);
   color: var(--ink);
   box-shadow: 0 24px 120px rgb(20 25 35 / 20%);
@@ -135,11 +135,11 @@
   top: 0;
   z-index: 1;
   display: flex;
-  padding: var(--s6) var(--s6) var(--s4);
+  padding: var(--space-inset) var(--space-inset) var(--space-content);
   background: var(--paper);
   align-items: flex-start;
   justify-content: space-between;
-  gap: var(--s4);
+  gap: var(--space-content);
   margin-bottom: 0;
   border-bottom: 1px solid var(--line);
 }
@@ -164,12 +164,12 @@
   height: 44px;
   padding: 0;
   border: 1px solid var(--line);
-  border-radius: 50%;
+  border-radius: var(--radius-round);
   background: var(--white);
 }
 
 .dialog-list {
-  padding: 0 var(--s6) var(--s6);
+  padding: 0 var(--space-inset) var(--space-inset);
 }
 
 .dialog-list > li {
@@ -184,8 +184,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--s4);
-  padding-block: var(--s4);
+  gap: var(--space-content);
+  padding-block: var(--space-content);
   text-decoration: none;
 }
 
@@ -214,25 +214,15 @@
 @media (width <= breakpoints.$mobile) {
   .groups {
     grid-template-columns: minmax(0, 1fr);
-    gap: var(--s6);
   }
 
   .feature {
     min-height: 0;
-    padding: var(--s4);
   }
 
   .dialog {
     width: calc(100% - 32px);
     max-height: calc(100dvh - 32px);
-  }
-
-  .dialog-header {
-    padding: var(--s4) var(--s4) var(--s3);
-  }
-
-  .dialog-list {
-    padding: 0 var(--s4) var(--s4);
   }
 
   .dialog-heading {

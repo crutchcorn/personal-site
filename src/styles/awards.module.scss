@@ -1,16 +1,16 @@
 @use 'breakpoints';
 
 .section {
-  margin-bottom: var(--s5);
-  padding-block: var(--s3) var(--s4);
+  padding-bottom: var(--space-subsection);
 }
 
 .shelf {
   display: grid;
   grid-template-columns: 140px minmax(0, 1fr);
   align-items: center;
-  gap: var(--s5);
-  padding: var(--s5);
+  gap: var(--space-layout);
+  padding: var(--space-inset);
+  border-radius: var(--radius-surface);
   background: var(--white);
 }
 
@@ -29,7 +29,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--s5);
+  gap: var(--space-content);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -74,29 +74,18 @@
 @media (width <= breakpoints.$tablet) {
   .shelf {
     grid-template-columns: minmax(0, 1fr);
-    gap: var(--s4);
+    gap: var(--space-content);
   }
 
   .awards-list {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.4fr);
-    gap: var(--s4);
+    gap: var(--space-content);
   }
 }
 
 @media (width <= breakpoints.$mobile) {
-  .shelf {
-    padding: var(--s4);
-  }
-
   .awards-list {
     grid-template-columns: minmax(0, 1fr);
-    gap: var(--s4);
-  }
-}
-
-@media (width <= breakpoints.$small) {
-  .shelf {
-    padding: var(--s3);
   }
 }

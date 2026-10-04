@@ -28,4 +28,17 @@ Edit `src/data/appearances.ts` to maintain talks and podcasts. The first two ent
 
 SCSS is limited to media query breakpoint variables. Declare plain length values in `src/styles/_breakpoints.scss`, import them with `@use './breakpoints'`, and refer to them as `breakpoints.$name` inside media queries. Colors, spacing, and other reusable values remain CSS custom properties. Stylelint enforces this restriction and disallows Sass nesting, mixins, functions, loops, conditionals, and interpolation.
 
+Use the shared spacing roles in `global.css` for common layout decisions. Their responsive values are defined together in `site.module.scss`; the underlying `--s1` through `--s8` scale remains available for compact details and intentional exceptions.
+
+| Spacing role         | Desktop | Tablet | Mobile |
+| -------------------- | ------- | ------ | ------ |
+| `--space-section`    | 96px    | 96px   | 64px   |
+| `--space-subsection` | 64px    | 64px   | 48px   |
+| `--space-heading`    | 48px    | 48px   | 32px   |
+| `--space-layout`     | 48px    | 32px   | 24px   |
+| `--space-inset`      | 32px    | 24px   | 24px   |
+| `--space-content`    | 24px    | 24px   | 16px   |
+
+Surface insets reduce to 16px below 375px. Use `--radius-control` (4px) for buttons, `--radius-surface` (8px) for contained panels and media, and `--radius-round` (50%) for circular controls. Open ruled content stays square. Give each transition one spacing owner instead of adding a trailing margin, trailing padding, and the next section's leading padding together. Focus styles should preserve the component's radius.
+
 Run `npm run check`, `npm run lint`, `npm run format:check`, and `npm run build` before committing changes.

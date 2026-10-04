@@ -1,7 +1,7 @@
 @use 'breakpoints';
 
 .group-heading {
-  margin-bottom: var(--s4);
+  margin-bottom: var(--space-content);
   color: var(--muted);
 }
 
@@ -20,7 +20,7 @@
 .book-image-link {
   display: block;
   overflow: hidden;
-  border-radius: var(--radius);
+  border-radius: var(--radius-surface);
   background: var(--white);
 }
 
@@ -37,7 +37,7 @@
   flex: 1;
   flex-direction: column;
   align-items: flex-start;
-  padding-top: var(--s4);
+  padding-top: var(--s3);
 }
 
 .book-category {
@@ -66,14 +66,14 @@
 }
 
 .essays-group {
-  margin-top: var(--s7);
+  margin-top: var(--space-subsection);
 }
 
 .collections-grid,
 .essays-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: var(--s6);
+  column-gap: var(--space-layout);
 }
 
 .collection-title {
@@ -110,10 +110,6 @@
     gap: var(--s3);
   }
 
-  .book-caption {
-    padding-top: var(--s3);
-  }
-
   .book-category {
     font-size: 0.75rem;
   }
@@ -136,10 +132,6 @@
 
   .book-category {
     font-size: 0.8125rem;
-  }
-
-  .essays-group {
-    margin-top: var(--s6);
   }
 
   .essay-title {

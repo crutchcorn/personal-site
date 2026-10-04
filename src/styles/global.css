@@ -42,8 +42,19 @@
   --s6: 48px;
   --s7: 64px;
   --s8: 96px;
-  --radius: 4px;
-  --radius-lg: 8px;
+
+  /* Shared layout roles; responsive values are set in site.module.scss. */
+  --space-section: var(--s8);
+  --space-subsection: var(--s7);
+  --space-heading: var(--s6);
+  --space-layout: var(--s6);
+  --space-inset: var(--s5);
+  --space-content: var(--s4);
+
+  /* Controls, contained surfaces/media, and circular utility controls. */
+  --radius-control: 4px;
+  --radius-surface: 8px;
+  --radius-round: 50%;
   --page-gutter: 64px;
   --page-width: 1200px;
   --quick: 180ms;
@@ -151,7 +162,6 @@ button:focus-visible,
 summary:focus-visible {
   outline: 3px solid var(--blue);
   outline-offset: 6px;
-  border-radius: var(--radius);
 }
 
 svg {
