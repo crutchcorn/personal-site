@@ -1,0 +1,59 @@
+---
+import styles from '../styles/site.module.scss';
+import Icon from './Icon.astro';
+import SiteFooter from './SiteFooter.astro';
+---
+
+<section
+  class={styles['contact-section']}
+  id="contact"
+  aria-labelledby="contact-heading"
+  tabindex="-1"
+>
+  <div class={styles['container']}>
+    <p class:list={[styles['eyebrow'], styles['section-label']]}>
+      <span class={styles['index']}>05</span> Let’s talk
+    </p>
+    <div class={styles['contact-grid']}>
+      <h2 id="contact-heading" data-reveal>
+        What’s next<br />for <em>your people?</em>
+      </h2>
+      <div class={styles['contact-copy']}>
+        <p>
+          Looking for a CTO for your next stage of growth, or a partner for a
+          difficult technical decision? I’d love to understand what you’re
+          building and who you’re building it for.
+        </p>
+        <a
+          class={styles['button']}
+          href="mailto:contact@crutchcorn.dev?subject=Let%27s%20talk%20about%20what%27s%20next"
+          >Start a conversation <Icon name="out"
+        /></a>
+        <div class={styles['contact-email-row']}>
+          <a
+            data-contact-email
+            class={styles['contact-email']}
+            href="mailto:contact@crutchcorn.dev"
+            >contact@crutchcorn.dev</a
+          >
+          <button
+            class={styles['copy-button']}
+            type="button"
+            data-copy-email
+            hidden
+          >
+            <Icon name="copy" /><span data-copy-label>Copy email</span>
+          </button>
+        </div>
+        <p
+          data-copy-status
+          class={styles['copy-status']}
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        ></p>
+      </div>
+    </div>
+    <SiteFooter />
+  </div>
+</section>

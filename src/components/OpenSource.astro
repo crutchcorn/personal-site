@@ -1,0 +1,92 @@
+---
+import styles from '../styles/site.module.scss';
+import Icon from './Icon.astro';
+---
+
+<section
+  class:list={[styles['section'], styles['oss-section'], styles['container']]}
+  id="open-source"
+  aria-labelledby="oss-heading"
+  tabindex="-1"
+>
+  <div class={styles['section-intro']} data-reveal>
+    <p class:list={[styles['eyebrow'], styles['section-label']]}>
+      <span class={styles['index']}>04</span> Open source
+    </p>
+    <div>
+      <h2 id="oss-heading">Built in the open.<br />Better with others.</h2>
+      <p>
+        A library is part of someone else’s working day. I stay close to the
+        code, the documentation, and the people relying on both.
+      </p>
+    </div>
+  </div>
+  <div class:list={[styles['od-grid'], styles['project-grid']]}>
+    <article class={styles['project']} data-reveal>
+      <div class={styles['project-top']}>
+        <span class={styles['eyebrow']}>Maintainer</span
+        ><span class={styles['project-symbol']} aria-hidden="true">[ 01 ]</span>
+      </div>
+      <h3>TanStack</h3>
+      <p>
+        I lead maintenance of Form, Store, and Config, and contribute to Query
+        and Table. Practical tools, with attention to the developer experience
+        behind every API.
+      </p>
+      <div class={styles['project-links']} aria-label="TanStack projects">
+        <a class={styles['text-link']} href="https://tanstack.com/form"
+          ><span>Form</span><Icon name="out"
+        /></a>
+        <a class={styles['text-link']} href="https://tanstack.com/store"
+          ><span>Store</span><Icon name="out"
+        /></a>
+        <a class={styles['text-link']} href="https://tanstack.com/config"
+          ><span>Config</span><Icon name="out"
+        /></a>
+      </div>
+    </article>
+    <article class={styles['project']} data-reveal>
+      <div class={styles['project-top']}>
+        <span class={styles['eyebrow']}
+          >Contributor &amp; integration author</span
+        ><span class={styles['project-symbol']} aria-hidden="true">[ 02 ]</span>
+      </div>
+      <h3>Redux</h3>
+      <p>
+        I ported Redux integrations to Angular and Vue and contribute across the
+        Redux ecosystem, helping familiar tools meet developers where they work.
+      </p>
+      <div class={styles['project-links']} aria-label="Redux integrations">
+        <a
+          class={styles['text-link']}
+          href="https://github.com/reduxjs/angular-redux"
+          ><span>Angular Redux</span><Icon name="out"
+        /></a>
+        <a
+          class={styles['text-link']}
+          href="https://github.com/reduxjs/vue-redux"
+          ><span>Vue Redux</span><Icon name="out"
+        /></a>
+      </div>
+    </article>
+  </div>
+  <div class={styles['more-projects']}>
+    <p>Also helping maintain</p>
+    <div class={styles['od-cluster']}>
+      <a class={styles['text-link']} href="https://github.com/jimp-dev/"
+        ><span>Jimp</span><Icon name="out"
+      /></a>
+      <a class={styles['text-link']} href="https://github.com/plopjs/"
+        ><span>Plop</span><Icon name="out"
+      /></a>
+      <a class={styles['text-link']} href="https://github.com/Vibrant-Colors/"
+        ><span>Node Vibrant</span><Icon name="out"
+      /></a>
+    </div>
+  </div>
+  <div class={styles['oss-footer']}>
+    <a class={styles['text-link']} href="https://github.com/crutchcorn"
+      ><span>Find me on GitHub</span><Icon name="out"
+    /></a>
+  </div>
+</section>

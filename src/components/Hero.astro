@@ -1,0 +1,72 @@
+---
+import styles from '../styles/site.module.scss';
+import Icon from './Icon.astro';
+---
+
+<section
+  class:list={[styles['hero'], styles['container']]}
+  aria-labelledby="hero-heading"
+>
+  <div class={styles['hero-topline']}>
+    <p class={styles['eyebrow']}>Engineering leadership. Human perspective.</p>
+    <p class={styles['hero-coordinate']}>Sacramento, California</p>
+  </div>
+  <div class={styles['hero-grid']}>
+    <div data-reveal>
+      <h1 id="hero-heading">
+        <span class={styles['hero-line']}>Thinking of</span>
+        <span class={styles['hero-line']}><em>people</em> behind</span>
+        <span class={styles['hero-line']}
+          >the
+          screen<span class={styles['period']} aria-hidden="true">.</span></span
+        >
+      </h1>
+      <p class={styles['hero-description']}>
+        <strong>I’m Corbin Crutchley.</strong> I help growing companies connect
+        technical direction with the people who build, use, and depend on their
+        software.
+      </p>
+      <div class={styles['hero-actions']}>
+        <a class={styles['button']} href="#contact"
+          >Let’s build what’s next <Icon name="out"
+        /></a>
+        <a class={styles['text-link']} href="#work"
+          ><span>Explore my work</span><Icon name="down"
+        /></a>
+      </div>
+    </div>
+    <figure class={styles['portrait']} data-reveal>
+      <div class={styles['portrait-frame']}>
+        <div class={styles['portrait-label']}>
+          <span>A human first.</span><Icon name="screen" />
+        </div>
+        <img
+          class={styles['od-media']}
+          src="/assets/corbin-profile.jpg"
+          width="460"
+          height="460"
+          alt="Corbin Crutchley smiling, wearing glasses and a pink shirt"
+          fetchpriority="high"
+        />
+      </div>
+      <figcaption>
+        <strong>Corbin Crutchley <span>(they/them)</span></strong>
+        <span
+          >Engineering leader.<br />Open-source maintainer.<br />Perpetual
+          teacher.</span
+        >
+      </figcaption>
+    </figure>
+  </div>
+  <div class={styles['hero-foot']}>
+    <p>A decade of hands-on engineering.</p>
+    <div
+      class={styles['chapter-links']}
+      aria-label="Selected professional experience"
+    >
+      <span>Former engineering VP</span>
+      <span>Staff engineer</span>
+      <span>Nonprofit leader</span>
+    </div>
+  </div>
+</section>

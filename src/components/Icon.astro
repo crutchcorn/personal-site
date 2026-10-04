@@ -1,0 +1,23 @@
+---
+import styles from '../styles/site.module.scss';
+
+interface Props {
+  name:
+    | 'arrow'
+    | 'out'
+    | 'down'
+    | 'up'
+    | 'plus'
+    | 'menu'
+    | 'close'
+    | 'copy'
+    | 'screen';
+  class?: string;
+}
+
+const { name, class: className } = Astro.props;
+---
+
+<svg class:list={[styles.icon, className]} aria-hidden="true">
+  <use href={`#i-${name}`} />
+</svg>

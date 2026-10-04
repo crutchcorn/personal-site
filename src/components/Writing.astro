@@ -1,0 +1,109 @@
+---
+import styles from '../styles/site.module.scss';
+import Icon from './Icon.astro';
+---
+
+<section
+  class:list={[styles['section'], styles['container']]}
+  id="writing"
+  aria-labelledby="writing-heading"
+  tabindex="-1"
+>
+  <div class={styles['section-intro']} data-reveal>
+    <p class:list={[styles['eyebrow'], styles['section-label']]}>
+      <span class={styles['index']}>03</span> Writing
+    </p>
+    <div>
+      <h2 id="writing-heading">
+        Understanding is<br />a thing we can <em>share.</em>
+      </h2>
+      <p>
+        I write to make the next difficult decision a little easier. Sometimes
+        that’s understanding a framework. Sometimes it’s understanding the
+        person on the other side of a conversation.
+      </p>
+    </div>
+  </div>
+  <div class={styles['writing-grid']}>
+    <article class={styles['book-feature']} data-reveal>
+      <a
+        class={styles['book-image-link']}
+        href="https://framework.guide"
+        aria-label="Read The Framework Field Guide"
+      >
+        <img
+          class={styles['od-media']}
+          src="/assets/framework-field-guide.png"
+          width="1200"
+          height="675"
+          alt="The Framework Field Guide artwork, with a forest landscape and Angular, React, and Vue symbols"
+          loading="lazy"
+          decoding="async"
+        />
+      </a>
+      <div class={styles['book-caption']}>
+        <p class={styles['eyebrow']}>A book for the curious</p>
+        <h3>The Framework Field Guide</h3>
+        <p>
+          A free, practical way to learn React, Angular, and Vue together. Build
+          the mental models that travel with you from one framework to the next.
+        </p>
+        <a class={styles['text-link']} href="https://framework.guide"
+          ><span>Read the guide</span><Icon name="out"
+        /></a>
+      </div>
+    </article>
+    <div class={styles['reading-list']}>
+      <a
+        class={styles['collection-link']}
+        href="https://playfulprogramming.com/collections/harsh-leadership-truths/"
+        data-reveal
+      >
+        <div class={styles['collection-top']}>
+          <span class={styles['eyebrow']}>Essay collection</span
+          ><Icon name="out" />
+        </div>
+        <h3>Harsh Leadership Truths</h3>
+        <p>
+          The uncomfortable parts of leadership: inherited systems, changing
+          responsibilities, and growing alongside the team.
+        </p>
+      </a>
+      <a
+        class={styles['collection-link']}
+        href="https://playfulprogramming.com/collections/pragmatic-advice-for-teams/"
+        data-reveal
+      >
+        <div class={styles['collection-top']}>
+          <span class={styles['eyebrow']}>Essay collection</span
+          ><Icon name="out" />
+        </div>
+        <h3>Pragmatic Advice for Teams</h3>
+        <p>
+          Thoughtful tradeoffs, shared context, and practical ways to help
+          people work well together.
+        </p>
+      </a>
+      <a
+        class={styles['article-link']}
+        href="https://playfulprogramming.com/posts/inheriting-bad-tech"
+      >
+        <span class={styles['od-field']}
+          ><span class={styles['article-type']}>Start here · Leadership</span>
+          <h3>What I Did When I Inherited Bad Tech</h3></span
+        >
+        <Icon name="out" />
+      </a>
+      <a
+        class={styles['article-link']}
+        href="https://playfulprogramming.com/posts/how-to-communicate"
+      >
+        <span class={styles['od-field']}
+          ><span class={styles['article-type']}>On teams · Communication</span>
+          <h3>How to Communicate</h3></span
+        >
+        <Icon name="out" />
+      </a>
+    </div>
+  </div>
+</section>

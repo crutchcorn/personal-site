@@ -1,0 +1,81 @@
+---
+import styles from '../styles/site.module.scss';
+import Icon from './Icon.astro';
+---
+
+<section
+  class:list={[styles['section'], styles['consulting-section']]}
+  id="consulting"
+  aria-labelledby="consulting-heading"
+  tabindex="-1"
+>
+  <div class={styles['container']}>
+    <div class={styles['section-intro']} data-reveal>
+      <p class:list={[styles['eyebrow'], styles['section-label']]}>
+        <span class={styles['index']}>02</span> Consulting
+      </p>
+      <div>
+        <h2 id="consulting-heading">
+          A partner for your<br />next hard decision.
+        </h2>
+        <p>
+          When the business is growing, the next technical choice rarely stands
+          alone. I help connect what you need to achieve with what your team can
+          realistically build and support.
+        </p>
+      </div>
+    </div>
+    <div class:list={[styles['od-grid'], styles['service-grid']]}>
+      <article class={styles['service']} data-reveal>
+        <span class={styles['service-number']} aria-hidden="true">/ 01</span>
+        <h3>Find the technical direction.</h3>
+        <p>
+          Architecture reviews, focused prototypes, and documented tradeoffs.
+          Start with the business need, then choose a path the team can explain
+          and own.
+        </p>
+      </article>
+      <article class={styles['service']} data-reveal>
+        <span class={styles['service-number']} aria-hidden="true">/ 02</span>
+        <h3>Make delivery sustainable.</h3>
+        <p>
+          Work through release practices, quality, hiring, and communication
+          with the people doing the work. Build a rhythm your team can keep.
+        </p>
+      </article>
+      <article class={styles['service']} data-reveal>
+        <span class={styles['service-number']} aria-hidden="true">/ 03</span>
+        <h3>Help developers get unstuck.</h3>
+        <p>
+          Documentation, technical writing, and developer education that make
+          the next step clear. Turn knowledge held by a few into something
+          others can use.
+        </p>
+      </article>
+    </div>
+    <div class={styles['consulting-history']}>
+      <div class={styles['history-top']}>
+        <p>Selected consulting clients through OceanBit</p>
+        <p>Founder · Feb 2020 – Jul 2023</p>
+      </div>
+      <ul class={styles['client-list']} aria-label="Past OceanBit clients">
+        <li><a href="https://ghost.org/">Ghost</a></li>
+        <li><a href="https://clerk.com/">Clerk</a></li>
+        <li><a href="https://astro.build/">Astro</a></li>
+        <li><a href="https://stackblitz.com/">StackBlitz</a></li>
+        <li><a href="https://www.replay.io/">Replay.io</a></li>
+      </ul>
+      <div class={styles['consulting-bottom']}>
+        <p>
+          Technical writing and documentation restructuring for teams building
+          tools other developers depend on.
+        </p>
+        <a
+          class={styles['text-link']}
+          href="https://playfulprogramming.com/posts/fractional-leadership-in-practice"
+          ><span>My approach to fractional leadership</span><Icon name="out"
+        /></a>
+      </div>
+    </div>
+  </div>
+</section>

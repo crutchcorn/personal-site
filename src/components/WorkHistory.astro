@@ -1,0 +1,187 @@
+---
+import styles from '../styles/site.module.scss';
+import Icon from './Icon.astro';
+---
+
+<section
+  class:list={[styles['section'], styles['work-section'], styles['container']]}
+  id="work"
+  aria-labelledby="work-heading"
+  tabindex="-1"
+>
+  <div class={styles['section-intro']} data-reveal>
+    <p class:list={[styles['eyebrow'], styles['section-label']]}>
+      <span class={styles['index']}>01</span> Work history
+    </p>
+    <div>
+      <h2 id="work-heading">Building the product.<br />Growing the team.</h2>
+      <p>
+        Good technical decisions need business context. Good teams need it, too.
+        I bring the architecture, delivery practices, and everyday conversations
+        together so people can do their best work.
+      </p>
+    </div>
+  </div>
+
+  <div class={styles['career-list']}>
+    <details class={styles['career']} open>
+      <summary>
+        <span class={styles['career-period']}>Apr 2025 – Jun 2026</span>
+        <span class:list={[styles['career-heading'], styles['od-field']]}
+          ><h3>Immersive Homes</h3>
+          <span class={styles['role']}
+            >Vice President of Software Engineering</span
+          ></span
+        >
+        <span class={styles['disclosure-icon']} aria-hidden="true"
+          ><Icon name="plus"
+        /></span>
+      </summary>
+      <div class={styles['career-body']}>
+        <div class={styles['detail-copy']}>
+          <p>
+            I oversaw frontend, backend, DevOps, and QA, pairing a substantial
+            architectural rewrite with the operating practices that help a team
+            ship with confidence.
+          </p>
+          <div
+            class:list={[styles['od-grid'], styles['metrics']]}
+            aria-label="Selected outcomes at Immersive Homes"
+          >
+            <div class:list={[styles['od-stat'], styles['metric']]}>
+              <strong class={styles['od-nowrap']}>20 → 5 min</strong
+              ><span class={styles['metric-label']}>Deployment time</span>
+            </div>
+            <div class:list={[styles['od-stat'], styles['metric']]}>
+              <strong class={styles['od-nowrap']}>680+</strong
+              ><span class={styles['metric-label']}>New automated tests</span>
+            </div>
+            <div class:list={[styles['od-stat'], styles['metric']]}>
+              <strong class={styles['od-nowrap']}>2 products</strong
+              ><span class={styles['metric-label']}
+                >Rebuilt in four months</span
+              >
+            </div>
+          </div>
+          <p class={styles['detail-note']}>
+            Alongside the code: phased rollouts, capacity planning,
+            retrospectives, 1:1s, a clearer design handoff, and a more
+            consistent hiring process.
+          </p>
+          <a class={styles['text-link']} href="https://www.immersivehomes.com/"
+            ><span>About Immersive Homes</span><Icon name="out"
+          /></a>
+        </div>
+      </div>
+    </details>
+    <details class={styles['career']}>
+      <summary>
+        <span class={styles['career-period']}>May 2024 – Apr 2025</span>
+        <span class:list={[styles['career-heading'], styles['od-field']]}
+          ><h3>Descript</h3>
+          <span class={styles['role']}>Staff Frontend Engineer</span></span
+        >
+        <span class={styles['disclosure-icon']} aria-hidden="true"
+          ><Icon name="plus"
+        /></span>
+      </summary>
+      <div class={styles['career-body']}>
+        <div class={styles['detail-copy']}>
+          <p>
+            I migrated React 16 to React 18 in a 1.2-million-line codebase and
+            advised on architecture, technology adoption, and tooling across
+            engineering teams.
+          </p>
+          <p class:list={[styles['detail-note'], styles['detail-note-spaced']]}>
+            My work also included a performance task force, CI/CD, and
+            scaffolding applications within the company’s monorepo.
+          </p>
+          <a class={styles['text-link']} href="https://www.descript.com/"
+            ><span>About Descript</span><Icon name="out"
+          /></a>
+        </div>
+      </div>
+    </details>
+    <details class={styles['career']}>
+      <summary>
+        <span class={styles['career-period']}>Aug 2022 – May 2024</span>
+        <span class:list={[styles['career-heading'], styles['od-field']]}
+          ><h3>NWYC</h3>
+          <span class={styles['role']}
+            >Staff Frontend Engineer · promoted</span
+          ></span
+        >
+        <span class={styles['disclosure-icon']} aria-hidden="true"
+          ><Icon name="plus"
+        /></span>
+      </summary>
+      <div class={styles['career-body']}>
+        <div class={styles['detail-copy']}>
+          <p>
+            I led frontend development across 14 React and React Native
+            applications, managed frontend hiring, and worked directly with the
+            Director of Technology and CTO.
+          </p>
+          <p class:list={[styles['detail-note'], styles['detail-note-spaced']]}>
+            I also rewrote and redesigned a primary mobile application and
+            documented engineering practices for the wider development team.
+          </p>
+          <a class={styles['text-link']} href="https://nwyc.com/"
+            ><span>About NWYC</span><Icon name="out"
+          /></a>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3 class={styles['earlier-title']}>Earlier chapters</h3>
+  <div class={styles['past-role']}>
+    <p class={styles['career-period']}>Mar 2021 – Aug 2022</p>
+    <div class={styles['od-field']}>
+      <h3>CoderPad</h3>
+      <p class={styles['role']}>Developer Relations Specialist</p>
+    </div>
+    <p class={styles['past-note']}>
+      Led developer engagement and the guest-author program.
+    </p>
+  </div>
+  <div class={styles['past-role']}>
+    <p class={styles['career-period']}>May 2020 – Mar 2021</p>
+    <div class={styles['od-field']}>
+      <h3>CooperVision</h3>
+      <p class={styles['role']}>Frontend Developer</p>
+    </div>
+  </div>
+  <div class={styles['past-role']}>
+    <p class={styles['career-period']}>May 2019 – Apr 2020</p>
+    <div class={styles['od-field']}>
+      <h3>Hilton</h3>
+      <p class={styles['role']}>Render Tier Engineer</p>
+    </div>
+    <p class={styles['past-note']}>
+      Part of the small team that rebuilt Hilton’s search experience.
+    </p>
+  </div>
+
+  <aside
+    class={styles['community']}
+    aria-labelledby="community-heading"
+    data-reveal
+  >
+    <div>
+      <p class={styles['eyebrow']}>Leadership beyond the day job</p>
+      <h3 id="community-heading">Playful Programming</h3>
+      <p>Executive Director · Jun 2019 – present</p>
+    </div>
+    <div>
+      <p>
+        I oversee development, content, and community for our
+        developer-education nonprofit. Our work makes learning open and
+        approachable, with a long-term roadmap for reaching more people.
+      </p>
+      <a class={styles['text-link']} href="https://playfulprogramming.com/"
+        ><span>Meet the community</span><Icon name="out"
+      /></a>
+    </div>
+  </aside>
+</section>
