@@ -124,17 +124,6 @@
   transform: translateX(-50%);
 }
 
-.caption {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: var(--s2) var(--s3);
-  margin-top: var(--s2);
-  color: var(--muted);
-  font: 400 0.6875rem/1.6 var(--font-mono);
-}
-
 @media (width <= breakpoints.$tablet) {
   .hero {
     padding-top: var(--s7);
