@@ -100,9 +100,13 @@
   content: '';
 }
 
+.book-image-link picture,
 .book-image-link img {
   display: block;
   width: 100%;
+}
+
+.book-image-link img {
   height: auto;
 }
 

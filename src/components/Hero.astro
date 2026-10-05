@@ -1,4 +1,6 @@
 ---
+import { Picture } from 'astro:assets';
+import portrait from '../assets/corbin_present.png';
 import styles from '../styles/site.module.scss';
 import hero from '../styles/hero.module.scss';
 import Icon from './Icon.astro';
@@ -73,15 +75,19 @@ const frameNodes = [
             ))}
           </g>
         </svg>
-        <div class={hero['photo']}>
-          <img
-            src="/assets/corbin_present.png"
-            width="867"
-            height="1086"
-            alt="Corbin Crutchley presenting on stage, wearing glasses and a TanStack shirt"
-            fetchpriority="high"
-          />
-        </div>
+        <Picture
+          pictureAttributes={{ class: hero['photo'] }}
+          src={portrait}
+          formats={['avif', 'webp']}
+          fallbackFormat="png"
+          width={320}
+          widths={[200, 320, 480, 640, 867]}
+          sizes="(max-width: 374px) calc(62.5vw - 20px), (max-width: 447px) calc(62.5vw - 30px), (max-width: 767px) 250px, (max-width: 1023px) calc(23.15vw - 24px), (max-width: 1327px) calc(23.15vw - 35px), 273px"
+          alt="Corbin Crutchley presenting on stage, wearing glasses and a TanStack shirt"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
       </div>
     </figure>
   </div>

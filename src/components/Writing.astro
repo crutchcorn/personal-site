@@ -1,4 +1,8 @@
 ---
+import { Picture } from 'astro:assets';
+import frameworkFieldGuide from '../assets/framework-field-guide.png';
+import bigBotBuilders from '../assets/big-bot-builders.png';
+import artOfAccessibility from '../assets/art-of-accessibility.png';
 import styles from '../styles/site.module.scss';
 import writingStyles from '../styles/writing.module.scss';
 import Icon from './Icon.astro';
@@ -9,9 +13,7 @@ const books = [
     title: 'The Framework Field Guide',
     description: 'A free guide to learning React, Angular, and Vue together.',
     href: 'https://framework.guide',
-    image: '/assets/framework-field-guide.png',
-    width: 1200,
-    height: 675,
+    image: frameworkFieldGuide,
     alt: 'The Framework Field Guide artwork, with a forest landscape and Angular, React, and Vue symbols',
   },
   {
@@ -20,21 +22,21 @@ const books = [
     description:
       'How AI models learn, generate responses, use tools, and remember information.',
     href: 'https://bigbot.builders',
-    image: '/assets/big-bot-builders.png',
-    width: 1920,
-    height: 1080,
+    image: bigBotBuilders,
     alt: 'The Big Bot Builders early access artwork showing a robot under construction',
   },
   {
     title: 'The Art of Accessibility',
     description: 'A guide to building accessible web applications.',
     href: 'https://a11y.art',
-    image: '/assets/art-of-accessibility.png',
-    width: 1920,
-    height: 1080,
+    image: artOfAccessibility,
     alt: 'The Art of Accessibility artwork showing people outside a café, including a wheelchair user and a person with a white cane',
   },
 ];
+
+// Match the grid's columns, page gutters, and the frame around each cover.
+const bookImageSizes =
+  '(max-width: 374px) calc(100vw - 90px), (max-width: 767px) calc(100vw - 106px), (max-width: 1023px) calc((100vw - 254px) / 3), (max-width: 1327px) calc((100vw - 334px) / 3), 332px';
 ---
 
 <section
@@ -92,10 +94,12 @@ const books = [
           href={book.href}
           aria-label={`Read ${book.title}`}
         >
-          <img
+          <Picture
             src={book.image}
-            width={book.width}
-            height={book.height}
+            formats={['avif', 'webp']}
+            fallbackFormat="jpeg"
+            widths={[240, 320, 480, 640, 960, 1280, 1440]}
+            sizes={bookImageSizes}
             alt={book.alt}
             loading="lazy"
             decoding="async"
