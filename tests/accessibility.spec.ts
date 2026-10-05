@@ -164,6 +164,11 @@ test('the page and expanded career disclosures pass axe', async ({ page }) => {
   await expect(
     page.getByRole('button', { name: dialogCases[0]!.opener }),
   ).toBeVisible();
+  const expandedCareer = page.locator('#work details[open]');
+  await expect(expandedCareer).toHaveCount(1);
+  await expect(expandedCareer.locator('summary')).toContainText(
+    'Immersive Homes',
+  );
   await expectAccessible(page);
   await expandCareer(page);
   await expect(
@@ -546,7 +551,9 @@ test('forced colors retain visible keyboard focus and disclosure indicators', as
       );
     }),
   ).toBe(true);
-  const summary = page.locator('#work details').first().locator('summary');
+  const summary = page
+    .locator('#work summary')
+    .filter({ hasText: 'Immersive Homes' });
   await summary.focus();
   await expect(summary).toBeFocused();
   expect(
