@@ -1,15 +1,17 @@
 @use 'breakpoints';
 
 .hero {
-  padding-top: var(--s7);
+  --hero-lilac: #e7b2ef;
+
+  padding-top: var(--s8);
   padding-bottom: var(--space-heading);
 }
 
 .grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
   align-items: center;
-  gap: var(--space-layout);
+  gap: var(--s4);
 }
 
 .introduction {
@@ -17,18 +19,48 @@
 }
 
 .introduction h1 {
-  font-size: clamp(3.25rem, 7.2vw, 5rem);
+  position: relative;
+  isolation: isolate;
+  font-size: clamp(3rem, 6.25vw, 5.25rem);
   font-weight: 500;
-  line-height: 1.03;
+  line-height: 1.08;
   letter-spacing: -0.075em;
+  text-wrap: initial;
 }
 
-.introduction h1 > span {
+.headline-line {
   display: block;
 }
 
-.period {
+.accent {
   color: var(--accent);
+}
+
+.opening-quote,
+.closing-quote {
+  z-index: -1;
+  color: var(--hero-lilac);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 2.4em;
+  font-weight: 400;
+  letter-spacing: -0.08em;
+  line-height: 0;
+  pointer-events: none;
+}
+
+.opening-quote {
+  position: absolute;
+  top: 0.3em;
+  left: -0.1em;
+}
+
+.closing-quote {
+  position: relative;
+  top: 0.22em;
+  display: inline-block;
+  margin-left: 0.06em;
+  font-size: 1.8em;
+  vertical-align: -0.12em;
 }
 
 .portrait {
@@ -43,28 +75,6 @@
   aspect-ratio: 1;
 }
 
-/* Align the label and leader with the illustration's node at (288, 12). */
-.availability {
-  position: absolute;
-  top: calc(100% * 12 / 460);
-  left: 0;
-  width: calc(100% * 288 / 460 - 12px);
-  display: flex;
-  align-items: center;
-  gap: var(--s2);
-  background: var(--paper);
-  color: var(--accent);
-  font: 400 0.75rem/1.5 var(--font-mono);
-  transform: translateY(-50%);
-}
-
-.availability::after {
-  content: '';
-  height: 1px;
-  flex: 1 0 var(--s2);
-  background: currentcolor;
-}
-
 .connections {
   width: 100%;
   height: 100%;
@@ -74,11 +84,14 @@
 
 .guides {
   stroke: var(--line);
-  stroke-width: 1;
+  stroke-width: 1.5;
 }
 
 .guides circle {
-  stroke-dasharray: 2 5;
+  stroke: var(--hero-lilac);
+  stroke-dasharray: 0.1 7;
+  stroke-linecap: round;
+  stroke-width: 2;
 }
 
 .routes {
@@ -94,70 +107,52 @@
 
 .photo {
   position: absolute;
-  inset: 20%;
+  bottom: calc(100% * 88 / 460);
+  width: 100%;
+  height: calc(100% * 360 / 460);
   overflow: hidden;
-  border: 1px solid var(--ink);
-  border-radius: 50% 50% 2px 2px;
-  background: var(--white);
-  transform: rotate(-4deg);
+  pointer-events: none;
 }
 
 .photo img {
-  transition: transform 500ms var(--ease);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: auto;
+  max-width: none;
+  height: 100%;
+  transform: translateX(-50%);
 }
 
 .caption {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: var(--s2);
+  justify-content: center;
+  gap: var(--s2) var(--s3);
   margin-top: var(--s2);
   color: var(--muted);
-  font: 400 0.75rem/1.6 var(--font-mono);
-}
-
-.location-mark {
-  color: var(--accent);
-  font-size: 1.125rem;
-}
-
-.caption-rule {
-  flex: 1;
-  height: 1px;
-  background: var(--line);
-}
-
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .drawing:hover .photo img {
-    transform: scale(1.08) rotate(4deg);
-  }
+  font: 400 0.6875rem/1.6 var(--font-mono);
 }
 
 @media (width <= breakpoints.$tablet) {
   .hero {
-    padding-top: var(--s6);
-  }
-
-  .grid {
-    gap: var(--s4);
+    padding-top: var(--s7);
   }
 }
 
 @media (width <= breakpoints.$mobile) {
-  .hero {
-    padding-top: var(--s5);
-  }
-
   .grid {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--s5);
   }
 
   .introduction h1 {
-    font-size: clamp(3.5rem, 12.5vw, 5.5rem);
+    font-size: clamp(2.75rem, 7vw, 3.75rem);
   }
 
   .portrait {
-    max-width: 360px;
+    max-width: 400px;
     justify-self: center;
   }
 }
