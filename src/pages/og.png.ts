@@ -1,40 +1,28 @@
 import { readFile } from 'node:fs/promises';
 import type { APIRoute } from 'astro';
-import { publicDir } from 'astro:config/server';
+import { publicDir, srcDir } from 'astro:config/server';
 import { Resvg } from '@resvg/resvg-js';
 import satori from 'satori';
 import type { CSSProperties, JSXNode } from 'satori/jsx';
+import portraitImage from '../assets/corbin_present.png';
 import { social } from '../data/social';
-import {
-  portraitGuides,
-  portraitRegistration,
-  portraitRoutes,
-  portraitNodes,
-} from '../data/portrait';
+import { portraitRegistration } from '../data/portrait';
 
 export const prerender = true;
 
 // Match the palette and type in global.css and the portfolio's hero.
 const colors = {
   paper: '#f5f3ed',
-  white: '#fffefa',
   ink: '#242329',
   muted: '#615e68',
   accent: '#6839b5',
+  lilac: '#e7b2ef',
   line: '#d9d5df',
 };
 
-// Slightly heavier route strokes survive downscaling in link previews.
-const connections = `<svg xmlns="http://www.w3.org/2000/svg" width="460" height="460" viewBox="0 0 460 460" fill="none">
-  <g stroke="${colors.line}" stroke-width="1">
-    <path d="${portraitGuides}" />
-    <circle cx="230" cy="230" r="204" stroke-dasharray="2 5" />
-    <path d="${portraitRegistration}" />
-  </g>
-  <g stroke="${colors.accent}" stroke-width="2">
-    ${portraitRoutes.map((d) => `<path d="${d}" />`).join('')}
-    ${portraitNodes.map(({ cx, cy }) => `<circle cx="${cx}" cy="${cy}" r="7" fill="${colors.paper}" />`).join('')}
-  </g>
+const guides = `<svg xmlns="http://www.w3.org/2000/svg" width="460" height="460" viewBox="0 0 460 460" fill="none">
+  <circle cx="230" cy="230" r="200" stroke="${colors.lilac}" stroke-width="2" stroke-dasharray="0.1 7" stroke-linecap="round" />
+  <path d="${portraitRegistration}" stroke="${colors.line}" stroke-width="1.5" />
 </svg>`;
 
 // Satori accepts plain element objects, so the static card needs no React runtime.
@@ -59,14 +47,18 @@ function h(
 }
 
 export const GET: APIRoute = async () => {
-  const [portrait, mark, manrope400, manrope500] = await Promise.all(
-    [
-      'assets/corbin-profile.jpg',
+  const [portrait, mark, manrope400, manrope500] = await Promise.all([
+    readFile(new URL('assets/corbin_present.png', srcDir)),
+    ...[
       'favicon.svg',
       'assets/fonts/og/manrope-400.ttf',
       'assets/fonts/og/manrope-500.ttf',
     ].map((path) => readFile(new URL(path, publicDir))),
-  );
+  ]);
+  // Enlarge the transparent photo, with its lower torso cropped by the footer.
+  const portraitHeight = 560;
+  const portraitWidth =
+    (portraitHeight * portraitImage.width) / portraitImage.height;
   const svg = await satori(
     h(
       'div',
@@ -102,6 +94,7 @@ export const GET: APIRoute = async () => {
               flexDirection: 'column',
               width: 588,
               flexShrink: 0,
+              marginBottom: 24,
             },
           },
           h(
@@ -149,43 +142,32 @@ export const GET: APIRoute = async () => {
               display: 'flex',
               position: 'relative',
               width: 460,
-              height: 460,
+              alignSelf: 'stretch',
               flexShrink: 0,
+              // Both the photo and guides end exactly at the footer divider.
+              overflow: 'hidden',
             },
           },
           h('img', {
-            src: `data:image/svg+xml;base64,${Buffer.from(connections).toString('base64')}`,
-            width: 460,
-            height: 460,
-          }),
-          h(
-            'div',
-            {
-              style: {
-                display: 'flex',
-                position: 'absolute',
-                top: 92,
-                left: 92,
-                width: 276,
-                height: 276,
-                overflow: 'hidden',
-                borderTopLeftRadius: 138,
-                borderTopRightRadius: 138,
-                borderBottomLeftRadius: 2,
-                borderBottomRightRadius: 2,
-                border: `1px solid ${colors.ink}`,
-                backgroundColor: colors.white,
-                transform: 'rotate(-4deg)',
-              },
+            src: `data:image/svg+xml;base64,${Buffer.from(guides).toString('base64')}`,
+            width: 520,
+            height: 520,
+            style: {
+              position: 'absolute',
+              top: 56,
+              left: -30,
             },
-            h('img', {
-              // The existing .jpg asset contains PNG bytes.
-              src: `data:image/png;base64,${portrait.toString('base64')}`,
-              width: 274,
-              height: 274,
-              style: { objectFit: 'cover' },
-            }),
-          ),
+          }),
+          h('img', {
+            src: `data:image/png;base64,${portrait.toString('base64')}`,
+            width: portraitWidth,
+            height: portraitHeight,
+            style: {
+              position: 'absolute',
+              bottom: -70,
+              left: (460 - portraitWidth) / 2,
+            },
+          }),
         ),
       ),
       h(
@@ -197,7 +179,6 @@ export const GET: APIRoute = async () => {
             justifyContent: 'space-between',
             borderTop: `1px solid ${colors.line}`,
             paddingTop: 20,
-            marginTop: 24,
             fontSize: 24,
             flexShrink: 0,
           },

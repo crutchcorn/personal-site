@@ -6,6 +6,6 @@ export const social = {
     path: '/og.png',
     width: 1200,
     height: 630,
-    alt: 'Corbin Crutchley smiling beside his name and roles: engineering leader, consultant, author, and open-source maintainer in Sacramento, California. corbincrutchley.com.',
+    alt: 'Corbin Crutchley presenting on stage in a TanStack shirt beside his name and roles: engineering leader, consultant, author, and open-source maintainer in Sacramento, California. corbincrutchley.com.',
   },
 };
