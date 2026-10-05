@@ -9,7 +9,13 @@ import awards from '../styles/awards.module.scss';
   aria-labelledby="awards-heading"
 >
   <div class={awards['shelf']}>
-    <h2 id="awards-heading" class={awards['label']}>Awards</h2>
+    <div class={awards['intro']}>
+      <h2 id="awards-heading" class={awards['label']}>Awards</h2>
+      <p>
+        Recognition from the developer communities I’m part of, including
+        GitHub, Microsoft, and JetBrains.
+      </p>
+    </div>
     <ul class={awards['awards-list']} role="list">
       <li>
         <a

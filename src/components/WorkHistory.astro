@@ -4,10 +4,11 @@ import Icon from './Icon.astro';
 import Dialog from './Dialog.astro';
 import EarlyCareerList from './EarlyCareerList.astro';
 import history from '../styles/work-history.module.scss';
+import SectionHeading from './SectionHeading.astro';
 
 const earlyCareerGroups = [
   {
-    heading: 'Earlier chapters',
+    heading: 'Earlier roles',
     entries: [
       {
         period: 'Mar 2021 – Aug 2022',
@@ -73,21 +74,11 @@ const earlyCareerDialogId = 'earlier-career-dialog';
   aria-labelledby="work-heading"
   tabindex="-1"
 >
-  <div class={styles['section-intro']} data-reveal>
-    <p class:list={[styles['eyebrow'], styles['section-label']]}>
-      <span class={styles['index']} aria-hidden="true">01</span> Work history
-    </p>
-    <div>
-      <h2 id="work-heading">
-        Building the product.<br />Growing the <em>team</em>.
-      </h2>
-      <p>
-        Good technical decisions need business context. Good teams need it, too.
-        I bring the architecture, delivery practices, and everyday conversations
-        together so people can do their best work.
-      </p>
-    </div>
-  </div>
+  <SectionHeading
+    id="work-heading"
+    description="Good technical decisions need business context. Good teams need it, too. I bring the architecture, delivery practices, and everyday conversations together so people can do their best work."
+    >Work history</SectionHeading
+  >
 
   <div class={styles['career-list']}>
     <details class={styles['career']} open>
@@ -108,9 +99,8 @@ const earlyCareerDialogId = 'earlier-career-dialog';
       <div class={styles['career-body']}>
         <div class={styles['detail-copy']}>
           <p>
-            I oversaw frontend, backend, DevOps, and QA, pairing a substantial
-            architectural rewrite with the operating practices that help a team
-            ship with confidence.
+            I oversaw frontend, backend, DevOps, and QA and led an architectural
+            rewrite.
           </p>
           <div
             class:list={[styles['od-grid'], styles['metrics']]}
@@ -141,9 +131,8 @@ const earlyCareerDialogId = 'earlier-career-dialog';
             </div>
           </div>
           <p class={styles['detail-note']}>
-            Alongside the code: phased rollouts, capacity planning,
-            retrospectives, 1:1s, a clearer design handoff, and a more
-            consistent hiring process.
+            I introduced phased rollouts, capacity planning, retrospectives,
+            1:1s, and improvements to design handoff and hiring.
           </p>
           <a class={styles['text-link']} href="https://www.immersivehomes.com/"
             ><span>About Immersive Homes</span><Icon name="out"
@@ -262,14 +251,14 @@ const earlyCareerDialogId = 'earlier-career-dialog';
 
   <div class={history['groups']}>
     <div class={history['group']}>
-      <h3 class={history['group-heading']}>Earlier chapters</h3>
+      <h3 class={history['group-heading']}>Earlier roles</h3>
       <button
         type="button"
         class:list={[styles['text-link'], history['more-button']]}
         data-dialog-open={earlyCareerDialogId}
         aria-haspopup="dialog"
         aria-controls={earlyCareerDialogId}
-        aria-label={`View roles (${earlyCareerCount}) in earlier chapters`}
+        aria-label={`View roles (${earlyCareerCount}) in earlier roles`}
         hidden
       >
         <span>View roles ({earlyCareerCount})</span>
@@ -293,11 +282,7 @@ const earlyCareerDialogId = 'earlier-career-dialog';
           </>
         ))}
       </details>
-      <Dialog
-        id={earlyCareerDialogId}
-        title="Earlier chapters"
-        eyebrow="Work history"
-      >
+      <Dialog id={earlyCareerDialogId} title="Earlier roles">
         {earlyCareerGroups.map((group, index) => (
           <>
             {index > 0 && <h3 class={history['subheading']}>
@@ -317,10 +302,28 @@ const earlyCareerDialogId = 'earlier-career-dialog';
   <aside
     class={styles['community']}
     aria-labelledby="community-heading"
-    data-reveal
+    data-illustration-trigger
   >
     <div>
-      <p class={styles['eyebrow']}>Leadership beyond the day job</p>
+      <svg
+        class={styles['community-drawing']}
+        viewBox="0 0 152 52"
+        width="152"
+        height="52"
+        aria-hidden="true"
+        focusable="false"
+        fill="none"
+        data-illustration
+      >
+        <path d="M8 26h136M34 6v40M76 6v40M118 6v40" />
+        <path
+          data-draw
+          d="M34 26c0-24 42-24 42 0s42 24 42 0M34 26c0 24 42 24 42 0s42-24 42 0"
+        />
+        <circle cx="34" cy="26" r="5" data-illustration-node />
+        <circle cx="76" cy="26" r="5" data-illustration-node />
+        <circle cx="118" cy="26" r="5" data-illustration-node />
+      </svg>
       <h3 id="community-heading">Playful Programming</h3>
       <p>
         Executive Director<span aria-hidden="true"> · </span
@@ -330,11 +333,10 @@ const earlyCareerDialogId = 'earlier-career-dialog';
     <div>
       <p>
         I oversee development, content, and community for our
-        developer-education nonprofit. Our work makes learning open and
-        approachable, with a long-term roadmap for reaching more people.
+        developer-education nonprofit.
       </p>
       <a class={styles['text-link']} href="https://playfulprogramming.com/"
-        ><span>Meet the community</span><Icon name="out"
+        ><span>Playful Programming website</span><Icon name="out"
       /></a>
     </div>
   </aside>

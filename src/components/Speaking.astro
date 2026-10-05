@@ -4,19 +4,18 @@ import styles from '../styles/site.module.scss';
 import speaking from '../styles/speaking.module.scss';
 import Dialog from './Dialog.astro';
 import Icon from './Icon.astro';
+import SectionHeading from './SectionHeading.astro';
 
 const groups = [
   {
     id: 'talks',
     heading: 'Conference Talks',
-    label: 'On stage',
     action: 'View all talks',
     entries: talks,
   },
   {
     id: 'podcasts',
     heading: 'Podcasts',
-    label: 'In conversation',
     action: 'View all episodes',
     entries: podcasts,
   },
@@ -29,26 +28,76 @@ const groups = [
   aria-labelledby="speaking-heading"
   tabindex="-1"
 >
-  <div class={styles['section-intro']} data-reveal>
-    <p class:list={[styles['eyebrow'], styles['section-label']]}>
-      <span class={styles['index']} aria-hidden="true">05</span> Talks &amp;
-      podcasts
-    </p>
-    <div>
-      <h2 id="speaking-heading">
-        Good ideas start<br />a <em>conversation.</em>
-      </h2>
-      <p>
-        From conference stages to podcast conversations, I share what I’m
-        learning about building software and working with people.
-      </p>
-    </div>
-  </div>
+  <SectionHeading
+    id="speaking-heading"
+    description="From conference stages to podcast conversations, I share what I’m learning about building software and working with people."
+    >Talks &amp; podcasts</SectionHeading
+  >
   <div class={speaking['groups']}>
-    {groups.map((group) => <div class={speaking['group']} data-reveal>
+    {groups.map((group) => <div
+      class={speaking['group']}
+      data-illustration-trigger
+    >
       <div class={speaking['group-heading']}>
-        <p class={styles['eyebrow']}>{group.label}</p>
         <h3>{group.heading}</h3>
+        <svg
+          class={speaking['signal-study']}
+          viewBox="0 0 100 44"
+          width="100"
+          height="44"
+          fill="none"
+          aria-hidden="true"
+          focusable="false"
+          data-illustration
+        >
+          <path class={speaking['signal-guide']} d="M5 23h90M8 7v30M92 7v30" />
+          {group.id === 'talks' ? (
+            <>
+              <path
+                class={speaking['signal-ink']}
+                d="M8 23h18m-8-8 8 8-8 8"
+                data-draw
+              />
+              <path
+                class={speaking['signal-ink']}
+                d="M38 17v12m7-20v28m9-23v18"
+                data-draw
+              />
+              <path
+                class={speaking['signal-ink']}
+                d="M63 8c11 7 11 21 0 28m10-32c14 10 14 27 0 36"
+                data-draw
+              />
+              <path
+                class={speaking['signal-pencil']}
+                d="M77 9c9 7 11 17 5 26"
+              />
+            </>
+          ) : (
+            <>
+              <path
+                class={speaking['signal-ink']}
+                d="M8 23h12l5-9 7 18 8-27 9 34 8-25 6 18 6-14 5 5h18"
+                data-draw
+              />
+              <path class={speaking['signal-pencil']} d="m37 10 11 32 9-19" />
+              <circle
+                class={speaking['signal-node']}
+                cx="8"
+                cy="23"
+                r="3"
+                data-illustration-node
+              />
+              <circle
+                class={speaking['signal-node']}
+                cx="92"
+                cy="23"
+                r="3"
+                data-illustration-node
+              />
+            </>
+          )}
+        </svg>
       </div>
       <ul class={speaking['featured-list']} role="list">
         {group.entries.slice(0, 2).map((appearance) => <li>
@@ -94,7 +143,6 @@ const groups = [
       <Dialog
         id={`${group.id}-dialog`}
         title={`All ${group.heading.toLowerCase()}`}
-        eyebrow={group.label}
       >
         <ul class={speaking['dialog-list']} role="list">
           {group.entries.map((appearance) => <li>

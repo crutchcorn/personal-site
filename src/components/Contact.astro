@@ -10,19 +10,38 @@ import Icon from './Icon.astro';
   tabindex="-1"
 >
   <div class={styles['container']}>
-    <p class:list={[styles['eyebrow'], styles['section-label']]}>
-      <span class={styles['index']} aria-hidden="true">06</span> Let’s talk
-    </p>
-    <div class={styles['contact-grid']}>
-      <h2 id="contact-heading" data-reveal>
-        What’s next<br />for <em>your people?</em>
-      </h2>
-      <div class={styles['contact-copy']}>
-        <p>
+    <div class={styles['contact-grid']} data-illustration-trigger>
+      <div class={styles['contact-title']}>
+        <h2 id="contact-heading">Contact</h2>
+        <p class={styles['contact-description']}>
           Looking for a CTO for your next stage of growth, or a partner for a
           difficult technical decision? I’d love to understand what you’re
           building and who you’re building it for.
         </p>
+        <svg
+          class={styles['contact-drawing']}
+          viewBox="0 0 420 92"
+          width="420"
+          height="92"
+          aria-hidden="true"
+          focusable="false"
+          fill="none"
+          data-illustration
+          data-illustration-on-visible
+        >
+          <path
+            class={styles['contact-guide']}
+            d="M8 44h404M32 8v76M240 8v76M8 12h8m-4-4v8M404 76h8m-4-4v8"
+          />
+          <path
+            data-draw
+            d="M32 44h78c28 0 28-24 56-24h38c28 0 28 48 56 48h42c28 0 28-24 56-24h40M32 52h78c28 0 28-24 56-24h34c28 0 28 48 56 48h50c28 0 28-24 56-24h36"
+          />
+          <circle cx="32" cy="48" r="8" data-illustration-node />
+          <path d="m387 34 14 14-14 14" data-draw />
+        </svg>
+      </div>
+      <div class={styles['contact-copy']}>
         <a class={styles['button']} href="https://cal.com/crutchcorn/"
           >Start a conversation <Icon name="out"
         /></a>

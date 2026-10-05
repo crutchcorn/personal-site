@@ -1,15 +1,13 @@
 ---
-import styles from '../styles/site.module.scss';
 import dialogStyles from '../styles/dialog.module.scss';
 import Icon from './Icon.astro';
 
 interface Props {
   id: string;
   title: string;
-  eyebrow?: string;
 }
 
-const { id, title, eyebrow } = Astro.props;
+const { id, title } = Astro.props;
 ---
 
 <dialog
@@ -20,7 +18,6 @@ const { id, title, eyebrow } = Astro.props;
 >
   <div class={dialogStyles['header']}>
     <div>
-      {eyebrow && <p class={styles['eyebrow']}>{eyebrow}</p>}
       <h2
         id={`${id}-heading`}
         class={dialogStyles['heading']}

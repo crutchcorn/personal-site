@@ -1,0 +1,157 @@
+---
+import styles from '../styles/open-source.module.scss';
+
+interface Props {
+  variant: 'layers' | 'bridges' | 'templates';
+}
+
+const { variant } = Astro.props;
+---
+
+<div class={styles['study']} aria-hidden="true">
+  <svg
+    class={styles['drawing']}
+    viewBox="0 0 320 112"
+    width="320"
+    height="112"
+    fill="none"
+    focusable="false"
+    data-illustration
+  >
+    <path
+      class={styles['registration']}
+      d="M8 18V8h10M302 8h10v10M8 94v10h10M302 104h10V94"
+    />
+    {variant === 'layers' && (
+      <>
+        <path
+          class={styles['construction']}
+          d="M24 56h272M160 8v96M86 16v82M234 16v82"
+        />
+        <path
+          class={styles['line']}
+          data-draw
+          d="M31 76h39l16-8M234 43l25-12h30M86 32v36M234 32v36"
+        />
+        <path class={styles['sheet']} d="m86 68 74-23 74 23-74 24Z" />
+        <path class={styles['sheet']} d="m86 50 74-23 74 23-74 24Z" />
+        <path class={styles['top-sheet']} d="m86 32 74-23 74 23-74 24Z" />
+        <path
+          class={styles['accent']}
+          data-draw
+          d="M86 32v18m74 6v18m74-42v18M86 68l74 24 74-24"
+        />
+        <path class={styles['pencil']} d="m94 28 66-23 77 25M96 75l63 21" />
+        <circle
+          class={styles['node']}
+          data-illustration-node
+          cx="31"
+          cy="76"
+          r="4"
+        />
+        <circle
+          class={styles['node']}
+          data-illustration-node
+          cx="289"
+          cy="31"
+          r="4"
+        />
+        <path class={styles['tick']} d="M127 32h10m-5-5v10M184 32h10m-5-5v10" />
+      </>
+    )}
+    {variant === 'bridges' && (
+      <>
+        <path
+          class={styles['construction']}
+          d="M24 56h272M56 16v80M154 16v80M264 16v80"
+        />
+        <path
+          class={styles['line']}
+          data-draw
+          d="M58 50h78m36 0h24c20 0 19-28 39-28h28M58 62h78m36 0h24c20 0 19 28 39 28h28"
+        />
+        <path
+          class={styles['accent']}
+          data-draw
+          d="M58 56h77m38 0h18c26 0 22-28 45-28h27M191 56c26 0 22 28 45 28h27"
+        />
+        <path class={styles['pencil']} d="M203 53c16-4 15-20 32-21h19" />
+        <rect class={styles['sheet']} x="38" y="41" width="20" height="30" />
+        <path
+          class={styles['accent']}
+          data-draw
+          d="M38 50h-7m7 12h-7M44 48v16m7-16v16"
+        />
+        <circle
+          class={styles['node']}
+          data-illustration-node
+          cx="154"
+          cy="56"
+          r="19"
+        />
+        <path
+          class={styles['accent']}
+          data-draw
+          d="m148 48-7 8 7 8m12-16 7 8-7 8"
+        />
+        <path
+          class={styles['sheet']}
+          d="M263 17h19v22h-19ZM263 73h19v22h-19Z"
+        />
+        <path
+          class={styles['accent']}
+          data-draw
+          d="M269 23h7v10h-7M269 79h7v10h-7"
+        />
+        <path class={styles['tick']} d="M139 92h30m-30-4v8m30-8v8" />
+      </>
+    )}
+    {variant === 'templates' && (
+      <>
+        <path
+          class={styles['construction']}
+          d="M26 56h269M59 15v84M199 15v84M265 15v84"
+        />
+        <path class={styles['sheet']} d="M36 26h34l12 12v48H36Z" />
+        <path
+          class={styles['line']}
+          data-draw
+          d="M70 26v12h12M47 71h24m-24 6h15"
+        />
+        <path
+          class={styles['accent']}
+          data-draw
+          d="m54 44-7 9 7 9m11-18 7 9-7 9"
+        />
+        <path class={styles['accent']} data-draw d="M91 56h57m-8-6 8 6-8 6" />
+        <path class={styles['tick']} d="M116 40h10m-5-5v10" />
+        <g class={styles['template-back']}>
+          <path class={styles['sheet']} d="M169 22h34l10 10v48h-44Z" />
+          <path
+            class={styles['line']}
+            data-draw
+            d="M203 22v10h10M180 43h20m-20 7h20m-20 16h12"
+          />
+        </g>
+        <g class={styles['template-middle']}>
+          <path class={styles['sheet']} d="M200 29h34l10 10v48h-44Z" />
+          <path
+            class={styles['line']}
+            data-draw
+            d="M234 29v10h10M211 50h20m-20 7h20m-20 16h12"
+          />
+        </g>
+        <g class={styles['template-front']}>
+          <path class={styles['top-sheet']} d="M231 36h34l10 10v48h-44Z" />
+          <path
+            class={styles['accent']}
+            data-draw
+            d="M265 36v10h10M242 57h20m-20 7h20m-20 16h12"
+          />
+          <path class={styles['pencil']} d="M228 45v52h41" />
+        </g>
+        <path class={styles['pencil']} d="M32 33v56h40" />
+      </>
+    )}
+  </svg>
+</div>

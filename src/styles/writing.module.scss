@@ -1,14 +1,67 @@
 @use 'breakpoints';
 
 .group-heading {
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
   margin-bottom: var(--space-content);
-  color: var(--muted);
+  font-size: var(--title);
+}
+
+.group-heading::after {
+  min-width: var(--s5);
+  height: 1px;
+  flex: 1;
+  background: var(--line);
+  content: '';
+}
+
+.books-heading {
+  gap: var(--s3);
+}
+
+.books-heading > span {
+  flex: none;
+  white-space: nowrap;
+}
+
+.books-heading::after {
+  min-width: 0;
+}
+
+.book-study {
+  order: 1;
+  flex: 0 1 88px;
+  min-width: 32px;
+  width: 88px;
+  height: auto;
+  max-height: 44px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.study-guide {
+  stroke: var(--line);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+
+.study-ink {
+  stroke: var(--accent);
+  stroke-width: 1.25;
+}
+
+.study-pencil {
+  stroke: var(--accent);
+  stroke-width: 0.75;
+  opacity: 0.4;
 }
 
 .books-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--s4);
+  gap: var(--s5);
+  padding: var(--s3) var(--s2) 0;
 }
 
 .book-card {
@@ -18,18 +71,43 @@
 }
 
 .book-image-link {
+  position: relative;
   display: block;
-  overflow: hidden;
-  border-radius: var(--radius-surface);
+  padding: var(--s4) var(--s3) var(--s3) var(--s4);
+  border: 1px solid var(--line);
   background: var(--white);
+  box-shadow:
+    3px 3px 0 var(--paper),
+    3px 3px 0 1px var(--line),
+    6px 6px 0 var(--paper),
+    6px 6px 0 1px var(--line);
 }
 
+.book-image-link::before {
+  position: absolute;
+  inset: 0 auto 0 var(--s2);
+  border-left: 1px solid var(--line);
+  content: '';
+}
+
+.book-image-link::after {
+  position: absolute;
+  inset: -1px -1px auto auto;
+  width: 15px;
+  height: 15px;
+  border-top: 1px solid var(--accent);
+  border-right: 1px solid var(--accent);
+  content: '';
+}
+
+.book-image-link picture,
 .book-image-link img {
   display: block;
   width: 100%;
+}
+
+.book-image-link img {
   height: auto;
-  aspect-ratio: 16 / 9;
-  object-fit: contain;
 }
 
 .book-caption {
@@ -37,16 +115,19 @@
   flex: 1;
   flex-direction: column;
   align-items: flex-start;
-  padding-top: var(--s3);
+  padding-top: var(--s5);
 }
 
-.book-category {
+.book-status {
+  margin-bottom: var(--s3);
+  padding-left: var(--s2);
+  border-left: 2px solid var(--accent);
   color: var(--muted);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
 }
 
 .book-caption h4 {
-  margin-block: var(--s2) var(--s3);
+  margin-block: 0 var(--s3);
   font-size: clamp(1.375rem, 2.1vw, 1.75rem);
   font-weight: 600;
   line-height: 1.25;
@@ -65,6 +146,10 @@
   color: var(--accent);
 }
 
+.book-image-link:focus-visible {
+  border-color: var(--accent);
+}
+
 .essays-group {
   margin-top: var(--space-subsection);
 }
@@ -76,6 +161,39 @@
   column-gap: var(--space-layout);
 }
 
+.collections-grid {
+  row-gap: var(--s4);
+  padding-bottom: var(--s4);
+}
+
+.collection {
+  position: relative;
+  padding: var(--s4) var(--s4) var(--s5) var(--s5);
+  border: 1px solid var(--line);
+  background: var(--white);
+}
+
+.collection::before {
+  position: absolute;
+  inset: var(--s3) auto var(--s3) var(--s3);
+  border-left: 1px solid var(--line);
+  content: '';
+}
+
+.collection::after {
+  position: absolute;
+  inset: -1px auto auto -1px;
+  width: 16px;
+  height: 16px;
+  border-top: 1px solid var(--accent);
+  border-left: 1px solid var(--accent);
+  content: '';
+}
+
+.collection > p {
+  margin-top: var(--s3);
+}
+
 .collection-title {
   margin: 0;
   font-size: clamp(1.5rem, 2.3vw, 2rem);
@@ -83,6 +201,16 @@
   line-height: 1.25;
   letter-spacing: -0.035em;
   text-wrap: balance;
+}
+
+.essay-mark {
+  flex: 0 0 auto;
+  color: var(--accent);
+  font: 400 1.5rem/1 var(--font-mono, monospace);
+}
+
+.essay {
+  grid-template-columns: 20px minmax(0, 1fr) 24px;
 }
 
 .essay-title {
@@ -99,9 +227,36 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .book-image-link:hover {
+    border-color: var(--accent);
+  }
+
   .collections-grid a:hover .collection-title,
   .essays-grid a:hover .essay-title {
     color: var(--accent);
+  }
+
+  .collection:hover {
+    border-color: var(--accent);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .book-image-link {
+    transform-origin: bottom left;
+    transition:
+      border-color var(--quick) var(--ease),
+      transform 280ms var(--ease);
+  }
+
+  .book-card:focus-within .book-image-link {
+    transform: translate(-2px, -3px) rotate(-0.75deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .book-card:hover .book-image-link {
+    transform: translate(-2px, -3px) rotate(-0.75deg);
   }
 }
 
@@ -110,12 +265,16 @@
     gap: var(--s3);
   }
 
-  .book-category {
-    font-size: 0.75rem;
+  .collection {
+    padding-right: var(--s3);
   }
 }
 
 @media (width <= breakpoints.$mobile) {
+  .books-heading {
+    gap: var(--s2);
+  }
+
   .books-grid,
   .collections-grid,
   .essays-grid {
@@ -128,10 +287,6 @@
 
   .book-caption h4 {
     font-size: 1.75rem;
-  }
-
-  .book-category {
-    font-size: 0.8125rem;
   }
 
   .essay-title {

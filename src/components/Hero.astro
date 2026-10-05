@@ -1,63 +1,94 @@
 ---
+import { Picture } from 'astro:assets';
+import portrait from '../assets/corbin_present.png';
 import styles from '../styles/site.module.scss';
+import hero from '../styles/hero.module.scss';
 import Icon from './Icon.astro';
+
+const frameLines = ['M14 92H446', 'M14 372H446', 'M88 18V442', 'M372 18V442'];
+const frameNodes = [
+  { cx: 14, cy: 92 },
+  { cx: 446, cy: 92 },
+  { cx: 14, cy: 372 },
+  { cx: 446, cy: 372 },
+  { cx: 88, cy: 18 },
+  { cx: 88, cy: 442 },
+  { cx: 372, cy: 18 },
+  { cx: 372, cy: 442 },
+];
 ---
 
 <section
-  class:list={[styles['hero'], styles['container']]}
+  class:list={[hero['hero'], styles['container']]}
   aria-labelledby="hero-heading"
 >
-  <div class={styles['hero-grid']}>
-    <div data-reveal>
+  <div class={hero['grid']}>
+    <div class={hero['introduction']}>
       <h1 id="hero-heading">
-        <span class={styles['hero-line']}>Thinking of</span>
-        <span class={styles['hero-line']}><em>people</em> behind</span>
-        <span class={styles['hero-line']}
-          >the
-          screen<span class={styles['period']} aria-hidden="true">.</span></span
-        >
+        <span class={hero['opening-quote']} aria-hidden="true">“</span>
+        <span class={hero['headline-line']}>I’m thinking about the</span>
+        <span class={hero['headline-line']}>
+          people <span class={hero['accent']}>behind</span>
+        </span>
+        <span class={hero['headline-line']}>
+          the screen<span class={hero['accent']}>.</span
+          ><span class={hero['closing-quote']} aria-hidden="true">”</span>
+        </span>
       </h1>
       <p class={styles['hero-description']}>
-        <strong>I’m Corbin Crutchley.</strong> I help growing companies connect
-        technical direction with the people who build, use, and depend on their
-        software.
+        <b>Hi, I’m Corbin Crutchley.</b> I’m an engineering leader, consultant,
+        author, and open-source maintainer.
       </p>
       <div class={styles['hero-actions']}>
         <a class={styles['button']} href="https://cal.com/crutchcorn/"
-          >Let’s build what’s next <Icon name="out"
+          >Book a call <Icon name="out"
         /></a>
         <a class={styles['text-link']} href="#work"
-          ><span>Explore my work</span><Icon name="down"
+          ><span>Work history</span><Icon name="down"
         /></a>
       </div>
     </div>
-    <figure class={styles['portrait']} data-reveal>
-      <div class={styles['portrait-frame']}>
-        <img
-          class={styles['od-media']}
-          src="/assets/corbin-profile.jpg"
-          width="460"
-          height="460"
-          alt="Corbin Crutchley smiling, wearing glasses and a pink shirt"
+    <figure class={hero['portrait']}>
+      <div class={hero['drawing']} data-illustration-trigger>
+        <svg
+          class={hero['connections']}
+          viewBox="0 0 460 460"
+          aria-hidden="true"
+          focusable="false"
+          data-illustration
+          data-illustration-on-visible
+        >
+          <g class={hero['guides']}>
+            <circle cx="230" cy="230" r="200" />
+            <path
+              d="M58 44h16m-8-8v16M390 44h16m-8-8v16M58 394h16m-8-8v16M390 394h16m-8-8v16"
+            />
+          </g>
+          <g class={hero['routes']}>
+            {frameLines.map((d) => (
+              <path d={d} data-draw />
+            ))}
+          </g>
+          <g class={hero['nodes']}>
+            {frameNodes.map(({ cx, cy }) => (
+              <circle cx={cx} cy={cy} r="4.5" data-illustration-node />
+            ))}
+          </g>
+        </svg>
+        <Picture
+          pictureAttributes={{ class: hero['photo'] }}
+          src={portrait}
+          formats={['avif', 'webp']}
+          fallbackFormat="png"
+          width={320}
+          widths={[200, 320, 480, 640, 867]}
+          sizes="(max-width: 374px) calc(62.5vw - 20px), (max-width: 447px) calc(62.5vw - 30px), (max-width: 767px) 250px, (max-width: 1023px) calc(23.15vw - 24px), (max-width: 1327px) calc(23.15vw - 35px), 273px"
+          alt="Corbin Crutchley presenting on stage, wearing glasses and a TanStack shirt"
+          loading="eager"
+          decoding="async"
           fetchpriority="high"
         />
       </div>
-      <figcaption>
-        <strong>Corbin Crutchley</strong>
-        <span>Sacramento, CA, USA</span>
-      </figcaption>
     </figure>
-  </div>
-  <div class={styles['hero-foot']}>
-    <p>Over a decade of hands-on engineering.</p>
-    <ul
-      class={styles['chapter-links']}
-      role="list"
-      aria-label="Professional focus"
-    >
-      <li>OSS Developer</li>
-      <li>Author</li>
-      <li>Engineering Leader</li>
-    </ul>
   </div>
 </section>

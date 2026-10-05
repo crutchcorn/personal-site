@@ -1,6 +1,8 @@
 ---
 import styles from '../styles/site.module.scss';
 import Icon from './Icon.astro';
+import ConnectionStudy from './ConnectionStudy.astro';
+import SectionHeading from './SectionHeading.astro';
 ---
 
 <section
@@ -10,47 +12,29 @@ import Icon from './Icon.astro';
   tabindex="-1"
 >
   <div class={styles['container']}>
-    <div class={styles['section-intro']} data-reveal>
-      <p class:list={[styles['eyebrow'], styles['section-label']]}>
-        <span class={styles['index']} aria-hidden="true">02</span> Consulting
-      </p>
-      <div>
-        <h2 id="consulting-heading">
-          A <em>partner</em> for your<br />next hard decision.
-        </h2>
-        <p>
-          When the business is growing, the next technical choice rarely stands
-          alone. I help connect what you need to achieve with what your team can
-          realistically build and support.
-        </p>
-      </div>
-    </div>
+    <SectionHeading
+      id="consulting-heading"
+      description="When the business is growing, the next technical choice rarely stands alone. I help connect what you need to achieve with what your team can realistically build and support."
+      >Consulting</SectionHeading
+    >
     <div class:list={[styles['od-grid'], styles['service-grid']]}>
-      <article class={styles['service']} data-reveal>
-        <span class={styles['service-number']} aria-hidden="true">/ 01</span>
-        <h3>Find the technical direction.</h3>
+      <article class={styles['service']} data-illustration-trigger>
+        <ConnectionStudy variant="direction" />
+        <h3>Architecture</h3>
         <p>
-          Architecture reviews, focused prototypes, and documented tradeoffs.
-          Start with the business need, then choose a path the team can explain
-          and own.
+          Architecture reviews, prototypes, and technical recommendations with
+          documented tradeoffs.
         </p>
       </article>
-      <article class={styles['service']} data-reveal>
-        <span class={styles['service-number']} aria-hidden="true">/ 02</span>
-        <h3>Make delivery sustainable.</h3>
-        <p>
-          Work through release practices, quality, hiring, and communication
-          with the people doing the work. Build a rhythm your team can keep.
-        </p>
+      <article class={styles['service']} data-illustration-trigger>
+        <ConnectionStudy variant="rhythm" />
+        <h3>Engineering leadership</h3>
+        <p>Release practices, quality, hiring, and team communication.</p>
       </article>
-      <article class={styles['service']} data-reveal>
-        <span class={styles['service-number']} aria-hidden="true">/ 03</span>
-        <h3>Help developers get unstuck.</h3>
-        <p>
-          Documentation, technical writing, and developer education that make
-          the next step clear. Turn knowledge held by a few into something
-          others can use.
-        </p>
+      <article class={styles['service']} data-illustration-trigger>
+        <ConnectionStudy variant="knowledge" />
+        <h3>Developer education</h3>
+        <p>Documentation, technical writing, and training for developers.</p>
       </article>
     </div>
     <div class={styles['consulting-history']}>
@@ -118,10 +102,10 @@ import Icon from './Icon.astro';
       <div class={styles['consulting-bottom']}>
         <p>
           Technical writing and documentation restructuring for teams building
-          tools other developers depend on.
+          developer tools.
         </p>
         <a class={styles['text-link']} href="https://oceanbit.dev/"
-          ><span>Explore OceanBit</span><Icon name="out"
+          ><span>OceanBit</span><Icon name="out"
         /></a>
       </div>
     </div>

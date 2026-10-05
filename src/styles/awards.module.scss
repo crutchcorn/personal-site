@@ -6,23 +6,27 @@
 
 .shelf {
   display: grid;
-  grid-template-columns: 140px minmax(0, 1fr);
+  grid-template-columns: 240px minmax(0, 1fr);
   align-items: center;
   gap: var(--space-layout);
-  padding: var(--space-inset);
-  border-radius: var(--radius-surface);
-  background: var(--white);
+  padding-block: var(--space-content);
+  border-bottom: 1px solid var(--line);
 }
 
 .label {
   margin: 0;
-  font-family: var(--serif);
-  font-size: 1.625rem;
-  font-style: italic;
-  font-weight: 450;
+  font: 400 0.75rem/1.5 var(--font-mono);
   line-height: 1.2;
-  letter-spacing: -0.02em;
   color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.intro p {
+  margin-top: var(--s2);
+  max-width: 48ch;
+  color: var(--muted);
+  font-size: 0.875rem;
 }
 
 .awards-list {

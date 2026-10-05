@@ -4,7 +4,7 @@ import { platform } from 'node:process';
 import { podcasts, talks } from '../src/data/appearances';
 
 const dialogCases = [
-  { opener: /^View roles.*earlier chapters$/, title: 'Earlier chapters' },
+  { opener: /^View roles.*earlier roles$/, title: 'Earlier roles' },
   { opener: /^View all talks/, title: 'All conference talks' },
   { opener: /^View all episodes/, title: 'All podcasts' },
 ];
@@ -47,6 +47,24 @@ async function expectAccessible(page: Page): Promise<void> {
     ])
     .analyze();
   expect(violations).toEqual([]);
+}
+
+async function expectIllustrationComplete(
+  illustration: Locator,
+): Promise<void> {
+  await expect(illustration).not.toHaveAttribute('data-illustration-waiting');
+  const path = illustration.locator('[data-draw]').first();
+  await expect(path).toHaveCSS('stroke-dasharray', 'none');
+  await expect
+    .poll(() =>
+      path.evaluate((element) =>
+        Number.parseFloat(getComputedStyle(element).strokeDashoffset),
+      ),
+    )
+    .toBe(0);
+  const node = illustration.locator('[data-illustration-node]').first();
+  await expect(node).toHaveCSS('opacity', '1');
+  await expect(node).toHaveCSS('transform', 'none');
 }
 
 async function expandCareer(page: Page): Promise<void> {
@@ -251,6 +269,9 @@ test.describe('without JavaScript', () => {
     page,
   }) => {
     await page.goto('/');
+    await expectIllustrationComplete(
+      page.locator('#open-source article [data-illustration]').first(),
+    );
     await expectCompleteFallbacks(page);
   });
 });
@@ -359,16 +380,148 @@ test('reduced motion prevents reveals and animated scrolling', async ({
   page,
 }) => {
   await page.goto('/');
-  await page
-    .getByRole('navigation', { name: 'Main navigation' })
-    .getByRole('link', { name: 'Speaking', exact: true })
-    .click();
+  await expectIllustrationComplete(
+    page.locator('#open-source article [data-illustration]').first(),
+  );
+  await page.getByRole('link', { name: 'Work history', exact: true }).click();
   expect(await page.evaluate(() => document.getAnimations().length)).toBe(0);
   expect(
     await page.evaluate(
       () => getComputedStyle(document.documentElement).scrollBehavior,
     ),
   ).toBe('auto');
+});
+
+test('illustration motion settles, respects replay cooldowns, and stops when reduced motion is enabled', async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/');
+  const study = page
+    .locator('#open-source article [data-illustration]')
+    .first();
+  const trigger = page
+    .locator('#open-source article[data-illustration-trigger]')
+    .first();
+  const liveDrawing = study.locator('[data-illustration-live]');
+  const finishedFrame = study.locator('[data-illustration-frame]');
+  const firstPath = study.locator('[data-draw]').first();
+  const pendingStudy = page.locator('#contact [data-illustration]').first();
+  const link = page.getByRole('link', { name: 'TanStack Form', exact: true });
+  const activeAnimationCount = () =>
+    study.evaluate(
+      (element) =>
+        element
+          .getAnimations({ subtree: true })
+          .filter((animation) => animation.playState !== 'finished').length,
+    );
+  const illustrationState = () =>
+    study.evaluate((element) =>
+      Array.from(
+        element.querySelectorAll('[data-draw], [data-illustration-node]'),
+        (part) => {
+          const style = getComputedStyle(part);
+          return {
+            dashArray: style.strokeDasharray,
+            dashOffset: style.strokeDashoffset,
+            opacity: style.opacity,
+            transform: style.transform,
+          };
+        },
+      ),
+    );
+
+  await page.evaluate(() => document.fonts.ready.then(() => undefined));
+  const pathLength = await firstPath.evaluate((element) =>
+    (element as SVGGeometryElement).getTotalLength(),
+  );
+  const firstPathOffset = () =>
+    firstPath.evaluate((element) =>
+      Number.parseFloat(getComputedStyle(element).strokeDashoffset),
+    );
+  await expect(study).toHaveAttribute('data-illustration-waiting');
+  await expect(firstPath).not.toHaveCSS('stroke-dasharray', 'none');
+  await expect.poll(firstPathOffset).toBeCloseTo(pathLength, 2);
+  await study.evaluate((element) => {
+    window.scrollTo({
+      top:
+        window.scrollY +
+        element.getBoundingClientRect().top -
+        window.innerHeight +
+        50,
+      behavior: 'instant',
+    });
+  });
+  await page.evaluate(
+    () =>
+      new Promise<void>((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+      }),
+  );
+  expect(await activeAnimationCount()).toBe(0);
+  await expect(study).toHaveAttribute('data-illustration-waiting');
+  expect(await firstPathOffset()).toBeCloseTo(pathLength, 2);
+  await page.evaluate(() => window.scrollBy({ top: 260, behavior: 'instant' }));
+  await expect.poll(activeAnimationCount).toBeGreaterThan(0);
+  await expect(study).not.toHaveAttribute('data-illustration-waiting');
+  await expect.poll(activeAnimationCount).toBe(0);
+  await expectIllustrationComplete(study);
+  const restingState = await illustrationState();
+  expect(restingState.length).toBeGreaterThan(0);
+
+  await trigger.hover();
+  expect(await activeAnimationCount()).toBe(0);
+  await link.focus();
+  await expect(link).toBeFocused();
+  expect(await activeAnimationCount()).toBe(0);
+  expect(await illustrationState()).toEqual(restingState);
+
+  // Exercise the real cooldown rather than advancing only animation timers.
+  await page.waitForTimeout(3000);
+  expect(await activeAnimationCount()).toBe(0);
+  await expect(pendingStudy).toHaveAttribute('data-illustration-waiting');
+  await page.locator('#open-source').focus();
+  await link.focus();
+  await expect(link).toBeFocused();
+  await expect(finishedFrame).toHaveCount(1);
+  await expect
+    .poll(
+      () =>
+        study.evaluate((element) => {
+          const live = element.querySelector('[data-illustration-live]');
+          const frame = element.querySelector('[data-illustration-frame]');
+          if (!live || !frame) return false;
+          const liveOpacity = Number(getComputedStyle(live).opacity);
+          const frameOpacity = Number(getComputedStyle(frame).opacity);
+          return (
+            liveOpacity > 0 &&
+            liveOpacity < 1 &&
+            frameOpacity > 0 &&
+            frameOpacity < 1
+          );
+        }),
+      { intervals: [10, 20, 40] },
+    )
+    .toBe(true);
+  await expect.poll(activeAnimationCount).toBeGreaterThan(0);
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect.poll(activeAnimationCount).toBe(0);
+  await expect(finishedFrame).toHaveCount(0);
+  await expect(liveDrawing).toHaveCSS('opacity', '1');
+  await expect.poll(illustrationState).toEqual(restingState);
+  await expectIllustrationComplete(pendingStudy);
+
+  // The reduced-motion guard must still apply after the new cooldown expires.
+  await page.waitForTimeout(3000);
+  await page.locator('#open-source').focus();
+  await page.mouse.move(0, 0);
+  await trigger.hover();
+  await link.focus();
+  await expect(link).toBeFocused();
+  expect(await activeAnimationCount()).toBe(0);
+  await expect(finishedFrame).toHaveCount(0);
+  await expect(liveDrawing).toHaveCSS('opacity', '1');
+  expect(await illustrationState()).toEqual(restingState);
 });
 
 test('forced colors retain visible keyboard focus and disclosure indicators', async ({

@@ -1,6 +1,9 @@
 ---
 import styles from '../styles/site.module.scss';
+import projects from '../styles/open-source.module.scss';
 import Icon from './Icon.astro';
+import ProjectStudy from './ProjectStudy.astro';
+import SectionHeading from './SectionHeading.astro';
 ---
 
 <section
@@ -9,31 +12,21 @@ import Icon from './Icon.astro';
   aria-labelledby="oss-heading"
   tabindex="-1"
 >
-  <div class={styles['section-intro']} data-reveal>
-    <p class:list={[styles['eyebrow'], styles['section-label']]}>
-      <span class={styles['index']} aria-hidden="true">04</span> Open source
-    </p>
-    <div>
-      <h2 id="oss-heading">
-        Built in the <em>open</em>.<br />Better with others.
-      </h2>
-      <p>
-        A library is part of someone else’s working day. I stay close to the
-        code, the documentation, and the people relying on both.
-      </p>
-    </div>
-  </div>
+  <SectionHeading
+    id="oss-heading"
+    description="A library is part of someone else’s working day. I stay close to the code, the documentation, and the people relying on both."
+    >Open source</SectionHeading
+  >
   <div class:list={[styles['od-grid'], styles['project-grid']]}>
-    <article class={styles['project']} data-reveal>
-      <div class={styles['project-top']}>
-        <span class={styles['eyebrow']}>Maintainer</span
-        ><span class={styles['project-symbol']} aria-hidden="true">[ 01 ]</span>
-      </div>
+    <article
+      class:list={[styles['project'], projects['project']]}
+      data-illustration-trigger
+    >
+      <ProjectStudy variant="layers" />
       <h3>TanStack</h3>
       <p>
         I lead maintenance of Form, Store, and Config, and contribute to Query
-        and Table. Practical tools, with attention to the developer experience
-        behind every API.
+        and Table.
       </p>
       <div
         class={styles['project-links']}
@@ -54,16 +47,15 @@ import Icon from './Icon.astro';
         /></a>
       </div>
     </article>
-    <article class={styles['project']} data-reveal>
-      <div class={styles['project-top']}>
-        <span class={styles['eyebrow']}
-          >Contributor &amp; integration author</span
-        ><span class={styles['project-symbol']} aria-hidden="true">[ 02 ]</span>
-      </div>
+    <article
+      class:list={[styles['project'], projects['project']]}
+      data-illustration-trigger
+    >
+      <ProjectStudy variant="bridges" />
       <h3>Redux</h3>
       <p>
         I ported Redux integrations to Angular and Vue and contribute across the
-        Redux ecosystem, helping familiar tools meet developers where they work.
+        Redux ecosystem.
       </p>
       <div
         class={styles['project-links']}
@@ -82,20 +74,18 @@ import Icon from './Icon.astro';
         /></a>
       </div>
     </article>
-    <article class={styles['project']} data-reveal>
-      <div class={styles['project-top']}>
-        <span class={styles['eyebrow']}>Maintainer</span>
-        <span class={styles['project-symbol']} aria-hidden="true">[ 03 ]</span>
-      </div>
+    <article
+      class:list={[styles['project'], projects['project']]}
+      data-illustration-trigger
+    >
+      <ProjectStudy variant="templates" />
       <h3>Plop</h3>
       <p>
-        Turn your team’s patterns into repeatable code generators. Plop helps
-        developers scaffold files consistently, with templates that grow
-        alongside the codebase.
+        I maintain Plop, a tool for generating files from reusable templates.
       </p>
       <div class={styles['project-links']}>
         <a class={styles['text-link']} href="https://plopjs.com/">
-          <span>Explore Plop</span><Icon name="out" />
+          <span>Plop website</span><Icon name="out" />
         </a>
       </div>
     </article>
